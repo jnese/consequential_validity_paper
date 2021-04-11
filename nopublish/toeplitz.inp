@@ -1,0 +1,38 @@
+TITLE:	linear growth toeplitz
+
+DATA:	FILE IS data_r_gr4.csv;
+
+VARIABLE:	
+    NAMES ARE easycbm1-easycbm4;
+    MISSING ARE ALL (-99); 
+
+ANALYSIS:	ESTIMATOR = MLR;
+    ITERATIONS = 1000000;
+
+MODEL:	
+
+    i by  easycbm1-easycbm4@1;
+    s by easycbm1@0 easycbm2@1.35 easycbm3@3.65 easycbm4@6.67;
+    [easycbm1-easycbm4@0];
+    [i s];
+
+    easycbm1-easycbm4 (var1-var4);
+    easycbm1 with easycbm2 (cov12);
+    easycbm1 with easycbm3 (cov13);
+    easycbm1 with easycbm4 (cov14);
+    easycbm2 with easycbm3 (cov23);
+    easycbm2 with easycbm4 (cov24);
+    easycbm3 with easycbm4 (cov34);
+
+MODEL CONSTRAINT:
+
+    new(cor1, cor2, cor3);
+    cov12 = cor1*sqrt(var1)*sqrt(var2);
+    cov23 = cor1*sqrt(var2)*sqrt(var3);
+    cov34 = cor1*sqrt(var3)*sqrt(var4);
+    cov13 = cor2*sqrt(var1)*sqrt(var3);
+    cov24 = cor2*sqrt(var2)*sqrt(var4);
+    cov14 = cor3*sqrt(var1)*sqrt(var4);
+
+OUTPUT:
+    STDYX;

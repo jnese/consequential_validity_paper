@@ -1,0 +1,110 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+ linear growth toeplitz
+
+DATA:
+ FILE IS data_r_gr4.csv;
+VARIABLE:
+    NAMES ARE easycbm1-easycbm4;
+    MISSING ARE ALL (-99);
+ANALYSIS:
+ ESTIMATOR = MLR;
+ITERATIONS = 1000000;
+OUTPUT:
+    STDYX;
+MODEL:
+    i by  easycbm1-easycbm4@1;
+    s by easycbm1@0 easycbm2@1.35 easycbm3@3.65 easycbm4@6.67;
+    [easycbm1-easycbm4@0];
+    [i s];
+    easycbm1 WITH easycbm2;
+    easycbm1 WITH easycbm3;
+    easycbm1 WITH easycbm4;
+    easycbm2 WITH easycbm3;
+    easycbm2 WITH easycbm4;
+    easycbm3 WITH easycbm4;
+INPUT_END
+1
+1
+0
+1
+MLR
+1
+GENERAL
+0
+4
+2
+0
+easycbm1 easycbm2 easycbm3 easycbm4 i s
+1
+-1 -1 -1 -1 0 0
+0
+2
+i
+easycbm1 easycbm2 easycbm3 easycbm4
+s
+easycbm1 easycbm2 easycbm3 easycbm4
+1 1 i easycbm1 1.000
+1 1 i easycbm2 1.000
+1 1 i easycbm3 1.000
+1 1 i easycbm4 1.000
+1 1 s easycbm1 0.000
+1 1 s easycbm2 1.350
+1 1 s easycbm3 3.650
+1 1 s easycbm4 6.670
+2 1 easycbm1 easycbm2 22.881
+2 1 easycbm1 easycbm3 244.291
+2 1 easycbm1 easycbm4 90.524
+2 1 easycbm2 easycbm3 -40.567
+2 1 easycbm2 easycbm4 -211.855
+2 1 easycbm3 easycbm4 102.168
+2 1 s i 44.729
+4 1 easycbm1 524.335
+4 1 easycbm2 726.135
+4 1 easycbm3 702.346
+4 1 easycbm4 345.584
+5 1 i 493.687
+5 1 s -4.986
+11 1 i easycbm1 0.696
+11 1 i easycbm2 0.609
+11 1 i easycbm3 0.582
+11 1 i easycbm4 0.638
+11 1 s easycbm1 999.000
+11 1 s easycbm2 999.000
+11 1 s easycbm3 999.000
+11 1 s easycbm4 999.000
+12 1 easycbm1 easycbm2 0.037
+12 1 easycbm1 easycbm3 0.403
+12 1 easycbm1 easycbm4 0.213
+12 1 easycbm2 easycbm3 -0.057
+12 1 easycbm2 easycbm4 -0.423
+12 1 easycbm3 easycbm4 0.207
+12 1 s i 999.000
+14 1 easycbm1 0.515
+14 1 easycbm2 0.545
+14 1 easycbm3 0.482
+14 1 easycbm4 0.285
+15 1 i 1.000
+15 1 s 999.000
+31 1 i easycbm1 22.219
+31 1 i easycbm2 22.219
+31 1 i easycbm3 22.219
+31 1 i easycbm4 22.219
+31 1 s easycbm1 999.000
+31 1 s easycbm2 999.000
+31 1 s easycbm3 999.000
+31 1 s easycbm4 999.000
+32 1 easycbm1 easycbm2 22.881
+32 1 easycbm1 easycbm3 244.291
+32 1 easycbm1 easycbm4 90.524
+32 1 easycbm2 easycbm3 -40.567
+32 1 easycbm2 easycbm4 -211.855
+32 1 easycbm3 easycbm4 102.168
+32 1 s i 999.000
+34 1 easycbm1 524.335
+34 1 easycbm2 726.135
+34 1 easycbm3 702.346
+34 1 easycbm4 345.584
+35 1 i 1.000
+35 1 s 999.000

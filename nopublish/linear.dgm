@@ -1,0 +1,85 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+ linear growth toeplitz
+
+DATA:
+ FILE IS data_r_gr4.csv;
+VARIABLE:
+    NAMES ARE easycbm1-easycbm4;
+    MISSING ARE ALL (-99);
+ANALYSIS:
+ ESTIMATOR = MLR;
+OUTPUT:
+    STDYX;
+MODEL:
+    i by  easycbm1-easycbm4@1;
+    s by easycbm1@0 easycbm2@1.35 easycbm3@3.65 easycbm4@6.67;
+    [easycbm1-easycbm4@0];
+    [i s];
+INPUT_END
+2
+2
+0
+2
+MLR
+1
+GENERAL
+0
+4
+2
+0
+easycbm1 easycbm2 easycbm3 easycbm4 i s
+1
+-1 -1 -1 -1 0 0
+0
+2
+i
+easycbm1 easycbm2 easycbm3 easycbm4
+s
+easycbm1 easycbm2 easycbm3 easycbm4
+1 1 i easycbm1 1.000 0.000
+1 1 i easycbm2 1.000 0.000
+1 1 i easycbm3 1.000 0.000
+1 1 i easycbm4 1.000 0.000
+1 1 s easycbm1 0.000 0.000
+1 1 s easycbm2 1.350 0.000
+1 1 s easycbm3 3.650 0.000
+1 1 s easycbm4 6.670 0.000
+2 1 s i 13.043 12.788
+4 1 easycbm1 206.850 69.245
+4 1 easycbm2 922.689 179.341
+4 1 easycbm3 500.686 48.961
+4 1 easycbm4 325.892 95.209
+5 1 i 797.947 86.814
+5 1 s -1.399 3.189
+11 1 i easycbm1 0.891 0.038
+11 1 i easycbm2 0.675 0.042
+11 1 i easycbm3 0.762 0.032
+11 1 i easycbm4 0.804 0.046
+11 1 s easycbm1 999.000 999.000
+11 1 s easycbm2 999.000 999.000
+11 1 s easycbm3 999.000 999.000
+11 1 s easycbm4 999.000 999.000
+12 1 s i 999.000 999.000
+14 1 easycbm1 0.206 0.068
+14 1 easycbm2 0.526 0.051
+14 1 easycbm3 0.364 0.027
+14 1 easycbm4 0.264 0.075
+15 1 i 1.000 0.000
+15 1 s 999.000 999.000
+31 1 i easycbm1 28.248 1.537
+31 1 i easycbm2 28.248 1.537
+31 1 i easycbm3 28.248 1.537
+31 1 i easycbm4 28.248 1.537
+31 1 s easycbm1 999.000 999.000
+31 1 s easycbm2 999.000 999.000
+31 1 s easycbm3 999.000 999.000
+31 1 s easycbm4 999.000 999.000
+32 1 s i 999.000 999.000
+34 1 easycbm1 206.850 69.245
+34 1 easycbm2 922.689 179.341
+34 1 easycbm3 500.686 48.961
+34 1 easycbm4 325.892 95.209
+35 1 i 1.000 0.000
+35 1 s 999.000 999.000

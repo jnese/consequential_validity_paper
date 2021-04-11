@@ -1,0 +1,392 @@
+Mplus VERSION 8.5
+MUTHEN & MUTHEN
+04/05/2021  12:47 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:	linear growth toeplitz
+
+  DATA:	FILE IS data_r_gr4.csv;
+
+  VARIABLE:	
+      NAMES ARE easycbm1-easycbm4;
+      MISSING ARE ALL (-99);
+
+  ANALYSIS:	ESTIMATOR = MLR;
+  ITERATIONS = 1000000;
+
+
+  MODEL:	
+
+      i by  easycbm1-easycbm4@1;
+      s by easycbm1@0 easycbm2@1.35 easycbm3@3.65 easycbm4@6.67;
+      [easycbm1-easycbm4@0];
+      [i s];
+      easycbm1 WITH easycbm2;
+      easycbm1 WITH easycbm3;
+      easycbm1 WITH easycbm4;
+      easycbm2 WITH easycbm3;
+      easycbm2 WITH easycbm4;
+      easycbm3 WITH easycbm4;
+
+  OUTPUT:
+      STDYX;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+linear growth toeplitz
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         737
+
+Number of dependent variables                                    4
+Number of independent variables                                  0
+Number of continuous latent variables                            2
+
+Observed dependent variables
+
+  Continuous
+   EASYCBM1    EASYCBM2    EASYCBM3    EASYCBM4
+
+Continuous latent variables
+   I           S
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                               1000000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  data_r_gr4.csv
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            15
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              EASYCBM1      EASYCBM2      EASYCBM3      EASYCBM4
+              ________      ________      ________      ________
+ EASYCBM1       0.768
+ EASYCBM2       0.220         0.285
+ EASYCBM3       0.593         0.237         0.775
+ EASYCBM4       0.528         0.197         0.544         0.678
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     EASYCBM1            111.699       0.136       1.164    0.18%      83.737    101.924    110.788
+             566.000     997.996       0.412     222.298    0.18%     120.263    135.773
+     EASYCBM2            116.232      -0.391      17.050    0.48%      89.109    108.664    121.692
+             210.000    1287.655      -0.114     201.741    0.48%     129.383    146.316
+     EASYCBM3            134.542       0.339      37.439    0.18%     106.176    124.593    132.668
+             571.000    1183.437       0.222     257.369    0.18%     140.641    161.347
+     EASYCBM4            122.826       0.042      42.823    0.20%      92.709    112.959    121.555
+             500.000    1135.299      -0.440     212.496    0.20%     131.165    152.811
+
+
+     THE DEGREES OF FREEDOM FOR THIS MODEL ARE NEGATIVE.  THE MODEL IS NOT
+     IDENTIFIED.  NO CHI-SQUARE TEST IS AVAILABLE.  CHECK YOUR MODEL.
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+     THE STANDARD ERRORS OF THE MODEL PARAMETER ESTIMATES COULD NOT BE
+     COMPUTED.  THE MODEL MAY NOT BE IDENTIFIED.  CHECK YOUR MODEL.
+     PROBLEM INVOLVING THE FOLLOWING PARAMETER:
+     Parameter 13, I
+
+     THE CONDITION NUMBER IS      -0.963D-16.
+
+     THE ROBUST CHI-SQUARE COULD NOT BE COMPUTED.
+
+
+
+MODEL RESULTS
+
+                    Estimate
+
+ I        BY
+    EASYCBM1           1.000
+    EASYCBM2           1.000
+    EASYCBM3           1.000
+    EASYCBM4           1.000
+
+ S        BY
+    EASYCBM1           0.000
+    EASYCBM2           1.350
+    EASYCBM3           3.650
+    EASYCBM4           6.670
+
+ S        WITH
+    I                 44.729
+
+ EASYCBM1 WITH
+    EASYCBM2          22.881
+    EASYCBM3         244.291
+    EASYCBM4          90.524
+
+ EASYCBM2 WITH
+    EASYCBM3         -40.567
+    EASYCBM4        -211.855
+
+ EASYCBM3 WITH
+    EASYCBM4         102.168
+
+ Means
+    I                109.519
+    S                  2.787
+
+ Intercepts
+    EASYCBM1           0.000
+    EASYCBM2           0.000
+    EASYCBM3           0.000
+    EASYCBM4           0.000
+
+ Variances
+    I                493.687
+    S                 -4.986
+
+ Residual Variances
+    EASYCBM1         524.335
+    EASYCBM2         726.135
+    EASYCBM3         702.346
+    EASYCBM4         345.584
+
+
+STANDARDIZED MODEL RESULTS
+
+                      StdYX
+                    Estimate
+
+ I        BY
+    EASYCBM1           0.696
+    EASYCBM2           0.609
+    EASYCBM3           0.582
+    EASYCBM4           0.638
+
+ S        BY
+    EASYCBM1         999.000
+    EASYCBM2         999.000
+    EASYCBM3         999.000
+    EASYCBM4         999.000
+
+ S        WITH
+    I                999.000
+
+ EASYCBM1 WITH
+    EASYCBM2           0.037
+    EASYCBM3           0.403
+    EASYCBM4           0.213
+
+ EASYCBM2 WITH
+    EASYCBM3          -0.057
+    EASYCBM4          -0.423
+
+ EASYCBM3 WITH
+    EASYCBM4           0.207
+
+ Means
+    I                  4.929
+    S                999.000
+
+ Intercepts
+    EASYCBM1           0.000
+    EASYCBM2           0.000
+    EASYCBM3           0.000
+    EASYCBM4           0.000
+
+ Variances
+    I                  1.000
+    S                999.000
+
+ Residual Variances
+    EASYCBM1           0.515
+    EASYCBM2           0.545
+    EASYCBM3           0.482
+    EASYCBM4           0.285
+
+
+MODEL COMMAND WITH FINAL ESTIMATES USED AS STARTING VALUES
+
+     i BY easycbm1@1;
+     i BY easycbm2@1;
+     i BY easycbm3@1;
+     i BY easycbm4@1;
+     s BY easycbm1@0;
+     s BY easycbm2@1.35000;
+     s BY easycbm3@3.65000;
+     s BY easycbm4@6.67000;
+
+     easycbm1 WITH easycbm2*22.88077;
+     easycbm1 WITH easycbm3*244.29143;
+     easycbm1 WITH easycbm4*90.52448;
+     easycbm2 WITH easycbm3*-40.56675;
+     easycbm2 WITH easycbm4*-211.85468;
+     easycbm3 WITH easycbm4*102.16830;
+     s WITH i*44.72937;
+
+     [ easycbm1@0 ];
+     [ easycbm2@0 ];
+     [ easycbm3@0 ];
+     [ easycbm4@0 ];
+     [ i*109.51923 ];
+     [ s*2.78676 ];
+
+     easycbm1*524.33484;
+     easycbm2*726.13458;
+     easycbm3*702.34552;
+     easycbm4*345.58398;
+     i*493.68683;
+     s*-4.98631;
+
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           NU
+              EASYCBM1      EASYCBM2      EASYCBM3      EASYCBM4
+              ________      ________      ________      ________
+                  0             0             0             0
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ EASYCBM1           0             0
+ EASYCBM2           0             0
+ EASYCBM3           0             0
+ EASYCBM4           0             0
+
+
+           THETA
+              EASYCBM1      EASYCBM2      EASYCBM3      EASYCBM4
+              ________      ________      ________      ________
+ EASYCBM1           1
+ EASYCBM2           2             3
+ EASYCBM3           4             5             6
+ EASYCBM4           7             8             9            10
+
+
+           ALPHA
+              I             S
+              ________      ________
+                 11            12
+
+
+           BETA
+              I             S
+              ________      ________
+ I                  0             0
+ S                  0             0
+
+
+           PSI
+              I             S
+              ________      ________
+ I                 13
+ S                 14            15
+
+
+     STARTING VALUES
+
+
+           NU
+              EASYCBM1      EASYCBM2      EASYCBM3      EASYCBM4
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ EASYCBM1       1.000         0.000
+ EASYCBM2       1.000         1.350
+ EASYCBM3       1.000         3.650
+ EASYCBM4       1.000         6.670
+
+
+           THETA
+              EASYCBM1      EASYCBM2      EASYCBM3      EASYCBM4
+              ________      ________      ________      ________
+ EASYCBM1     498.998
+ EASYCBM2       0.000       643.827
+ EASYCBM3       0.000         0.000       591.719
+ EASYCBM4       0.000         0.000         0.000       567.650
+
+
+           ALPHA
+              I             S
+              ________      ________
+                0.000         0.000
+
+
+           BETA
+              I             S
+              ________      ________
+ I              0.000         0.000
+ S              0.000         0.000
+
+
+           PSI
+              I             S
+              ________      ________
+ I              0.050
+ S              0.000         0.050
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\jnese\desktop\brt\grant-core\project\publications\consequential_validity_study\consequential_validity_paper
+
+     Beginning Time:  12:47:07
+        Ending Time:  12:47:08
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2020 Muthen & Muthen

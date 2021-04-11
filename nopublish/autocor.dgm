@@ -1,0 +1,132 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+ linear growth toeplitz
+
+DATA:
+ FILE IS data_r_gr4.csv;
+VARIABLE:
+    NAMES ARE easycbm1-easycbm4;
+    MISSING ARE ALL (-99);
+ANALYSIS:
+ ESTIMATOR = MLR;
+OUTPUT:
+    STDYX;
+MODEL:
+  i s | easycbm1@0 easycbm2@1.35 easycbm3@3.65 easycbm4@6.67;
+  easycbm1-easycbm4 (resvar);
+  easycbm1-easycbm3 PWITH easycbm2-easycbm4 (p1);
+  easycbm1-easycbm2 PWITH easycbm3-easycbm4 (p2);
+  easycbm1 WITH easycbm4 (p3);
+INPUT_END
+2
+2
+0
+2
+MLR
+1
+GENERAL
+0
+4
+2
+0
+easycbm1 easycbm2 easycbm3 easycbm4 i s
+1
+-1 -1 -1 -1 0 0
+1
+i s
+easycbm1 easycbm2 easycbm3 easycbm4
+0
+1 1 i easycbm1 1.000 0.000
+1 1 i easycbm2 1.000 0.000
+1 1 i easycbm3 1.000 0.000
+1 1 i easycbm4 1.000 0.000
+1 1 s easycbm1 0.000 0.000
+1 1 s easycbm2 1.350 0.000
+1 1 s easycbm3 3.650 0.000
+1 1 s easycbm4 6.670 0.000
+2 1 easycbm1 easycbm2 4.843 43.584
+92 1 easycbm1 easycbm2 p1
+2 1 easycbm1 easycbm3 0.045 0.812
+92 1 easycbm1 easycbm3 p2
+2 1 easycbm1 easycbm4 0.000 0.011
+92 1 easycbm1 easycbm4 p3
+2 1 easycbm2 easycbm3 4.843 43.584
+92 1 easycbm2 easycbm3 p1
+2 1 easycbm2 easycbm4 0.045 0.812
+92 1 easycbm2 easycbm4 p2
+2 1 easycbm3 easycbm4 4.843 43.584
+92 1 easycbm3 easycbm4 p1
+2 1 s i 49.693 10.953
+4 1 easycbm1 517.756 56.834
+94 1 easycbm1 resvar
+4 1 easycbm2 517.756 56.834
+94 1 easycbm2 resvar
+4 1 easycbm3 517.756 56.834
+94 1 easycbm3 resvar
+4 1 easycbm4 517.756 56.834
+94 1 easycbm4 resvar
+5 1 i 583.001 83.830
+5 1 s -10.724 2.928
+11 1 i easycbm1 0.728 0.040
+11 1 i easycbm2 0.693 0.045
+11 1 i easycbm3 0.664 0.047
+11 1 i easycbm4 0.673 0.045
+11 1 s easycbm1 999.000 999.000
+11 1 s easycbm2 999.000 999.000
+11 1 s easycbm3 999.000 999.000
+11 1 s easycbm4 999.000 999.000
+12 1 easycbm1 easycbm2 0.009 0.084
+92 1 easycbm1 easycbm2 p1
+12 1 easycbm1 easycbm3 0.000 0.002
+92 1 easycbm1 easycbm3 p2
+12 1 easycbm1 easycbm4 0.000 0.000
+92 1 easycbm1 easycbm4 p3
+12 1 easycbm2 easycbm3 0.009 0.084
+92 1 easycbm2 easycbm3 p1
+12 1 easycbm2 easycbm4 0.000 0.002
+92 1 easycbm2 easycbm4 p2
+12 1 easycbm3 easycbm4 0.009 0.084
+92 1 easycbm3 easycbm4 p1
+12 1 s i 999.000 999.000
+14 1 easycbm1 0.470 0.058
+94 1 easycbm1 resvar
+14 1 easycbm2 0.426 0.044
+94 1 easycbm2 resvar
+14 1 easycbm3 0.392 0.038
+94 1 easycbm3 resvar
+14 1 easycbm4 0.402 0.049
+94 1 easycbm4 resvar
+15 1 i 1.000 0.000
+15 1 s 999.000 999.000
+31 1 i easycbm1 24.145 1.736
+31 1 i easycbm2 24.145 1.736
+31 1 i easycbm3 24.145 1.736
+31 1 i easycbm4 24.145 1.736
+31 1 s easycbm1 999.000 999.000
+31 1 s easycbm2 999.000 999.000
+31 1 s easycbm3 999.000 999.000
+31 1 s easycbm4 999.000 999.000
+32 1 easycbm1 easycbm2 4.843 43.584
+92 1 easycbm1 easycbm2 p1
+32 1 easycbm1 easycbm3 0.045 0.812
+92 1 easycbm1 easycbm3 p2
+32 1 easycbm1 easycbm4 0.000 0.011
+92 1 easycbm1 easycbm4 p3
+32 1 easycbm2 easycbm3 4.843 43.584
+92 1 easycbm2 easycbm3 p1
+32 1 easycbm2 easycbm4 0.045 0.812
+92 1 easycbm2 easycbm4 p2
+32 1 easycbm3 easycbm4 4.843 43.584
+92 1 easycbm3 easycbm4 p1
+32 1 s i 999.000 999.000
+34 1 easycbm1 517.756 56.834
+94 1 easycbm1 resvar
+34 1 easycbm2 517.756 56.834
+94 1 easycbm2 resvar
+34 1 easycbm3 517.756 56.834
+94 1 easycbm3 resvar
+34 1 easycbm4 517.756 56.834
+94 1 easycbm4 resvar
+35 1 i 1.000 0.000
+35 1 s 999.000 999.000
