@@ -1,0 +1,138 @@
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:unnamed-chunk-3}A summary table of the cars dataset.}
+
+\begin{tabular}{lrrrl}
+\toprule
+ & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{SD} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max}\\
+\midrule
+speed & 15.40 & 5.29 & 4.00 & 25.00\\
+dist & 42.98 & 25.77 & 2.00 & 120.00\\
+\bottomrule
+\end{tabular}
+
+\end{threeparttable}
+\end{center}
+
+\end{table*}
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:unnamed-chunk-3}A summary table of the cars dataset.}
+
+\begin{tabular}{lrrrrrrrr}
+\toprule
+ & \multicolumn{4}{c}{Cars 1} & \multicolumn{4}{c}{Cars 2} \\
+\cmidrule(r){2-5} \cmidrule(r){6-9}
+Variables & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{SD} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{SD} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max}\\
+\midrule
+speed & 15.40 & 5.29 & 4.00 & 25.00 & 15.40 & 5.29 & 4.00 & 25.00\\
+dist & 42.98 & 25.77 & 2.00 & 120.00 & 42.98 & 25.77 & 2.00 & 120.00\\
+\bottomrule
+\addlinespace
+\end{tabular}
+
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} This table was created using apa\textbackslash{}\_table()}
+\end{tablenotes}
+
+\end{threeparttable}
+\end{center}
+
+\end{table*}
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:unnamed-chunk-3}A summary table of the cars dataset.}
+
+\begin{tabular}{lllll}
+\toprule
+Variables & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{SD} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max}\\
+\midrule
+Cars 1 &  &  &  & \\
+\ \ \ speed & 15.40 & 5.29 & 4.00 & 25.00\\
+\ \ \ dist & 42.98 & 25.77 & 2.00 & 120.00\\
+Cars 2 &  &  &  & \\
+\ \ \ speed & 15.40 & 5.29 & 4.00 & 25.00\\
+\ \ \ dist & 42.98 & 25.77 & 2.00 & 120.00\\
+\bottomrule
+\end{tabular}
+
+\end{threeparttable}
+\end{center}
+
+\end{table*}
+\efloatseparator
+ 
+\begin{ThreePartTable}
+
+\begin{longtable}{llll}\noalign{\getlongtablewidth\global\LTcapwidth=\longtablewidth}
+\caption{\label{tab:unnamed-chunk-4}A summary table of the cars dataset.}\\
+\toprule
+values & \multicolumn{1}{c}{\emph{N} = 2108} & \multicolumn{1}{c}{\emph{N} = 427} & \multicolumn{1}{c}{\emph{N} = 722}\\
+\midrule
+\endfirsthead
+\caption*{\normalfont{Table \ref{tab:unnamed-chunk-4} continued}}\\
+\toprule
+values & \multicolumn{1}{c}{\emph{N} = 2108} & \multicolumn{1}{c}{\emph{N} = 427} & \multicolumn{1}{c}{\emph{N} = 722}\\
+\midrule
+\endhead
+Grade &  &  & \\
+\ \ \ Grade 2 & 601 (29\%) & 82 (19\%) & NA\\
+\ \ \ Grade 3 & 770 (37\%) & 189 (44\%) & 353 (49\%)\\
+\ \ \ Grade 4 & 737 (35\%) & 156 (37\%) & 369 (51\%)\\
+Gender &  &  & \\
+\ \ \ Female & 1019 (48\%) & 217 (51\%) & 381 (53\%)\\
+\ \ \ Male & 962 (46\%) & 210 (49\%) & 341 (47\%)\\
+\ \ \ Missing & 127 (6\%) & NA & NA\\
+Ethnicity &  &  & \\
+\ \ \ American Indian/Native Alaskan & 44 (2\%) & 6 (1\%) & 13 (2\%)\\
+\ \ \ Asian & 13 (1\%) & 7 (2\%) & 7 (1\%)\\
+\ \ \ Black/African American & 3 (0\%) & NA & NA\\
+\ \ \ Hispanic & 415 (20\%) & 92 (22\%) & 143 (20\%)\\
+\ \ \ Multi-Racial & 157 (7\%) & 19 (4\%) & 56 (8\%)\\
+\ \ \ Native Hawaiian/Other Pacific Islander & 5 (0\%) & NA & 2 (0\%)\\
+\ \ \ White & 1344 (64\%) & 303 (71\%) & 501 (69\%)\\
+\ \ \ Missing & 127 (6\%) & NA & NA\\
+Free/Reduced Lunch &  &  & \\
+\ \ \ No & 554 (26\%) & 112 (26\%) & 210 (29\%)\\
+\ \ \ Yes & 1427 (68\%) & 315 (74\%) & 512 (71\%)\\
+\ \ \ Missing & 127 (6\%) & NA & NA\\
+Students with Disabilities (SWD) &  &  & \\
+\ \ \ No & 1774 (84\%) & 383 (90\%) & 672 (93\%)\\
+\ \ \ Yes & 207 (10\%) & 44 (10\%) & 50 (7\%)\\
+\ \ \ Missing & 127 (6\%) & NA & NA\\
+English Language Learners (EL) &  &  & \\
+\ \ \ No & 1424 (68\%) & 397 (93\%) & 532 (74\%)\\
+\ \ \ Yes & 112 (5\%) & 30 (7\%) & 34 (5\%)\\
+\ \ \ Missing & 572 (27\%) & NA & 156 (22\%)\\
+School District &  &  & \\
+\ \ \ District 1 & 499 (24\%) & 117 (27\%) & 197 (27\%)\\
+\ \ \ District 2 & 922 (44\%) & NA & 313 (43\%)\\
+\ \ \ District 3 & 263 (12\%) & 92 (22\%) & 60 (8\%)\\
+\ \ \ District 4 & 424 (20\%) & 218 (51\%) & 152 (21\%)\\
+School &  &  & \\
+\ \ \ School A & 263 (12\%) & 92 (22\%) & 60 (8\%)\\
+\ \ \ School B & 467 (22\%) & NA & 169 (23\%)\\
+\ \ \ School C & 499 (24\%) & 117 (27\%) & 197 (27\%)\\
+\ \ \ School D & 135 (6\%) & 76 (18\%) & 66 (9\%)\\
+\ \ \ School E & 455 (22\%) & NA & 144 (20\%)\\
+\ \ \ School F & 109 (5\%) & 35 (8\%) & 8 (1\%)\\
+\ \ \ School G & 180 (9\%) & 107 (25\%) & 78 (11\%)\\
+\bottomrule
+\end{longtable}
+
+\end{ThreePartTable}

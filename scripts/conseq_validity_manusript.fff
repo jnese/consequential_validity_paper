@@ -1,0 +1,14 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{conseq_validity_manusript_files/figure-latex/fig-means-1.pdf}
+\caption{\label{fig:fig-means}Mean words correct per minute (WCPM) score across waves by grade and CBM-R measure.}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{conseq_validity_manusript_files/figure-latex/fig-rq2-scatter-1.pdf}
+\caption{\label{fig:fig-rq2-scatter}Words correct per minute (WCPM) and CBM Comprehension scores by grade and season, distal (fall) and proximal (spring).}
+\end{figure*}

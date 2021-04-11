@@ -1,0 +1,329 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  english,
+  man, fleqn, noextraspace]{apa6}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={The title},
+  pdfauthor={First Author1 \& Ernst-August Doelle1,2},
+  pdflang={en-EN},
+  pdfkeywords={keywords},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+% Manuscript styling
+\usepackage{upgreek}
+\captionsetup{font=singlespacing,justification=justified}
+
+% Table formatting
+\usepackage{longtable}
+\usepackage{lscape}
+% \usepackage[counterclockwise]{rotating}   % Landscape page setup for large tables
+\usepackage{multirow}		% Table styling
+\usepackage{tabularx}		% Control Column width
+\usepackage[flushleft]{threeparttable}	% Allows for three part tables with a specified notes section
+\usepackage{threeparttablex}            % Lets threeparttable work with longtable
+
+% Create new environments so endfloat can handle them
+% \newenvironment{ltable}
+%   {\begin{landscape}\begin{center}\begin{threeparttable}}
+%   {\end{threeparttable}\end{center}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\begin{center}\begin{ThreePartTable}}{\end{ThreePartTable}\end{center}\end{landscape}}
+
+% Enables adjusting longtable caption width to table width
+% Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
+\makeatletter
+\newcommand\LastLTentrywidth{1em}
+\newlength\longtablewidth
+\setlength{\longtablewidth}{1in}
+\newcommand{\getlongtablewidth}{\begingroup \ifcsname LT@\roman{LT@tables}\endcsname \global\longtablewidth=0pt \renewcommand{\LT@entry}[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}\@nameuse{LT@\roman{LT@tables}} \fi \endgroup}
+
+% \setlength{\parindent}{0.5in}
+% \setlength{\parskip}{0pt plus 0pt minus 0pt}
+
+% \usepackage{etoolbox}
+\makeatletter
+\patchcmd{\HyOrg@maketitle}
+  {\section{\normalfont\normalsize\abstractname}}
+  {\section*{\normalfont\normalsize\abstractname}}
+  {}{\typeout{Failed to patch abstract.}}
+\patchcmd{\HyOrg@maketitle}
+  {\section{\protect\normalfont{\@title}}}
+  {\section*{\protect\normalfont{\@title}}}
+  {}{\typeout{Failed to patch title.}}
+\makeatother
+\shorttitle{Title}
+\keywords{keywords\newline\indent Word count: X}
+\DeclareDelayedFloatFlavor{ThreePartTable}{table}
+\DeclareDelayedFloatFlavor{lltable}{table}
+\DeclareDelayedFloatFlavor*{longtable}{table}
+\makeatletter
+\renewcommand{\efloat@iwrite}[1]{\immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
+\makeatother
+\usepackage{lineno}
+
+\linenumbers
+\usepackage{csquotes}
+\raggedbottom
+\setlength{\parskip}{0pt}
+\ifxetex
+  % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{english}
+\else
+  \usepackage[shorthands=off,main=english]{babel}
+\fi
+
+\title{The title}
+\author{First Author\textsuperscript{1} \& Ernst-August Doelle\textsuperscript{1,2}}
+\date{}
+
+
+\authornote{
+
+Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
+
+Enter author note here.
+
+The authors made the following contributions. First Author: Conceptualization, Writing - Original Draft Preparation, Writing - Review \& Editing; Ernst-August Doelle: Writing - Review \& Editing.
+
+Correspondence concerning this article should be addressed to First Author, Postal address. E-mail: \href{mailto:my@email.com}{\nolinkurl{my@email.com}}
+
+}
+
+\affiliation{\vspace{0.5cm}\textsuperscript{1} Wilhelm-Wundt-University\\\textsuperscript{2} Konstanz Business School}
+
+\abstract{
+One or two sentences providing a \textbf{basic introduction} to the field, comprehensible to a scientist in any discipline.
+
+Two to three sentences of \textbf{more detailed background}, comprehensible to scientists in related disciplines.
+
+One sentence clearly stating the \textbf{general problem} being addressed by this particular study.
+
+One sentence summarizing the main result (with the words ``\textbf{here we show}'' or their equivalent).
+
+Two or three sentences explaining what the \textbf{main result} reveals in direct comparison to what was thought to be the case previously, or how the main result adds to previous knowledge.
+
+One or two sentences to put the results into a more \textbf{general context}.
+
+Two or three sentences to provide a \textbf{broader perspective}, readily comprehensible to a scientist in any discipline.
+}
+
+
+
+\begin{document}
+\maketitle
+
+\hypertarget{data}{%
+\section{Data}\label{data}}
+
+\begin{table}[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:unnamed-chunk-3}A summary table of the cars dataset.}
+
+\begin{tabular}{lrrrl}
+\toprule
+ & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{SD} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max}\\
+\midrule
+speed & 15.40 & 5.29 & 4.00 & 25.00\\
+dist & 42.98 & 25.77 & 2.00 & 120.00\\
+\bottomrule
+\end{tabular}
+
+\end{threeparttable}
+\end{center}
+
+\end{table}
+
+\begin{table}[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:unnamed-chunk-3}A summary table of the cars dataset.}
+
+\begin{tabular}{lrrrrrrrr}
+\toprule
+ & \multicolumn{4}{c}{Cars 1} & \multicolumn{4}{c}{Cars 2} \\
+\cmidrule(r){2-5} \cmidrule(r){6-9}
+Variables & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{SD} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{SD} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max}\\
+\midrule
+speed & 15.40 & 5.29 & 4.00 & 25.00 & 15.40 & 5.29 & 4.00 & 25.00\\
+dist & 42.98 & 25.77 & 2.00 & 120.00 & 42.98 & 25.77 & 2.00 & 120.00\\
+\bottomrule
+\addlinespace
+\end{tabular}
+
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} This table was created using apa\textbackslash{}\_table()}
+\end{tablenotes}
+
+\end{threeparttable}
+\end{center}
+
+\end{table}
+
+\begin{table}[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:unnamed-chunk-3}A summary table of the cars dataset.}
+
+\begin{tabular}{lllll}
+\toprule
+Variables & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{SD} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max}\\
+\midrule
+Cars 1 &  &  &  & \\
+\ \ \ speed & 15.40 & 5.29 & 4.00 & 25.00\\
+\ \ \ dist & 42.98 & 25.77 & 2.00 & 120.00\\
+Cars 2 &  &  &  & \\
+\ \ \ speed & 15.40 & 5.29 & 4.00 & 25.00\\
+\ \ \ dist & 42.98 & 25.77 & 2.00 & 120.00\\
+\bottomrule
+\end{tabular}
+
+\end{threeparttable}
+\end{center}
+
+\end{table}
+
+\begin{center}
+\begin{ThreePartTable}
+
+\begin{longtable}{llll}\noalign{\getlongtablewidth\global\LTcapwidth=\longtablewidth}
+\caption{\label{tab:unnamed-chunk-4}A summary table of the cars dataset.}\\
+\toprule
+values & \multicolumn{1}{c}{\emph{N} = 2108} & \multicolumn{1}{c}{\emph{N} = 427} & \multicolumn{1}{c}{\emph{N} = 722}\\
+\midrule
+\endfirsthead
+\caption*{\normalfont{Table \ref{tab:unnamed-chunk-4} continued}}\\
+\toprule
+values & \multicolumn{1}{c}{\emph{N} = 2108} & \multicolumn{1}{c}{\emph{N} = 427} & \multicolumn{1}{c}{\emph{N} = 722}\\
+\midrule
+\endhead
+Grade &  &  & \\
+\ \ \ Grade 2 & 601 (29\%) & 82 (19\%) & NA\\
+\ \ \ Grade 3 & 770 (37\%) & 189 (44\%) & 353 (49\%)\\
+\ \ \ Grade 4 & 737 (35\%) & 156 (37\%) & 369 (51\%)\\
+Gender &  &  & \\
+\ \ \ Female & 1019 (48\%) & 217 (51\%) & 381 (53\%)\\
+\ \ \ Male & 962 (46\%) & 210 (49\%) & 341 (47\%)\\
+\ \ \ Missing & 127 (6\%) & NA & NA\\
+Ethnicity &  &  & \\
+\ \ \ American Indian/Native Alaskan & 44 (2\%) & 6 (1\%) & 13 (2\%)\\
+\ \ \ Asian & 13 (1\%) & 7 (2\%) & 7 (1\%)\\
+\ \ \ Black/African American & 3 (0\%) & NA & NA\\
+\ \ \ Hispanic & 415 (20\%) & 92 (22\%) & 143 (20\%)\\
+\ \ \ Multi-Racial & 157 (7\%) & 19 (4\%) & 56 (8\%)\\
+\ \ \ Native Hawaiian/Other Pacific Islander & 5 (0\%) & NA & 2 (0\%)\\
+\ \ \ White & 1344 (64\%) & 303 (71\%) & 501 (69\%)\\
+\ \ \ Missing & 127 (6\%) & NA & NA\\
+Free/Reduced Lunch &  &  & \\
+\ \ \ No & 554 (26\%) & 112 (26\%) & 210 (29\%)\\
+\ \ \ Yes & 1427 (68\%) & 315 (74\%) & 512 (71\%)\\
+\ \ \ Missing & 127 (6\%) & NA & NA\\
+Students with Disabilities (SWD) &  &  & \\
+\ \ \ No & 1774 (84\%) & 383 (90\%) & 672 (93\%)\\
+\ \ \ Yes & 207 (10\%) & 44 (10\%) & 50 (7\%)\\
+\ \ \ Missing & 127 (6\%) & NA & NA\\
+English Language Learners (EL) &  &  & \\
+\ \ \ No & 1424 (68\%) & 397 (93\%) & 532 (74\%)\\
+\ \ \ Yes & 112 (5\%) & 30 (7\%) & 34 (5\%)\\
+\ \ \ Missing & 572 (27\%) & NA & 156 (22\%)\\
+School District &  &  & \\
+\ \ \ District 1 & 499 (24\%) & 117 (27\%) & 197 (27\%)\\
+\ \ \ District 2 & 922 (44\%) & NA & 313 (43\%)\\
+\ \ \ District 3 & 263 (12\%) & 92 (22\%) & 60 (8\%)\\
+\ \ \ District 4 & 424 (20\%) & 218 (51\%) & 152 (21\%)\\
+School &  &  & \\
+\ \ \ School A & 263 (12\%) & 92 (22\%) & 60 (8\%)\\
+\ \ \ School B & 467 (22\%) & NA & 169 (23\%)\\
+\ \ \ School C & 499 (24\%) & 117 (27\%) & 197 (27\%)\\
+\ \ \ School D & 135 (6\%) & 76 (18\%) & 66 (9\%)\\
+\ \ \ School E & 455 (22\%) & NA & 144 (20\%)\\
+\ \ \ School F & 109 (5\%) & 35 (8\%) & 8 (1\%)\\
+\ \ \ School G & 180 (9\%) & 107 (25\%) & 78 (11\%)\\
+\bottomrule
+\end{longtable}
+
+\end{ThreePartTable}
+\end{center}
+
+\newpage
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+\hypertarget{refs}{}
+
+\endgroup
+
+
+\end{document}

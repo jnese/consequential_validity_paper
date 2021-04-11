@@ -1,0 +1,8 @@
+school,district,total_students,gr2_students,gr3_students,gr4_students,locale,titlei,male,female,studentteacherratio,frl,race_amind,race_asian,race_hispanic,race_black,race_white,race_pacisl,race_multi,gr234,gr234_pct,frl_pct,amin_pct,asian_pct,hispanic_pct,black_pct,white_pct,pacisl_pct,multi_pct
+School A,District 3,457,83,65,62,32-Town: Distant,5-Title I schoolwide school,227,230,17.05,341,14,5,106,2,316,1,13,210,46,75,3,1,23,0,69,0,3
+School B,District 2,554,97,105,94,32-Town: Distant,2-Title I targeted assistance school,291,263,16.75,362,27,1,108,1,364,1,52,296,53,65,5,0,19,0,66,0,9
+School C,District 1,631,120,91,110,22-Suburb: Mid-size,5-Title I schoolwide school,307,324,20.89,418,6,5,174,2,406,1,37,321,51,66,1,1,28,0,64,0,6
+School D,4istrict 4,357,67,68,53,22-Suburb: Mid-size,5-Title I schoolwide school,186,171,18.8,308,1,3,97,0,235,2,19,188,53,86,0,1,27,0,66,1,5
+School E,District 2,759,100,118,111,32-Town: Distant,2-Title I targeted assistance school,383,376,17.83,501,17,3,176,3,491,2,67,329,43,66,2,0,23,0,65,0,9
+School F,District 4,503,80,81,88,22-Suburb: Mid-size,5-Title I schoolwide school,263,240,19.55,326,7,4,170,5,284,1,32,249,50,65,1,1,34,1,56,0,6
+School G,District 4,400,60,61,73,22-Suburb: Mid-size,6-Not a Title I school,210,190,22.12,195,3,5,66,1,305,0,20,194,48,49,1,1,16,0,76,0,5
