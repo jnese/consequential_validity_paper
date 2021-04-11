@@ -1,0 +1,348 @@
+---
+title             : "The title"
+shorttitle        : "Title"
+
+author: 
+  - name          : "First Author"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "Postal address"
+    email         : "my@email.com"
+    role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
+      - Conceptualization
+      - Writing - Original Draft Preparation
+      - Writing - Review & Editing
+  - name          : "Ernst-August Doelle"
+    affiliation   : "1,2"
+    role:
+      - Writing - Review & Editing
+
+affiliation:
+  - id            : "1"
+    institution   : "Wilhelm-Wundt-University"
+  - id            : "2"
+    institution   : "Konstanz Business School"
+
+authornote: |
+  Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
+
+  Enter author note here.
+
+abstract: |
+  One or two sentences providing a **basic introduction** to the field,  comprehensible to a scientist in any discipline.
+  
+  Two to three sentences of **more detailed background**, comprehensible  to scientists in related disciplines.
+  
+  One sentence clearly stating the **general problem** being addressed by  this particular study.
+  
+  One sentence summarizing the main result (with the words "**here we show**" or their equivalent).
+  
+  Two or three sentences explaining what the **main result** reveals in direct comparison to what was thought to be the case previously, or how the  main result adds to previous knowledge.
+  
+  One or two sentences to put the results into a more **general context**.
+  
+  Two or three sentences to provide a **broader perspective**, readily comprehensible to a scientist in any discipline.
+  
+  <!-- https://tinyurl.com/ybremelq -->
+  
+keywords          : "keywords"
+wordcount         : "X"
+
+bibliography      : ["r-references.bib"]
+
+floatsintext      : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : yes
+mask              : no
+draft             : no
+
+documentclass     : "apa6"
+classoption: "man, fleqn, noextraspace"
+header-includes:
+  - \raggedbottom
+  - \setlength{\parskip}{0pt}
+output            : papaja::apa6_pdf
+---
+
+```{r setup, include = FALSE}
+library("papaja")
+library(tidyverse)
+library(janitor)
+library(ggridges)
+library(lavaan)
+#library(gtsummary)
+library(gt)
+library(ggthemes)
+library(tidymodels)
+library(parallel)
+library(doParallel)
+library(patchwork)
+
+
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+
+theme_set(theme_apa(box = TRUE))
+
+#r_refs("r-references.bib")
+
+apa_format_fx <- function(x){
+  x %>% 
+    tab_options(
+      table.border.top.color = "white",
+      column_labels.border.top.width = px(2),
+      column_labels.border.top.color = "black",
+      column_labels.border.bottom.width = px(2),
+      column_labels.border.bottom.color = "black",
+      table_body.border.bottom.color = "black",
+      table.border.bottom.color = "white",
+      table.background.color = "white",
+      table_body.hlines.color = "white"
+    ) %>%
+    tab_style(
+      style = list(
+        cell_borders(
+          sides = c("top", "bottom"),
+          color = "black",
+          weight = px(1)
+        ),
+        cell_fill(color = "white", alpha = NULL)
+      ),
+      locations = cells_row_groups(groups = everything())
+    ) %>%
+    opt_table_font(font = "times") %>% 
+    #smaller spacing
+    tab_options(
+      data_row.padding = gt::px(3),
+      heading.title.font.size = "small",
+      table.font.size = "12px"
+    ) 
+}
+```
+
+```{r, include=FALSE}
+options(tinytex.verbose = TRUE)
+```
+
+# Data
+
+```{r }
+
+source(here::here("nopublish", "read_data.R"))
+
+school <- read_csv(here::here("data", "school1819.csv"))
+
+data_raw <- read_csv(here::here("data", "data_open.csv"))
+
+
+# Rules for selecting easycbmcore wcpm:
+# (1) Must reads >= 10 words
+# (2) Must read >= 30 sec
+
+# Rules for selecting core wcpm:
+# (1) Must read >= 30 sec across n passages
+
+# filter(wr_easycbmcore >= 10) %>% #6374
+# filter(secs_easycbmcore >= 30) %>% #5417
+
+
+# remove rows with missing data on all 4 waves of easycbm and CORE
+data_start <- data_raw %>% 
+  mutate(n_easycbmcore = 4 - (is.na(wcpm_easycbmcore.wave1) + is.na(wcpm_easycbmcore.wave2) +
+                                is.na(wcpm_easycbmcore.wave3) + is.na(wcpm_easycbmcore.wave4)),
+         n_core = 4 - (is.na(wcpm_core.wave1) + is.na(wcpm_core.wave2) + 
+                         is.na(wcpm_core.wave3) + is.na(wcpm_core.wave4))) %>% 
+  filter(n_easycbmcore > 0 & n_core > 0)
+
+
+# wr_fx <- function(x, y){
+#   ifelse(x >= 10, y, NA_integer_)
+# }
+# 
+# secs_fx <- function(x, y){
+#   ifelse(x >= 30, y, NA_integer_)
+# }
+
+# RQ1
+data_start_r <- data_start %>% 
+   mutate(wcpm_easycbmcore.wave1_r = ifelse(wr_easycbmcore.wave1 >= 10, wcpm_easycbmcore.wave1, NA_integer_),
+          wcpm_easycbmcore.wave2_r = ifelse(wr_easycbmcore.wave2 >= 10, wcpm_easycbmcore.wave2, NA_integer_),
+          wcpm_easycbmcore.wave3_r = ifelse(wr_easycbmcore.wave3 >= 10, wcpm_easycbmcore.wave3, NA_integer_),
+          wcpm_easycbmcore.wave4_r = ifelse(wr_easycbmcore.wave4 >= 10, wcpm_easycbmcore.wave4, NA_integer_),
+          wcpm_easycbmcore.wave1_r = ifelse(secs_easycbmcore.wave1 >= 30, wcpm_easycbmcore.wave1, NA_integer_),
+          wcpm_easycbmcore.wave2_r = ifelse(secs_easycbmcore.wave2 >= 30, wcpm_easycbmcore.wave2, NA_integer_),
+          wcpm_easycbmcore.wave3_r = ifelse(secs_easycbmcore.wave3 >= 30, wcpm_easycbmcore.wave3, NA_integer_),
+          wcpm_easycbmcore.wave4_r = ifelse(secs_easycbmcore.wave4 >= 30, wcpm_easycbmcore.wave4, NA_integer_),
+          
+          wcpm_core.wave1_r = ifelse(secs_core.wave1 >= 30, wcpm_core.wave1, NA_integer_),
+          wcpm_core.wave2_r = ifelse(secs_core.wave2 >= 30, wcpm_core.wave2, NA_integer_),
+          wcpm_core.wave3_r = ifelse(secs_core.wave3 >= 30, wcpm_core.wave3, NA_integer_),
+          wcpm_core.wave4_r = ifelse(secs_core.wave4 >= 30, wcpm_core.wave4, NA_integer_)
+   )
+
+data_r <- data_start_r %>% 
+  mutate(n_easycbmcore_r = 4 - (is.na(wcpm_easycbmcore.wave1_r) + is.na(wcpm_easycbmcore.wave2_r) +
+                                is.na(wcpm_easycbmcore.wave3_r) + is.na(wcpm_easycbmcore.wave4_r)),
+         n_core_r = 4 - (is.na(wcpm_core.wave1_r) + is.na(wcpm_core.wave2_r) + 
+                         is.na(wcpm_core.wave3_r) + is.na(wcpm_core.wave4_r))) %>% 
+  filter(n_easycbmcore_r > 0 & n_core_r > 0)
+
+data_preds <- data_r %>% 
+  filter(!is.na(wcpm_easycbmcore.wave1_r),
+         !is.na(wcpm_core.wave1_r),
+         !is.na(wcpm_easycbmcore.wave4_r),
+         !is.na(wcpm_core.wave4_r))
+
+# RQ2
+data_comp <- data_preds %>% 
+  filter(!is.na(readingcomp_easycbm.spring)) 
+
+# RQ3
+data_sbac <- data_preds %>% 
+  filter(!is.na(sbac_score),
+         sbac_score > 0) %>% 
+  mutate(sbac_prof = factor(sbac_prof))
+
+
+# data_start %>% 
+#   filter(is.na(npassages_core.wave1) & is.na(npassages_core.wave2) & is.na(npassages_core.wave3) & is.na(npassages_core.wave4))
+#   select(contains("npassages_core"))
+# 
+# summary(data_start$wcpm_core.wave3)
+# 
+# data_start %>% 
+#    select(contains("npassages_core"), contains("wcpm_core")) %>% 
+#    pivot_longer(
+#      cols = everything(),
+#      names_to = c("type", "wave"),
+#      values_to = "wcpm",
+#      names_sep = "_"
+#    ) %>% 
+#    pivot_wider(
+#      names_from = type,
+#      values_from = wcpm
+#    ) %>%
+#    unnest() %>%
+# #  mutate(wave = parse_number(wave))
+#   ggplot(aes(npassages, wcpm)) +
+#   geom_point() +
+#   facet_wrap(~waveI)
+
+```
+
+```{r}
+my_table <- t(apply(cars, 2, function(x) # Create data
+  round(c(Mean = mean(x), SD = sd(x), Min = min(x), Max = max(x)), 2)
+))
+
+apa_table(
+  my_table
+  , align = c("l", rep("r", 3))
+  , caption = "A summary table of the cars dataset."
+)
+
+apa_table(
+  cbind(my_table, my_table)
+  , align = c("l", rep("r", 8))
+  , caption = "A summary table of the cars dataset."
+  , note = "This table was created using apa\\_table()"
+  , added_stub_head = "Variables"
+  , col_spanners = list(`Cars 1` = c(2, 5), `Cars 2` = c(6, 9))
+)
+
+apa_table(
+  list(`Cars 1` = my_table, `Cars 2` = my_table)
+  , caption = "A summary table of the cars dataset."
+  , added_stub_head = "Variables"
+)
+```
+
+```{r}
+
+demos_fx <- function(df){
+  tbl <- df %>% 
+    select(grade_core, gender_state, ethnicity_state, frl_state, sped_state, lep_state, district_core, school_core) %>% 
+    mutate(across(everything(), ~ifelse(is.na(.), "Missing", .)),
+           across(c(frl_state, sped_state, lep_state), ~recode(., "N" = "No", "Y" = "Yes")),
+           across(c(frl_state, sped_state, lep_state), ~fct_expand(., "Yes","No", "Missing")),
+           across(c(frl_state, sped_state, lep_state), ~fct_relevel(., "Yes","No", "Missing")),
+           grade_core = paste("Grade", grade_core)) %>% 
+    pivot_longer(
+      cols = everything(),
+      names_to = "demo",
+      values_to = "values"
+    ) %>% 
+    mutate(
+      demo = recode(demo,
+                    grade_core = "Grade",
+                    gender_state = "Gender",
+                    ethnicity_state = "Ethnicity",
+                    frl_state = "Free/Reduced Lunch",
+                    sped_state = "Students with Disabilities (SWD)",
+                    lep_state = "English Language Learners (EL)",
+                    district_core = "School District",
+                    school_core = "School")
+      ) %>%
+    group_by(demo, values) %>% 
+    summarize(n = n(),
+              pct = round(n/nrow(df) * 100, 0),
+              stat = paste0(n, " (", pct, "%)")) %>% 
+    select(demo, values, stat) %>% 
+    mutate(values = fct_relevel(values, "Missing", after = Inf),
+         across(starts_with("stat"), ~ifelse(is.na(.), "--", .)))
+  
+  names(tbl)[3] <- paste0("\\emph{N} = ", nrow(df)) 
+  
+  tbl
+    # group_by(demo) %>% 
+    # nest()
+}
+
+demo_order <- c("Grade", "Gender", "Ethnicity", "Free/Reduced Lunch", "Students with Disabilities (SWD)", "English Language Learners (EL)", "School District", "School")
+
+foo <- demos_fx(data_r) %>% 
+  left_join(demos_fx(data_comp), by = c("demo", "values")) %>% 
+  left_join(demos_fx(data_sbac), by = c("demo", "values")) %>% 
+  mutate(values = fct_relevel(values, "Missing", after = Inf),
+         across(starts_with("<"), ~ifelse(is.na(.), "--", .))) %>% 
+  arrange(match(demo, demo_order), values) %>% 
+  group_by(demo) %>% 
+  nest()
+
+
+apa_table(
+  list(
+    `Grade` = foo$data[[1]],
+    `Gender` = foo$data[[2]],
+    `Ethnicity` = foo$data[[3]],
+    `Free/Reduced Lunch` = foo$data[[4]], 
+    `Students with Disabilities (SWD)` = foo$data[[5]],
+    `English Language Learners (EL)` = foo$data[[6]], 
+    `School District` = foo$data[[7]],
+    `School` = foo$data[[8]]
+    ), 
+    caption = "Sample Characteristics by Research Question", 
+    added_stub_head = "",
+  align = c("l", rep("r", 3)),
+  longtable = TRUE,
+  escape = FALSE
+  )
+```
+
+
+
+
+
+\newpage
+
+# References
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+<div id="refs" custom-style="Bibliography"></div>
+\endgroup

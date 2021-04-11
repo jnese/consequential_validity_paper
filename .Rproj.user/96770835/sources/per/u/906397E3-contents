@@ -1,0 +1,127 @@
+manual <- '
+  i =~ 1*wcpm_easycbmcore.wave1_r + 1*wcpm_easycbmcore.wave2_r + 1*wcpm_easycbmcore.wave3_r + 1*wcpm_easycbmcore.wave4_r
+  s =~ 0*wcpm_easycbmcore.wave1_r + 1.35*wcpm_easycbmcore.wave2_r + 3.65*wcpm_easycbmcore.wave3_r + 6.67*wcpm_easycbmcore.wave4_r
+#Intercepts
+  i ~ 1
+  s ~ 1 
+  wcpm_easycbmcore.wave1_r ~ 0
+  wcpm_easycbmcore.wave2_r ~ 0
+  wcpm_easycbmcore.wave3_r ~ 0
+  wcpm_easycbmcore.wave4_r ~ 0 
+  
+#Variances
+i ~~ i
+s ~~ s
+wcpm_easycbmcore.wave1_r ~~ var1*wcpm_easycbmcore.wave1_r
+wcpm_easycbmcore.wave2_r ~~ var2*wcpm_easycbmcore.wave2_r
+wcpm_easycbmcore.wave3_r ~~ var3*wcpm_easycbmcore.wave3_r
+wcpm_easycbmcore.wave4_r ~~ var4*wcpm_easycbmcore.wave4_r
+
+#Covariances  
+i ~~ s 
+
+wcpm_easycbmcore.wave1_r ~~ cov12*wcpm_easycbmcore.wave2_r
+wcpm_easycbmcore.wave2_r ~~ cov23*wcpm_easycbmcore.wave3_r
+wcpm_easycbmcore.wave3_r ~~ cov34*wcpm_easycbmcore.wave4_r'
+# wcpm_easycbmcore.wave1_r ~~ cov13*wcpm_easycbmcore.wave3_r 
+# wcpm_easycbmcore.wave1_r ~~ cov14*wcpm_easycbmcore.wave4_r 
+# wcpm_easycbmcore.wave2_r ~~ cov24*wcpm_easycbmcore.wave4_r 
+
+# cor1 := cov12/(sqrt(var1)*sqrt(var2))
+# cor1 := cov23/(sqrt(var2)*sqrt(var3))
+# cor1 := cov34/(sqrt(var3)*sqrt(var4))
+
+# cor2 := cov13/(sqrt(var1)*sqrt(var3))
+# cor2 := cov24/(sqrt(var2)*sqrt(var4))
+
+# cor3 := cov14/(sqrt(var1)*sqrt(var4))'
+
+
+
+#cor1 := cov12/(sqrt(var1)*sqrt(var2))
+#cor1 := cov23/(sqrt(var2)*sqrt(var3))
+#cor1 := cov34/(sqrt(var3)*sqrt(var4))
+
+manual_fit <- lavaan(manual,
+                  data = filter(data_r, grade_core == 4),
+                  estimator = "MLR",
+                  missing = "ML")
+
+summary(manual_fit)
+
+standardizedSolution(manual_fit)
+
+parameterEstimates(manual_fit)
+
+lgms$params_core[[2]]
+
+lgms$params_easycbm[[2]]
+
+
+
+
+data_r %>% 
+  select(grade_core, wcpm_easycbmcore.wave1_r:wcpm_easycbmcore.wave4_r,
+         wcpm_core.wave1_r:wcpm_core.wave4_r) %>% 
+  pivot_longer(
+    cols = -grade_core,
+    names_to = c("measure", "wave"),
+    names_sep = "\\.",
+    names_prefix = "wcpm_",
+    values_to = "wcpm"
+  ) %>% 
+  pivot_wider(
+    names_from = wave,
+    values_from = wcpm
+  ) %>% 
+  unnest() %>% 
+  group_by(grade_core, measure) %>% 
+  nest() %>% 
+  arrange(grade_core) %>% 
+  left_join(
+    times %>% 
+      select(grade_core, wave, time) %>% 
+      mutate(time = round(time, 2)) %>% 
+      pivot_wider(
+        names_from = wave,
+        values_from = time,
+        names_prefix = "time_"
+      )
+  ) %>% 
+  mutate(
+    obsvar = map(data, ~summarise(., across(c(wave1_r, wave2_r, wave3_r, wave4_r), ~var(., na.rm = TRUE))) %>% unlist(., use.names = FALSE)),
+  ) %>% 
+  
+  mutate(growth = glue::glue(
+    'i =~ 1*wcpm_easycbmcore.wave1_r + 1*wcpm_easycbmcore.wave2_r + 1*wcpm_easycbmcore.wave3_r + 1*wcpm_easycbmcore.wave4_r
+   s =~ 0*wcpm_easycbmcore.wave1_r + {time_2}*wcpm_easycbmcore.wave2_r + {time_3}*wcpm_easycbmcore.wave3_r + {time_4}*wcpm_easycbmcore.wave4_r'),
+    growth_core = glue::glue(
+      'i =~ 1*wcpm_core.wave1 + 1*wcpm_core.wave2 + 1*wcpm_core.wave3 + 1*wcpm_core.wave4
+   s =~ 0*wcpm_core.wave1 + {time_2}*wcpm_core.wave2 + {time_3}*wcpm_core.wave3 + {time_4}*wcpm_core.wave4'
+    ),
+    fit_easycbm = map2(growth_easycbm, data,
+                       ~growth(.x,
+                               data = .y,
+                               estimator = "MLR",
+                               missing = "ML")),
+    fit_core = map2(growth_core, data,
+                    ~growth(.x,
+                            data = .y,
+                            estimator = "MLR",
+                            missing = "ML")),
+    params_easycbm = map(fit_easycbm, getparams_fx),
+    params_core = map(fit_core, getparams_fx),
+    fits_easycbm = map(fit_easycbm, fits_fx),
+    fits_core = map(fit_core, fits_fx),
+    reliability_easycbm = map2(obsvar_easycbm, params_easycbm,
+                               ~tibble(obs = .x,
+                                       est = filter(.y, str_detect(param_names, "residual")) %>% pull(est),
+                                       rel = (obs - est)/obs)),
+    reliability_core = map2(obsvar_core, params_core,
+                            ~tibble(obs = .x,
+                                    est = filter(.y, str_detect(param_names, "residual")) %>% pull(est),
+                                    rel = (obs - est)/obs))
+  )
+
+kableExtra::kbl
+?kable
