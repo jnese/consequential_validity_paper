@@ -135,7 +135,7 @@ options(tinytex.verbose = TRUE)
 
 # Data
 
-```{r }
+```{r}
 
 source(here::here("nopublish", "read_data.R"))
 
@@ -150,10 +150,6 @@ data_raw <- read_csv(here::here("data", "data_open.csv"))
 
 # Rules for selecting core wcpm:
 # (1) Must read >= 30 sec across n passages
-
-# filter(wr_easycbmcore >= 10) %>% #6374
-# filter(secs_easycbmcore >= 30) %>% #5417
-
 
 # remove rows with missing data on all 4 waves of easycbm and CORE
 data_start <- data_raw %>% 
@@ -213,37 +209,6 @@ data_sbac <- data_preds %>%
   mutate(sbac_prof = factor(sbac_prof))
 
 
-# data_start %>% 
-#   filter(is.na(npassages_core.wave1) & is.na(npassages_core.wave2) & is.na(npassages_core.wave3) & is.na(npassages_core.wave4))
-#   select(contains("npassages_core"))
-# 
-# summary(data_start$wcpm_core.wave3)
-# 
-# data_start %>% 
-#    select(contains("npassages_core"), contains("wcpm_core")) %>% 
-#    pivot_longer(
-#      cols = everything(),
-#      names_to = c("type", "wave"),
-#      values_to = "wcpm",
-#      names_sep = "_"
-#    ) %>% 
-#    pivot_wider(
-#      names_from = type,
-#      values_from = wcpm
-#    ) %>%
-#    unnest() %>%
-# #  mutate(wave = parse_number(wave))
-#   ggplot(aes(npassages, wcpm)) +
-#   geom_point() +
-#   facet_wrap(~wave)
-
-data_r %>% 
-  filter(grade_core == 4) %>% 
-  select(wcpm_easycbmcore.wave1_r:wcpm_easycbmcore.wave4_r) %>% 
-  mutate(across(everything(), ~replace_na(., -99))) %>% 
-  write_csv(., here::here("nopublish", "data_r_gr4.csv"), col_names = FALSE)
-
-
 ```
 
 ## Research Questions
@@ -266,80 +231,12 @@ The original sample included `r format(nrow(data_start), big.mark=",")` students
 
 According to 2018-2019 NCES school data, the populations of the seven schools ranged from `r min(school1819$total_students)` to `r max(school1819$total_students)` students, approximately half of whom were students in Grades 2 through 4. Four school locales were classified as Suburb: Midsize, and three as Town: Distant (for more information, see https://nces.ed.gov/ccd/commonfiles/glossary.asp). Six schools received Title I funding, and the percentage of students receiving free or reduced lunch ranged from `r min(school1819$frl_pct)`% to `r max(school1819$frl_pct)`%. The ethnic/race majority for all schools was White (`r min(school1819$white_pct)`% to `r max(school1819$white_pct)`%), followed by Hispanic (`r min(school1819$hispanic_pct)`% to `r max(school1819$hispanic_pct)`%), Multi-racial (`r min(school1819$multi_pct)`% to `r max(school1819$multi_pct)`%), American Indian/Native Alaskan (`r min(school1819$amin_pct)`% to `r max(school1819$amin_pct)`%), Asian (`r min(school1819$asian_pct)`% to `r max(school1819$asian_pct)`%), Black (`r min(school1819$black_pct)`% to `r max(school1819$black_pct)`%), and Native Hawaiian/Other Pacific Islander (`r min(school1819$pacisl_pct)`% to `r max(school1819$pacisl_pct)`%).
 
-```{r, eval=FALSE}
+(ref:tbl-demos-cap) Sample Characteristics by Research Question.
 
-tbl_demos_fx <- function(df) {
-  df %>% 
-  select(grade_core, gender_state, ethnicity_state, frl_state, sped_state, lep_state, district_core, school_core) %>% 
-  mutate(across(everything(), ~ifelse(is.na(.), "Missing", .))) %>% 
-  tbl_summary(
-    label = list(
-      grade_core ~ "Grade",
-      gender_state ~ "Gender",
-      ethnicity_state ~ "Ethnicity",
-      frl_state ~ "Free/Reduced Lunch",
-      sped_state ~ "Students with Disabilities (SWD)",
-      lep_state ~ "English Language Learners (EL)",
-      district_core ~ "School District",
-      school_core ~ "School")
-  )
-}
+```{r tbl-demos}
 
-tble_rq1 <- tbl_demos_fx(data_r)
-
-tble_rq2 <- tbl_demos_fx(data_comp) 
-
-tble_rq3 <- tbl_demos_fx(data_sbac)
-
-# tbl_demos <- tbl_merge(list(tble_rq1, tble_rq2, tble_rq3)) %>% 
-#   as_tibble() %>% 
-#   mutate(across(everything(), ~ifelse(is.na(.), "", .))) 
-# 
-# names(tbl_demos) <- str_remove_all(names(tbl_demos), "\\**")
-# 
-# tbl_demos %>% 
-#   apa_table(
-#     col_spanners = list(`RQ 1` = c(2, 2), `RQ 2` = c(3, 3), `RQ 3` = c(4, 4)),
-#     stub_indents = list(c(2:4, 6:8, 10:17, 19:21, 23:25, 27:29, 31:34, 36:42)),
-#     longtable = TRUE,
-#     font_size = "small"
-#   )
-
-tbl_demos_merge <- tbl_merge(list(tble_rq1, tble_rq2, tble_rq3),
-          tab_spanner = c(c("RQ 1", "RQ 2", "RQ 3"))) %>%
-  bold_labels() 
-
-# tbl_demos_merge$table_header <- tbl_demos_merge$table_header %>% mutate(label = str_remove_all(label, "\\**"),
-#                                                label = str_remove_all(label, "Characteristic"))
-
-tbl_demos <- tbl_demos_merge %>% 
-  as_gt() %>% 
-  apa_format_fx() %>% 
-  tab_style(
-    style = list(
-      cell_borders(
-        sides = c("top", "bottom"),
-        weight = px(2)
-      )
-    ),
-    locations = list(
-      cells_body(
-        columns = everything(),
-        rows = c(1, 5, 9, 18, 22, 26, 30, 35)
-      )
-    )
-  ) %>% 
-  tab_header(
-    title = html("Table 1.<br><br><i>Sample Characteristics by Research Question</i>")) %>% 
-  opt_align_table_header(align = c("left"))
-
-tbl_demos
-
-```
-
-```{r tbl-demos, eval=FALSE}
 demos_fx <- function(df){
-  df %>% 
+  tbl <- df %>% 
     select(grade_core, gender_state, ethnicity_state, frl_state, sped_state, lep_state, district_core, school_core) %>% 
     mutate(across(everything(), ~ifelse(is.na(.), "Missing", .)),
            across(c(frl_state, sped_state, lep_state), ~recode(., "N" = "No", "Y" = "Yes")),
@@ -366,55 +263,47 @@ demos_fx <- function(df){
     summarize(n = n(),
               pct = round(n/nrow(df) * 100, 0),
               stat = paste0(n, " (", pct, "%)")) %>% 
-    select(demo, values, stat)
+    select(demo, values, stat) %>% 
+    mutate(values = fct_relevel(values, "Missing", after = Inf),
+         across(starts_with("stat"), ~ifelse(is.na(.), "--", .)))
+  
+  names(tbl)[3] <- paste0("\\emph{N} = ", nrow(df)) 
+  
+  tbl
 }
 
-tbl_demos <- demos_fx(data_r) %>% 
+demo_order <- c("Grade", "Gender", "Ethnicity", "Free/Reduced Lunch", "Students with Disabilities (SWD)", "English Language Learners (EL)", "School District", "School")
+
+demo_info <- demos_fx(data_r) %>% 
   left_join(demos_fx(data_comp), by = c("demo", "values")) %>% 
   left_join(demos_fx(data_sbac), by = c("demo", "values")) %>% 
-  ungroup() %>% 
   mutate(values = fct_relevel(values, "Missing", after = Inf),
-         across(starts_with("stat"), ~ifelse(is.na(.), "--", .))) %>% 
-  arrange(values) %>%
-  gt(groupname_col = "demo", rowname_col = "values") %>% 
-  row_group_order(
-    groups = c("Grade", "Gender", "Ethnicity", "Free/Reduced Lunch",
-               "Students with Disabilities (SWD)", "English Language Learners (EL)",
-               "School District",
-               "School")
-  ) %>% 
-  cols_align(
-    align = "right",
-    columns = starts_with("stat")
-  ) %>% 
-  tab_spanner(
-    label = "RQ 1",
-    columns = vars(stat.x)
-  ) %>%
-  tab_spanner(
-    label = "RQ 2",
-    columns = vars(stat.y)
-  ) %>%
-  tab_spanner(
-    label = "RQ 3",
-    columns = vars(stat)
-  ) %>%
-  cols_label(
-    values = "",
-    stat.x = md(paste0("*N* = ", nrow(data_r))),
-    stat.y = md(paste0("*N* = ", nrow(data_comp))),
-    stat = md(paste0("*N* = ", nrow(data_sbac)))
-  ) %>% 
-  apa_format_fx() %>% 
-  tab_header(
-    title = html("Table 1.<br><br><i>Sample Characteristics by Research Question</i>")) %>% 
-  opt_align_table_header(align = c("left"))
+         across(starts_with("<"), ~ifelse(is.na(.), "--", .))) %>% 
+  arrange(match(demo, demo_order), values) %>% 
+  group_by(demo) %>% 
+  nest()
 
-tbl_demos
+
+apa_table(
+  list(
+    `Grade` = demo_info$data[[1]],
+    `Gender` = demo_info$data[[2]],
+    `Ethnicity` = demo_info$data[[3]],
+    `Free/Reduced Lunch` = demo_info$data[[4]], 
+    `Students with Disabilities (SWD)` = demo_info$data[[5]],
+    `English Language Learners (EL)` = demo_info$data[[6]], 
+    `School District` = demo_info$data[[7]],
+    `School` = demo_info$data[[8]]
+    ), 
+    caption = "Sample Characteristics by Research Question", 
+    added_stub_head = "",
+  align = c("l", rep("r", 3)),
+  longtable = TRUE,
+  escape = FALSE
+  )
 ```
 
-
-We removed extreme WCPM scores that suggested they were not a part of the data generating process, rather an artifact of the audio data collection process. We removed WCPM scores that were based on less than 30 sec of audio because (a) traditional CBM-R scores are intended to be 60 sec, and (b) CORE scores are intended to be based on reading 10 to 12 passages and it appears implausible to do that in 30 sec. We also removed WCPM scores that were based on less than 10 words read, which applied only to traditional CBM-R scores. We acknowledge that other researchers may have made different theoretical data decisions. 
+We removed extreme WCPM scores that suggested they were not a part of the data generating process, rather an artifact of the audio data collection process. We removed WCPM scores that were based on less than 30 sec of audio because (a) traditional CBM-R scores are intended to be 60 sec, and (b) CORE scores are intended to be based on reading 10 to 12 passages and it appears implausible to do that in 30 sec. We also removed WCPM scores that were based on less than 10 words read, which applied only to traditional CBM-R scores. We acknowledge that other researchers may have made different theoretical data decisions.
 
 The analytic sample varied according to the research question and outcome variable. Table\ \@ref(tab:tbl-demos) shows the sample demographic characteristics for each research question (RQ).
 
@@ -467,7 +356,7 @@ means <- data_r %>%
             wcpm_sd = sd(wcpm, na.rm = TRUE)) 
 ```
 
-```{r, eval=FALSE}
+```{r}
 
 means %>% 
   pivot_wider(
@@ -590,7 +479,7 @@ Table\ \@ref(tab:tbl-desc) shows the descriptive WCPM data, and Figure\ \@ref(fi
 
 ### CORE CBM-R
 
-Each CORE passage is an original work of narrative fiction that follows the story grammar of English language short stories, with a main character and a clear beginning, middle, and end (link blinded for review). To reduce construct-irrelevant variance associated with different authors’ voice and style, the author of the CORE passages was part of the team that authored the easyCBM traditional CBM-R passages used in this study. Apart from the passage length requirements, the CORE passages were written to similar specifications as the easyCBM passages. Each CORE passage was written within 5 words of a targeted length: long = 85 words or medium = 50 words. Ultimately, 150 passages were written: 50 at each of Grades 2-4, with 20 long passages and 30 medium passages for each grade. 
+Each CORE passage is an original work of narrative fiction that follows the story grammar of English language short stories, with a main character and a clear beginning, middle, and end (link blinded for review). To reduce construct-irrelevant variance associated with different authors’ voice and style, the author of the CORE passages was part of the team that authored the easyCBM traditional CBM-R passages used in this study. Apart from the passage length requirements, the CORE passages were written to similar specifications as the easyCBM passages. Each CORE passage was written within 5 words of a targeted length: long = 85 words or medium = 50 words. Ultimately, 150 passages were written: 50 at each of Grades 2-4, with 20 long passages and 30 medium passages for each grade.
 
 ```{r npassages}
 
@@ -622,7 +511,6 @@ Following standard administration protocols, students were given 60 s to read th
 #### ASR Scoring
 
 The ASR engine scored each audio recording file, scoring each word as read correctly or incorrectly, and recording the time in centi-seconds to read each word and the time between words. Bavieca, an open-source speech recognition toolkit, was the ASR applied in this study (http://www.bavieca.org/). Bavieca uses continuous density hidden Markov models and supports maximum likelihood linear regression, vocal tract length normalization, and discriminative training (maximum mutual information). It uses the general approach of many state-of-the art speech recognition systems: a Viterbi Beam Search used to find the optimal mapping of the speech input onto a sequence of words. The score for a word sequence was calculated by interpolating language model scores and acoustic model scores. The language model assigned probabilities to sequences of words using trigrams (where the probability of the next word is conditioned on the two previous words) and was trained using the CMU-Cambridge LM Toolkit (Clarkson & Rosenfeld, 1997). Acoustic models were clustered triphones based on Hidden Markov Models using Gaussian Mixtures to estimate the probabilities of the acoustic observation vectors. The system used filler models to match the types of disfluencies found in applications.
-
 
 ### CBM Comprehension
 
@@ -681,7 +569,7 @@ pass_rate <- data_sbac %>%
   summarize(pass = round(sum(sbac_prof == "Met", na.rm = TRUE)/n()*100))
 ```
 
-The mean SBAC ELA/L score for Grade 3 was `r round(mean(data_sbac[data_sbac$grade_core == 3, ]$sbac_score, na.rm = TRUE), 1)` (*SD* = `r round(sd(data_sbac[data_sbac$grade_core == 3, ]$sbac_score, na.rm = TRUE), 1)`) with `r pass_rate$pass[[1]]`% meeting proficiency. The mean SBAC ELA/L score for Grade 4 was `r round(mean(data_sbac[data_sbac$grade_core == 4, ]$sbac_score, na.rm = TRUE), 1)` (*SD* = `r round(sd(data_sbac[data_sbac$grade_core == 4, ]$sbac_score, na.rm = TRUE), 1)`) with `r pass_rate$pass[[2]]` `% meeting proficiency. 
+The mean SBAC ELA/L score for Grade 3 was `r round(mean(data_sbac[data_sbac$grade_core == 3, ]$sbac_score, na.rm = TRUE), 1)` (*SD* = `r round(sd(data_sbac[data_sbac$grade_core == 3, ]$sbac_score, na.rm = TRUE), 1)`) with `r pass_rate$pass[[1]]`% meeting proficiency. The mean SBAC ELA/L score for Grade 4 was `r round(mean(data_sbac[data_sbac$grade_core == 4, ]$sbac_score, na.rm = TRUE), 1)` (*SD* = `r round(sd(data_sbac[data_sbac$grade_core == 4, ]$sbac_score, na.rm = TRUE), 1)`) with `r pass_rate$pass[[2]]` `% meeting proficiency.
 
 Figure\ \@ref(fig-sbac-scatter) shows scatter and density plots of the CBM-R WCPM and SBAC ELA/L score and proficiency, respectively, by grade and season (distal and proximal).
 
@@ -759,9 +647,9 @@ fig_sbac_score / fig_sbac_prof
 
 Students were assessed online, using classroom or school devices, and wore headphones with an attached noise-cancelling microphone provided by the research team. Students were given a task introduction by their teacher, and then directed to the study website where the first page asked for student assent (if a student declined, their participation ended). The standardized instructions were presented via audio as well as print. *“Get ready! You are about to do some reading! After pressing start, read the story on the screen. When you are finished click done. Do your best reading, and have fun!”*
 
-For each of the four measurement occasions (Oct-Nov 2017, 2018; Nov-Feb 2017-18, 2018-19; Feb-Mar 2018, 2019; May-Jun, 2018, 2019), students read aloud online a randomly assigned, fixed set of 10 to 12 CORE passages (3-5 long and 5-7 medium), and one traditional CBM-R passage from the easyCBM progress monitoring system. 
+For each of the four measurement occasions (Oct-Nov 2017, 2018; Nov-Feb 2017-18, 2018-19; Feb-Mar 2018, 2019; May-Jun, 2018, 2019), students read aloud online a randomly assigned, fixed set of 10 to 12 CORE passages (3-5 long and 5-7 medium), and one traditional CBM-R passage from the easyCBM progress monitoring system.
 
-An automatic speech recognition engine scored each reading, scoring each word as read correctly or incorrectly (accuracy), and recording the time duration to read each word (and the silence between) which was aggregated to calculate the time to read the passage (speed). 
+An automatic speech recognition engine scored each reading, scoring each word as read correctly or incorrectly (accuracy), and recording the time duration to read each word (and the silence between) which was aggregated to calculate the time to read the passage (speed).
 
 All WCPM scores were based on these readings and data. The model-based WCPM CORE scores [@kara2020] were estimated for each measurement occasion based on the number CORE passages read. Traditional CBM-R WCPM scores were calculated by dividing the number of words read correctly (wrc) by the quotient of the total seconds read (sec) and 60 (i.e., $wrc/(sec/60)$).
 
@@ -772,7 +660,7 @@ To address RQ 1, we applied a latent growth model (LGM; @meredithtisak1990) sepa
 Two results are extracted from the LGMs to compare the growth properties of the traditional CBM-R and model-based CORE scores. One, the fixed intercept and slope estimates and their associated standard errors (*SE*), as estimated by the linear growth model. Two, the reliability of the CBM-R scores at each wave, as estimated by the proportion of true score variance to observed score variance [@rogosaetal1983; @willett1988chapter; @singerwillett2003].  EDIT
 
 $$
-\rho_t = \frac{\psi_{00} + \lambda^2_t \psi_{11} + 2\lambda_t \psi_{01}}{\psi_{00} + \lambda^2_t \psi_{11} + 2\lambda_t \psi_{01} + \theta_t} = \frac{var(y_t) - \theta_t}{var(y_t)} 
+\rho_t = \frac{\psi_{00} + \lambda^2_t \psi_{11} + 2\lambda_t \psi_{01}}{\psi_{00} + \lambda^2_t \psi_{11} + 2\lambda_t \psi_{01} + \theta_t} = \frac{var(y_t) - \theta_t}{var(y_t)}
 $$
 Where $\rho_t$ represent the reliability at wave $t$, $\psi$ represents the covariance structure of the intercept and slope factors, $\lambda_t$ represents the linear time covariate, and $\theta_t$ represents the residual variance at a wave, which is equivalent to the ratio of the true score variance ($var(y_t) - \theta_t$) to the observed score variance ($var(y_t)$), and can be calculated for each wave by subtracting the residual variance (measurement error) from the observed score variance. This estimate of reliability provides both the true score variance explained by the longitudinal model and the unique measurement error variance of observed scores at each wave, and has been applied for estimating reliability of CBM data [@yeoetal2012].
 
@@ -780,19 +668,19 @@ All analyses and figures were conducted and created in the R programming environ
 
 To address RQs 2 and 3, we apply a predictive approach to determine which CBM-R predictor most accurately estimates the outcomes, rather an inferential approach that pursues unbiased estimates of $\beta$ coefficients. Our predictive model is a linear model, separate for by grade and CBM-R predictor, regressing the outcome (spring CBM comprehension, SBAC ELA/L scores, or SBAC ELA/L proficiency) on the CBM-R predictor (traditional CBM-R scores vs. CORE model-based scores from fall or spring).
 
-For RQ 2, we fit 12 linear models: 2 CBM-R predictors each at 2 seasons (fall and spring) for each of 3 grades: $Comprehension_i = \beta_0 + \beta_1CBM\mbox{-}R_{season} + \epsilon_i$. 
+For RQ 2, we fit 12 linear models: 2 CBM-R predictors each at 2 seasons (fall and spring) for each of 3 grades: $Comprehension_i = \beta_0 + \beta_1CBM\mbox{-}R_{season} + \epsilon_i$.
 
 For RQ 3, we model Grades 3 and 4 together and thus include grade level as a categorical covariate, as well as the state (to account for differences in standards). We fit 8 linear models, applying a logistic regression for the categorical SBAC ELA/L proficiency outcome: $SBAC_i = \beta_0 + \beta_1CBM\mbox{-}R_{season} + Grade + State + \epsilon_i$.
 
 To measure the accuracy of the models, our predictive performance measures were the *RMSEA* and $R^2$ for the continuous outcomes (spring CBM comprehension and SBAC ELA/L scores), and the Receiver Operating Characteristic (ROC) area under the curve (AUC) for the categorical outcome (SBAC ELA/L proficiency).
 
-To understand the predictive accuracy of the CBM-R measures, and how their accuracy might generalize to new data, we split the data (by RQ) into two sets: a training set, a random sample of 75% of the data; and a test set, the remaining 25% of the data. 
+To understand the predictive accuracy of the CBM-R measures, and how their accuracy might generalize to new data, we split the data (by RQ) into two sets: a training set, a random sample of 75% of the data; and a test set, the remaining 25% of the data.
 
-To get a measure of variance for the performance measures, we apply 10 fold cross-validation to the training set. For each fold, 10% of the training set is sampled and serves as an assessment sample, so that each observation serves in one and only one assessment sample. The remaining 90% of the training set serve as the analysis sample for a fold. The predictive model (Eq 2) is fit on the 90% analysis sample of each fold, and the resulting model parameters are used to predict the assessment sample within each fold. The performance measures (*RMSEA* and AUC) are taken from each fold, and the final performance is the mean performance measure across the 10 folds, and the of variance around the mean. 
+To get a measure of variance for the performance measures, we apply 10 fold cross-validation to the training set. For each fold, 10% of the training set is sampled and serves as an assessment sample, so that each observation serves in one and only one assessment sample. The remaining 90% of the training set serve as the analysis sample for a fold. The predictive model (Eq 2) is fit on the 90% analysis sample of each fold, and the resulting model parameters are used to predict the assessment sample within each fold. The performance measures (*RMSEA* and AUC) are taken from each fold, and the final performance is the mean performance measure across the 10 folds, and the of variance around the mean.
 
-Research has shown that 10 folds is a sensible value for *k*-fold cross-validation, and repeating *k*-fold cross-validation can improve the accuracy of the estimates while maintaining small bias, particularly for smaller sample sizes [@molinaro2005; @kim2009]. We apply 10-fold cross-validation repeated 5 times for each RQ so that we fit 50 models and record 50 performance measures to the training set (10 folds $\times$ 5 repeats = 50). 
+Research has shown that 10 folds is a sensible value for *k*-fold cross-validation, and repeating *k*-fold cross-validation can improve the accuracy of the estimates while maintaining small bias, particularly for smaller sample sizes [@molinaro2005; @kim2009]. We apply 10-fold cross-validation repeated 5 times for each RQ so that we fit 50 models and record 50 performance measures to the training set (10 folds $\times$ 5 repeats = 50).
 
-Finally, we fit the predictive models to the entire training set, and then use the resulting model parameters to predict the results of the test set. The test set here can be can be conceptualized as "new" (or unseen) data, as it has not been used to this point. The resulting final performance measures serve as estimates of how the two comparison CBM-R measures will generalize in their predictive accuracy. 
+Finally, we fit the predictive models to the entire training set, and then use the resulting model parameters to predict the results of the test set. The test set here can be can be conceptualized as "new" (or unseen) data, as it has not been used to this point. The resulting final performance measures serve as estimates of how the two comparison CBM-R measures will generalize in their predictive accuracy.
 
 The predictive modeling process was conducted using the tidymodels package [@tidymodels]. We also used the following R packages: doParallel [@doParallel], ggridges[@ggridges], ggthemes [@ggthemes], gt [@gt], janitor [@janitor], lavaan [@lavaan], papaja [@papaja], patchwork [@patchwork], tidyverse [@tidyverse].
 
@@ -800,7 +688,7 @@ The predictive modeling process was conducted using the tidymodels package [@tid
 
 ### RQ1
 
-To address RQ 1, we fit LGMs separately for each CBM-R measure and grade. 
+To address RQ 1, we fit LGMs separately for each CBM-R measure and grade.
 
 ```{r lgms}
 
@@ -947,6 +835,21 @@ tbl_lgms_results
 ```
 
 ```{r gr4-traditional, eval=FALSE}
+
+growth <- 'i =~ 1*wcpm_easycbmcore.wave1_r + 1*wcpm_easycbmcore.wave2_r + 1*wcpm_easycbmcore.wave3_r + 1*wcpm_easycbmcore.wave4_r
+  s =~ 0*wcpm_easycbmcore.wave1_r + 1.35*wcpm_easycbmcore.wave2_r + 3.65*wcpm_easycbmcore.wave3_r + 6.67*wcpm_easycbmcore.wave4_r'
+
+gr4_full <- data_r %>% 
+  filter(grade_core == 4) %>% 
+  select(wcpm_easycbmcore.wave1_r:wcpm_easycbmcore.wave4_r) %>% 
+  drop_na()
+
+fit_growth <- growth(growth,
+                  data = gr4_full,
+                  estimator = "MLR",
+                  missing = "ML")
+
+summary(fit_toeplitz, standardized = TRUE)
 
 mod_toeplitz <- '
   i =~ 1*wcpm_easycbmcore.wave1_r + 1*wcpm_easycbmcore.wave2_r + 1*wcpm_easycbmcore.wave3_r + 1*wcpm_easycbmcore.wave4_r
@@ -1128,11 +1031,11 @@ rels <- lgms %>%
 
 ```
 
-Table\ \@ref(tab:tbl-lgms-reliab) shows the observed variances CBM-Rs at each wave, the estimated residual variances from the LGMs, and reliability estimates by grade and wave. Across grades and waves, the reliability estimates were higher for the model-based CORE scores except for Grade 2, wave 4 (`r filter(rels, grade_core == 2, measure == "core")$rel[4]` vs. `r filter(rels, grade_core == 2, measure == "easycbmcore")$rel[4]`). The reliability estimates for the model-based CORE scores ranged from `r min(filter(rels, measure == "core") %>% pull(rel))` to `r max(filter(rels, measure == "core") %>% pull(rel))`, and for the Traditional CBM-R ranged from `r min(filter(rels, measure == "easycbmcore") %>% pull(rel))` to `r max(filter(rels, measure == "easycbmcore") %>% pull(rel))`. 
+Table\ \@ref(tab:tbl-lgms-reliab) shows the observed variances CBM-Rs at each wave, the estimated residual variances from the LGMs, and reliability estimates by grade and wave. Across grades and waves, the reliability estimates were higher for the model-based CORE scores except for Grade 2, wave 4 (`r filter(rels, grade_core == 2, measure == "core")$rel[4]` vs. `r filter(rels, grade_core == 2, measure == "easycbmcore")$rel[4]`). The reliability estimates for the model-based CORE scores ranged from `r min(filter(rels, measure == "core") %>% pull(rel))` to `r max(filter(rels, measure == "core") %>% pull(rel))`, and for the Traditional CBM-R ranged from `r min(filter(rels, measure == "easycbmcore") %>% pull(rel))` to `r max(filter(rels, measure == "easycbmcore") %>% pull(rel))`.
 
 ## RQ2
 
-To address RQ 2 we used a predictive approach with resampling and fit linear models separate for by grade and CBM-R predictor, regressing the spring CBM comprehension on the CBM-R predictors. 
+To address RQ 2 we used a predictive approach with resampling and fit linear models separate for by grade and CBM-R predictor, regressing the spring CBM comprehension on the CBM-R predictors.
 
 
 ```{r pred-comp}
@@ -1148,9 +1051,7 @@ eq_comp_easycbm_fall <- readingcomp_easycbm.spring ~ wcpm_easycbmcore.wave1_r
 eq_comp_core_spring <- readingcomp_easycbm.spring ~ wcpm_core.wave4_r
 eq_comp_easycbm_spring <- readingcomp_easycbm.spring ~ wcpm_easycbmcore.wave4_r
 
-## USE PARALLEL PROCESSING
 
-tictoc::tic()
 cl <- parallel::makeCluster(parallel::detectCores())
 doParallel::registerDoParallel(cl)
 
@@ -1230,7 +1131,6 @@ pred_comp <- data_comp %>%
                         )
   )
 parallel::stopCluster(cl)
-tictoc::toc()
 #69 sec
 
 
@@ -1379,11 +1279,11 @@ pct_diff <- pred_final_res %>%
 
 ```
 
-The final *RMSE* and $R^2$ values in Table\ \@ref(tab:tbl-pred-comp) represent the parameters of the predictive models applied to the training set (75% of sample) used to predict the test set (25% of sample). For both the distal (fall) and proximal (spring) CBM-R predictors, the results favor CORE, which had lower *RMSE* and higher $R^2$ values across all comparisons (except Grade 2, distal *RMSE*). The *RMSE* values represent differences of `r sort(pct_diff$pctrmse)[2]`% to `r max(pct_diff$pctrmse)`% of a *SD* favoring CORE, and `r abs(min(pct_diff$pctrmse))`% of a *SD* favoring Traditional CBM-R for the Grade 2 distal model. The $R^2$ values represent increases in explained variance for CORE above Traditional CBM-R of `r min(pct_diff$pctr2)`% to `r max(pct_diff$pctr2)`%. 
+The final *RMSE* and $R^2$ values in Table\ \@ref(tab:tbl-pred-comp) represent the parameters of the predictive models applied to the training set (75% of sample) used to predict the test set (25% of sample). For both the distal (fall) and proximal (spring) CBM-R predictors, the results favor CORE, which had lower *RMSE* and higher $R^2$ values across all comparisons (except Grade 2, distal *RMSE*). The *RMSE* values represent differences of `r sort(pct_diff$pctrmse)[2]`% to `r max(pct_diff$pctrmse)`% of a *SD* favoring CORE, and `r abs(min(pct_diff$pctrmse))`% of a *SD* favoring Traditional CBM-R for the Grade 2 distal model. The $R^2$ values represent increases in explained variance for CORE above Traditional CBM-R of `r min(pct_diff$pctr2)`% to `r max(pct_diff$pctr2)`%.
 
 ## RQ3
 
-To address RQ 3 we used again used a predictive approach with resampling and fit linear models separate for by grade and CBM-R predictor, regressing SBAC ELA/L (score or proficiency) on the CBM-R predictors, grade, and state. 
+To address RQ 3 we used again used a predictive approach with resampling and fit linear models separate for by grade and CBM-R predictor, regressing SBAC ELA/L (score or proficiency) on the CBM-R predictors, grade, and state.
 ```{r pred-sbac}
 
 eq_sbacscore_core_fall <- sbac_score ~ wcpm_core.wave1_r + grade_core + state
@@ -1396,7 +1296,6 @@ eq_sbacprof_easycbm_fall <- sbac_prof ~ wcpm_easycbmcore.wave1_r + grade_core + 
 eq_sbacprof_core_spring <- sbac_prof ~ wcpm_core.wave4_r + grade_core + state
 eq_sbacprof_easycbm_spring <- sbac_prof ~ wcpm_easycbmcore.wave4_r + grade_core + state
 
-tictoc::tic()
 cl <- parallel::makeCluster(parallel::detectCores())
 doParallel::registerDoParallel(cl)
 
@@ -1432,6 +1331,7 @@ pred_sbac <- data_sbac %>%
                           model_logistic,
                           eq_sbacprof_core_fall,
                           .x,
+                          metrics = metric_set(sens, spec, roc_auc),
                           control = control_resamples(verbose = TRUE, save_pred = TRUE)
                           )
                     ),
@@ -1440,6 +1340,7 @@ pred_sbac <- data_sbac %>%
                           model_logistic,
                           eq_sbacprof_easycbm_fall,
                           .x,
+                          metrics = metric_set(sens, spec, roc_auc),
                           control = control_resamples(verbose = TRUE, save_pred = TRUE)
                           )
                     ),
@@ -1464,6 +1365,7 @@ pred_sbac <- data_sbac %>%
                           model_logistic,
                           eq_sbacprof_core_spring,
                           .x,
+                          metrics = metric_set(sens, spec, roc_auc),
                           control = control_resamples(verbose = TRUE, save_pred = TRUE)
                           )
                     ),
@@ -1472,6 +1374,7 @@ pred_sbac <- data_sbac %>%
                           model_logistic,
                           eq_sbacprof_easycbm_spring,
                           .x,
+                          metrics = metric_set(sens, spec, roc_auc),
                           control = control_resamples(verbose = TRUE, save_pred = TRUE)
                           )
                     ),
@@ -1493,14 +1396,16 @@ pred_sbac <- data_sbac %>%
                               ~last_fit(
                                 model_logistic,
                                 eq_sbacprof_core_fall,
-                                .x
+                                .x,
+                                metrics = metric_set(sens, spec, roc_auc)
                                 )
                               ),
     last_prof_easycbm_fall = map(split,
                               ~last_fit(
                                 model_logistic,
                                 eq_sbacprof_easycbm_fall,
-                                .x
+                                .x,
+                                metrics = metric_set(sens, spec, roc_auc)
                                 )
                               ),
     last_score_core_spring = map(split,
@@ -1521,19 +1426,20 @@ pred_sbac <- data_sbac %>%
                               ~last_fit(
                                 model_logistic,
                                 eq_sbacprof_core_spring,
-                                .x
+                                .x,
+                                metrics = metric_set(sens, spec, roc_auc)
                                 )
                               ),
     last_prof_easycbm_spring = map(split,
                               ~last_fit(
                                 model_logistic,
                                 eq_sbacprof_easycbm_spring,
-                                .x
+                                .x,
+                                metrics = metric_set(sens, spec, roc_auc)
                                 )
                               )
   )
 parallel::stopCluster(cl)
-tictoc::toc()
 # 86 sec
 
 ```
@@ -1605,9 +1511,11 @@ tbl_pred_sbac <- sbac_cv_res %>%
                           rsq = "Mean *R*<sup>2</sup> (*SE*)",
                           rmse_final = "__Final *RMSE*__",
                           rsq_final = "__Final *R*<sup>2</sup>__",
-                          accuracy = "Mean Accuracy (*SE*)",
+                          sens = "Mean Sensitivity (*SE*)",
+                          spec = "Mean Specificity (*SE*)",
                           roc_auc = "Mean AUC (*SE*)",
-                          accuracy_final = "__Final Accuracy__",
+                          sens_final = "__Final Sensitivity__",
+                          spec_final = "__Final Specificity__",
                           roc_auc_final = "__Final AUC__")) %>% 
   group_by(type, outcome) %>% 
   gt() %>%
@@ -1640,7 +1548,7 @@ tbl_pred_sbac <- sbac_cv_res %>%
 tbl_pred_sbac
 ```
 
-```{r, eval=FALSE}
+```{r}
 
 
 sbac_final_res %>% 
@@ -1652,7 +1560,7 @@ sbac_final_res %>%
          pctr2 = round((final_rsq - final_rsq1)/final_rsq1*100))
 ```
 
-For RQ 3 we compared the predictive accuracy of traditional CBM-R and CORE for distal (fall) and proximal (spring) assessments predicting spring SBAC ELA/L (scores and profiency classification) for students in Grades 3 and 4. 
+For RQ 3 we compared the predictive accuracy of traditional CBM-R and CORE for distal (fall) and proximal (spring) assessments predicting spring SBAC ELA/L (scores and profiency classification) for students in Grades 3 and 4.
 
 Table\ \@ref(tab:tbl-pred-sbac) shows the mean *RMSE* and $R^2$ values across the 50 models fit the 10-fold cross-validation samples, as well as the final *RMSE* and $R^2$ values for the train/test sample. For the SBAC ELA/L score (continuous) outcome, the distal results favored CORE which had lower mean and final *RMSE* and higher mean and final $R^2$ values across grades compared to Traditional CBM-R. To give context to the *RMSE* values, the *SD* of SBAC ELA/L was `r round(sd(data_sbac$sbac_score, na.rm = TRUE), 1)` for Grades 3 and 4 combined, so the *RMSE* values were approximately three-quarters of a *SD*.
 

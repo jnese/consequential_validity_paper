@@ -203,6 +203,68 @@ The original sample included 2,519 students from four school districts and seven
 
 According to 2018-2019 NCES school data, the populations of the seven schools ranged from 357 to 759 students, approximately half of whom were students in Grades 2 through 4. Four school locales were classified as Suburb: Midsize, and three as Town: Distant (for more information, see \url{https://nces.ed.gov/ccd/commonfiles/glossary.asp}). Six schools received Title I funding, and the percentage of students receiving free or reduced lunch ranged from 49\% to 86\%. The ethnic/race majority for all schools was White (56\% to 76\%), followed by Hispanic (16\% to 34\%), Multi-racial (3\% to 9\%), American Indian/Native Alaskan (0\% to 5\%), Asian (0\% to 1\%), Black (0\% to 1\%), and Native Hawaiian/Other Pacific Islander (0\% to 1\%).
 
+\begin{center}
+\begin{ThreePartTable}
+
+\begin{longtable}{lrrr}\noalign{\getlongtablewidth\global\LTcapwidth=\longtablewidth}
+\caption{\label{tab:unnamed-chunk-4}Sample Characteristics by Research Question}\\
+\toprule
+values & \multicolumn{1}{c}{\emph{N} = 2108} & \multicolumn{1}{c}{\emph{N} = 427} & \multicolumn{1}{c}{\emph{N} = 722}\\
+\midrule
+\endfirsthead
+\caption*{\normalfont{Table \ref{tab:unnamed-chunk-4} continued}}\\
+\toprule
+values & \multicolumn{1}{c}{\emph{N} = 2108} & \multicolumn{1}{c}{\emph{N} = 427} & \multicolumn{1}{c}{\emph{N} = 722}\\
+\midrule
+\endhead
+Grade &  &  & \\
+\ \ \ Grade 2 & 601 (29\%) & 82 (19\%) & NA\\
+\ \ \ Grade 3 & 770 (37\%) & 189 (44\%) & 353 (49\%)\\
+\ \ \ Grade 4 & 737 (35\%) & 156 (37\%) & 369 (51\%)\\
+Gender &  &  & \\
+\ \ \ Female & 1019 (48\%) & 217 (51\%) & 381 (53\%)\\
+\ \ \ Male & 962 (46\%) & 210 (49\%) & 341 (47\%)\\
+\ \ \ Missing & 127 (6\%) & NA & NA\\
+Ethnicity &  &  & \\
+\ \ \ American Indian/Native Alaskan & 44 (2\%) & 6 (1\%) & 13 (2\%)\\
+\ \ \ Asian & 13 (1\%) & 7 (2\%) & 7 (1\%)\\
+\ \ \ Black/African American & 3 (0\%) & NA & NA\\
+\ \ \ Hispanic & 415 (20\%) & 92 (22\%) & 143 (20\%)\\
+\ \ \ Multi-Racial & 157 (7\%) & 19 (4\%) & 56 (8\%)\\
+\ \ \ Native Hawaiian/Other Pacific Islander & 5 (0\%) & NA & 2 (0\%)\\
+\ \ \ White & 1344 (64\%) & 303 (71\%) & 501 (69\%)\\
+\ \ \ Missing & 127 (6\%) & NA & NA\\
+Free/Reduced Lunch &  &  & \\
+\ \ \ No & 554 (26\%) & 112 (26\%) & 210 (29\%)\\
+\ \ \ Yes & 1427 (68\%) & 315 (74\%) & 512 (71\%)\\
+\ \ \ Missing & 127 (6\%) & NA & NA\\
+Students with Disabilities (SWD) &  &  & \\
+\ \ \ No & 1774 (84\%) & 383 (90\%) & 672 (93\%)\\
+\ \ \ Yes & 207 (10\%) & 44 (10\%) & 50 (7\%)\\
+\ \ \ Missing & 127 (6\%) & NA & NA\\
+English Language Learners (EL) &  &  & \\
+\ \ \ No & 1424 (68\%) & 397 (93\%) & 532 (74\%)\\
+\ \ \ Yes & 112 (5\%) & 30 (7\%) & 34 (5\%)\\
+\ \ \ Missing & 572 (27\%) & NA & 156 (22\%)\\
+School District &  &  & \\
+\ \ \ District 1 & 499 (24\%) & 117 (27\%) & 197 (27\%)\\
+\ \ \ District 2 & 922 (44\%) & NA & 313 (43\%)\\
+\ \ \ District 3 & 263 (12\%) & 92 (22\%) & 60 (8\%)\\
+\ \ \ District 4 & 424 (20\%) & 218 (51\%) & 152 (21\%)\\
+School &  &  & \\
+\ \ \ School A & 263 (12\%) & 92 (22\%) & 60 (8\%)\\
+\ \ \ School B & 467 (22\%) & NA & 169 (23\%)\\
+\ \ \ School C & 499 (24\%) & 117 (27\%) & 197 (27\%)\\
+\ \ \ School D & 135 (6\%) & 76 (18\%) & 66 (9\%)\\
+\ \ \ School E & 455 (22\%) & NA & 144 (20\%)\\
+\ \ \ School F & 109 (5\%) & 35 (8\%) & 8 (1\%)\\
+\ \ \ School G & 180 (9\%) & 107 (25\%) & 78 (11\%)\\
+\bottomrule
+\end{longtable}
+
+\end{ThreePartTable}
+\end{center}
+
 We removed extreme WCPM scores that suggested they were not a part of the data generating process, rather an artifact of the audio data collection process. We removed WCPM scores that were based on less than 30 sec of audio because (a) traditional CBM-R scores are intended to be 60 sec, and (b) CORE scores are intended to be based on reading 10 to 12 passages and it appears implausible to do that in 30 sec.~We also removed WCPM scores that were based on less than 10 words read, which applied only to traditional CBM-R scores. We acknowledge that other researchers may have made different theoretical data decisions.
 
 The analytic sample varied according to the research question and outcome variable. Table~\ref{tab:tbl-demos} shows the sample demographic characteristics for each research question (RQ).
@@ -429,7 +491,7 @@ Table~\ref{tab:tbl-lgms-reliab} shows the observed variances CBM-Rs at each wave
 To address RQ 2 we used a predictive approach with resampling and fit linear models separate for by grade and CBM-R predictor, regressing the spring CBM comprehension on the CBM-R predictors.
 
 \begin{verbatim}
-## 69.47 sec elapsed
+## 73.75 sec elapsed
 \end{verbatim}
 
 \captionsetup[table]{labelformat=empty,skip=1pt}
@@ -466,7 +528,7 @@ The final \emph{RMSE} and \(R^2\) values in Table~\ref{tab:tbl-pred-comp} repres
 To address RQ 3 we used again used a predictive approach with resampling and fit linear models separate for by grade and CBM-R predictor, regressing SBAC ELA/L (score or proficiency) on the CBM-R predictors, grade, and state.
 
 \begin{verbatim}
-## 67.31 sec elapsed
+## 64.5 sec elapsed
 \end{verbatim}
 
 \captionsetup[table]{labelformat=empty,skip=1pt}
