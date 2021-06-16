@@ -74,14 +74,14 @@ School &  &  & \\
 \toprule
  & \multicolumn{2}{c}{CORE} & \multicolumn{2}{c}{Traditional}  &  &\\
 \cmidrule(r){2-3} \cmidrule(r){4-5}
-Wave & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{\emph{SD}} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{\emph{SD}} & \multicolumn{1}{c}{Median Date} & \multicolumn{1}{c}{Time (\emph{t})}\\
+Wave & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{(\emph{SD})} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{(\emph{SD})} & \multicolumn{1}{c}{Median Date} & \multicolumn{1}{c}{Time (\emph{t})}\\
 \midrule
 \endfirsthead
 \caption*{\normalfont{Table \ref{tab:tbl-desc} continued}}\\
 \toprule
  & \multicolumn{2}{c}{CORE} & \multicolumn{2}{c}{Traditional}  &  &\\
 \cmidrule(r){2-3} \cmidrule(r){4-5}
-Wave & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{\emph{SD}} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{\emph{SD}} & \multicolumn{1}{c}{Median Date} & \multicolumn{1}{c}{Time (\emph{t})}\\
+Wave & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{(\emph{SD})} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{(\emph{SD})} & \multicolumn{1}{c}{Median Date} & \multicolumn{1}{c}{Time (\emph{t})}\\
 \midrule
 \endhead
 Grade 2 &  &  &  &  &  & \\
@@ -112,23 +112,24 @@ Grade 4 &  &  &  &  &  & \\
 \begin{center}
 \begin{threeparttable}
 
-\caption{\label{tab:tbl-cor}Correlations between CBM-R Predictors (CORE and Traditional) and Continuous Outcomes (Spring CBM Comprehension and SBAC ELA/L) by Grade.}
+\caption{\label{tab:tbl-seb-results}Mean (SD) of the Standard Error of the Slope (SEb) Estimate by Measure and Grade.}
 
-\begin{tabular}{lrrrr}
+\begin{tabular}{lrrrrrr}
 \toprule
- & \multicolumn{2}{c}{Distal (Fall)} & \multicolumn{2}{c}{Proximal (Spring)} \\
+ & \multicolumn{2}{c}{CORE} & \multicolumn{2}{c}{Traditional}  &  &\\
 \cmidrule(r){2-3} \cmidrule(r){4-5}
-Grade & \multicolumn{1}{c}{CORE} & \multicolumn{1}{c}{Traditional} & \multicolumn{1}{c}{CORE} & \multicolumn{1}{c}{Traditional}\\
+Grade & \multicolumn{1}{c}{Mean \emph{SEb}} & \multicolumn{1}{c}{\emph{SD}} & \multicolumn{1}{c}{Mean \emph{SEb}} & \multicolumn{1}{c}{\emph{SD}} & \multicolumn{1}{c}{\emph{d}} & \multicolumn{1}{c}{CI}\\
 \midrule
-CBM Comprehension &  &  &  & \\
-\ \ \ Grade 2 & .35 & .38 & .40 & .39\\
-\ \ \ Grade 3 & .46 & .35 & .44 & .36\\
-\ \ \ Grade 4 & .62 & .52 & .58 & .58\\
-SBAC ELA/L Score &  &  &  & \\
-\ \ \ Grade 3 & .62 & .59 & .60 & .50\\
-\ \ \ Grade 4 & .59 & .55 & .58 & .54\\
+2 & 2.82 & (2.36) & 3.93 & (3.04) & 0.41 & {}[0.29 - 0.53]\\
+3 & 2.88 & (2.36) & 4.32 & (3.38) & 0.55 & {}[0.45 - 0.65]\\
+4 & 3.16 & (2.46) & -- & -- & -- & --\\
 \bottomrule
+\addlinespace
 \end{tabular}
+
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} d = Cohen's d (1988). CI = 95\% confidence interval.}
+\end{tablenotes}
 
 \end{threeparttable}
 \end{center}
@@ -138,128 +139,75 @@ SBAC ELA/L Score &  &  &  & \\
  
 \begin{ThreePartTable}
 
-\begin{longtable}{lrrrrrr}\noalign{\getlongtablewidth\global\LTcapwidth=\longtablewidth}
-\caption{\label{tab:tbl-lgms-results}Latent Growth Model Parameter Estimates by Grade.}\\
-\toprule
- & \multicolumn{3}{c}{CORE} & \multicolumn{3}{c}{Traditional} \\
-\cmidrule(r){2-4} \cmidrule(r){5-7}
-Parameter Names & \multicolumn{1}{c}{Parameter} & \multicolumn{1}{c}{\emph{SE}} & \multicolumn{1}{c}{\emph{z}-value} & \multicolumn{1}{c}{Parameter} & \multicolumn{1}{c}{\emph{SE}} & \multicolumn{1}{c}{\emph{z}-value}\\
-\midrule
-\endfirsthead
-\caption*{\normalfont{Table \ref{tab:tbl-lgms-results} continued}}\\
-\toprule
- & \multicolumn{3}{c}{CORE} & \multicolumn{3}{c}{Traditional} \\
-\cmidrule(r){2-4} \cmidrule(r){5-7}
-Parameter Names & \multicolumn{1}{c}{Parameter} & \multicolumn{1}{c}{\emph{SE}} & \multicolumn{1}{c}{\emph{z}-value} & \multicolumn{1}{c}{Parameter} & \multicolumn{1}{c}{\emph{SE}} & \multicolumn{1}{c}{\emph{z}-value}\\
-\midrule
-\endhead
-Grade 2 &  &  &  &  &  & \\
-\ \ \ Mean Intercept & 63.75 & 1.39 & 45.86 & 74.79 & 1.31 & 56.89\\
-\ \ \ Mean Slope & 3.59 & 0.13 & 27.40 & 4.30 & 0.21 & 20.55\\
-\ \ \ Variance Intercept & 1070.46 & 56.82 & 18.84 & 694.73 & 54.94 & 12.65\\
-\ \ \ Variance Slope & 3.04 & 1.03 & 2.95 & 5.25 & 2.06 & 2.55\\
-\ \ \ Correlation Intercept-Slope & -0.35 & -- & -- & 0.05 & -- & --\\
-\ \ \ Residual Variance Wave 1 & 108.15 & 21.60 & 5.01 & 174.89 & 39.26 & 4.46\\
-\ \ \ Residual Variance Wave 2 & 123.28 & 30.80 & 4.00 & 170.13 & 21.54 & 7.90\\
-\ \ \ Residual Variance Wave 3 & 188.05 & 33.71 & 5.58 & 383.15 & 108.25 & 3.54\\
-\ \ \ Residual Variance Wave 4 & 166.29 & 43.15 & 3.85 & 164.71 & 56.55 & 2.91\\
-Grade 3 &  &  &  &  &  & \\
-\ \ \ Mean Intercept & 86.86 & 1.27 & 68.56 & 98.34 & 1.25 & 78.41\\
-\ \ \ Mean Slope & 2.00 & 0.11 & 17.69 & 2.33 & 0.15 & 15.06\\
-\ \ \ Variance Intercept & 1154.59 & 61.11 & 18.89 & 861.74 & 72.83 & 11.83\\
-\ \ \ Variance Slope & 2.96 & 1.20 & 2.46 & 0.87 & 2.57 & 0.34\\
-\ \ \ Correlation Intercept-Slope & -0.51 & -- & -- & 0.25 & -- & --\\
-\ \ \ Residual Variance Wave 1 & 86.29 & 17.68 & 4.88 & 211.07 & 57.28 & 3.68\\
-\ \ \ Residual Variance Wave 2 & 170.98 & 22.35 & 7.65 & 345.25 & 88.15 & 3.92\\
-\ \ \ Residual Variance Wave 3 & 175.85 & 25.57 & 6.88 & 325.07 & 42.81 & 7.59\\
-\ \ \ Residual Variance Wave 4 & 173.13 & 35.41 & 4.89 & 245.04 & 75.52 & 3.24\\
-Grade 4 &  &  &  &  &  & \\
-\ \ \ Mean Intercept & 109.71 & 1.30 & 84.62 & -- & -- & --\\
-\ \ \ Mean Slope & 1.67 & 0.11 & 15.06 & -- & -- & --\\
-\ \ \ Variance Intercept & 1125.18 & 63.04 & 17.85 & -- & -- & --\\
-\ \ \ Variance Slope & 0.74 & 1.15 & 0.64 & -- & -- & --\\
-\ \ \ Correlation Intercept-Slope & -0.44 & -- & -- & -- & -- & --\\
-\ \ \ Residual Variance Wave 1 & 103.88 & 20.96 & 4.96 & -- & -- & --\\
-\ \ \ Residual Variance Wave 2 & 167.61 & 33.84 & 4.95 & -- & -- & --\\
-\ \ \ Residual Variance Wave 3 & 149.52 & 21.61 & 6.92 & -- & -- & --\\
-\ \ \ Residual Variance Wave 4 & 207.36 & 46.01 & 4.51 & -- & -- & --\\
-\bottomrule
-\end{longtable}
-
-\end{ThreePartTable}
-\efloatseparator
- 
-\begin{ThreePartTable}
-
-\begin{longtable}{lrrrrrr}\noalign{\getlongtablewidth\global\LTcapwidth=\longtablewidth}
+\begin{longtable}{lrrrrrrl}\noalign{\getlongtablewidth\global\LTcapwidth=\longtablewidth}
 \caption{\label{tab:tbl-lgms-reliab}Observed Variances, Estimated Residual Variances, and Reliability Estimates by Grade and Wave.}\\
 \toprule
- & \multicolumn{3}{c}{CORE} & \multicolumn{3}{c}{Traditional} \\
+ & \multicolumn{3}{c}{CORE} & \multicolumn{3}{c}{Traditional}  &\\
 \cmidrule(r){2-4} \cmidrule(r){5-7}
-Wave & \multicolumn{1}{c}{Observed} & \multicolumn{1}{c}{Residual} & \multicolumn{1}{c}{Reliability} & \multicolumn{1}{c}{Observed} & \multicolumn{1}{c}{Residual} & \multicolumn{1}{c}{Reliability}\\
+Wave & \multicolumn{1}{c}{Observed} & \multicolumn{1}{c}{Residual} & \multicolumn{1}{c}{Reliability} & \multicolumn{1}{c}{Observed} & \multicolumn{1}{c}{Residual} & \multicolumn{1}{c}{Reliability} & \multicolumn{1}{c}{\emph{h}}\\
 \midrule
 \endfirsthead
 \caption*{\normalfont{Table \ref{tab:tbl-lgms-reliab} continued}}\\
 \toprule
- & \multicolumn{3}{c}{CORE} & \multicolumn{3}{c}{Traditional} \\
+ & \multicolumn{3}{c}{CORE} & \multicolumn{3}{c}{Traditional}  &\\
 \cmidrule(r){2-4} \cmidrule(r){5-7}
-Wave & \multicolumn{1}{c}{Observed} & \multicolumn{1}{c}{Residual} & \multicolumn{1}{c}{Reliability} & \multicolumn{1}{c}{Observed} & \multicolumn{1}{c}{Residual} & \multicolumn{1}{c}{Reliability}\\
+Wave & \multicolumn{1}{c}{Observed} & \multicolumn{1}{c}{Residual} & \multicolumn{1}{c}{Reliability} & \multicolumn{1}{c}{Observed} & \multicolumn{1}{c}{Residual} & \multicolumn{1}{c}{Reliability} & \multicolumn{1}{c}{\emph{h}}\\
 \midrule
 \endhead
-Grade 2 &  &  &  &  &  & \\
-\ \ \ Wave 1 & 1185.0 & 108.2 & .91 & 802.2 & 174.9 & .78\\
-\ \ \ Wave 2 & 1176.9 & 123.3 & .90 & 973.5 & 170.1 & .83\\
-\ \ \ Wave 3 & 1211.5 & 188.1 & .84 & 1010.1 & 383.2 & .62\\
-\ \ \ Wave 4 & 1100.1 & 166.3 & .85 & 1167.2 & 164.7 & .86\\
-Grade 3 &  &  &  &  &  & \\
-\ \ \ Wave 1 & 1239.5 & 86.3 & .93 & 1010.9 & 211.1 & .79\\
-\ \ \ Wave 2 & 1226.5 & 171.0 & .86 & 1164.1 & 345.3 & .70\\
-\ \ \ Wave 3 & 1221.7 & 175.8 & .86 & 1242.2 & 325.1 & .74\\
-\ \ \ Wave 4 & 1052.1 & 173.1 & .84 & 1190.4 & 245.0 & .79\\
-Grade 4 &  &  &  &  &  & \\
-\ \ \ Wave 1 & 1197.9 & 103.9 & .91 & -- & -- & --\\
-\ \ \ Wave 2 & 1280.1 & 167.6 & .87 & -- & -- & --\\
-\ \ \ Wave 3 & 1173.7 & 149.5 & .87 & -- & -- & --\\
-\ \ \ Wave 4 & 1147.9 & 207.4 & .82 & -- & -- & --\\
+Grade 2 &  &  &  &  &  &  & \\
+\ \ \ Wave 1 & 1185.0 & 108.2 & .91 & 802.2 & 174.9 & .78 & .36\\
+\ \ \ Wave 2 & 1176.9 & 123.3 & .90 & 973.5 & 170.1 & .83 & .20\\
+\ \ \ Wave 3 & 1211.5 & 188.1 & .84 & 1010.1 & 383.2 & .62 & .52\\
+\ \ \ Wave 4 & 1100.1 & 166.3 & .85 & 1167.2 & 164.7 & .86 & -.03\\
+Grade 3 &  &  &  &  &  &  & \\
+\ \ \ Wave 1 & 1239.5 & 86.3 & .93 & 1010.9 & 211.1 & .79 & .42\\
+\ \ \ Wave 2 & 1226.5 & 171.0 & .86 & 1164.1 & 345.3 & .70 & .39\\
+\ \ \ Wave 3 & 1221.7 & 175.8 & .86 & 1242.2 & 325.1 & .74 & .30\\
+\ \ \ Wave 4 & 1052.1 & 173.1 & .84 & 1190.4 & 245.0 & .79 & .11\\
+Grade 4 &  &  &  &  &  &  & \\
+\ \ \ Wave 1 & 1197.9 & 103.9 & .91 & -- & -- & -- & --\\
+\ \ \ Wave 2 & 1280.1 & 167.6 & .87 & -- & -- & -- & --\\
+\ \ \ Wave 3 & 1173.7 & 149.5 & .87 & -- & -- & -- & --\\
+\ \ \ Wave 4 & 1147.9 & 207.4 & .82 & -- & -- & -- & --\\
 \bottomrule
 \end{longtable}
 
 \end{ThreePartTable}
 \efloatseparator
  
-\begin{ThreePartTable}
+\begin{lltable}
 
-\begin{longtable}{lrrrrrr}\noalign{\getlongtablewidth\global\LTcapwidth=\longtablewidth}
-\caption{\label{tab:tbl-pred-comp}Spring CBM Comprehension Predictive Measures (RMSE and R2) For Distal and Proximal CBM-R Predictors by Grade.}\\
+\small{
+
+\begin{longtable}{lrrrrrrrrrrrr}\noalign{\getlongtablewidth\global\LTcapwidth=\longtablewidth}
+\caption{\label{tab:tbl-pred-comp}Spring Comprehension Predictive Measures (RMSE and R2) For Distal and Proximal CBM-R Predictors by Grade.}\\
 \toprule
-Grade & \multicolumn{1}{c}{Mean \emph{RMSE}} & \multicolumn{1}{c}{(\emph{SE})} & \multicolumn{1}{c}{Mean $R^2$} & \multicolumn{1}{c}{(\emph{SE})} & \multicolumn{1}{c}{Final \emph{RMSE}} & \multicolumn{1}{c}{Final $R^2$}\\
+ & \multicolumn{6}{c}{CORE} & \multicolumn{6}{c}{Traditional} \\
+\cmidrule(r){2-7} \cmidrule(r){8-13}
+Grade & \multicolumn{1}{c}{Mean \emph{RMSE}} & \multicolumn{1}{c}{(\emph{SD})} & \multicolumn{1}{c}{Mean $R^2$} & \multicolumn{1}{c}{(\emph{SD})} & \multicolumn{1}{c}{Final \emph{RMSE}} & \multicolumn{1}{c}{Final $R^2$} & \multicolumn{1}{c}{Mean \emph{RMSE}} & \multicolumn{1}{c}{(\emph{SD})} & \multicolumn{1}{c}{Mean $R^2$} & \multicolumn{1}{c}{(\emph{SD})} & \multicolumn{1}{c}{Final \emph{RMSE}} & \multicolumn{1}{c}{Final $R^2$}\\
 \midrule
 \endfirsthead
 \caption*{\normalfont{Table \ref{tab:tbl-pred-comp} continued}}\\
 \toprule
-Grade & \multicolumn{1}{c}{Mean \emph{RMSE}} & \multicolumn{1}{c}{(\emph{SE})} & \multicolumn{1}{c}{Mean $R^2$} & \multicolumn{1}{c}{(\emph{SE})} & \multicolumn{1}{c}{Final \emph{RMSE}} & \multicolumn{1}{c}{Final $R^2$}\\
+ & \multicolumn{6}{c}{CORE} & \multicolumn{6}{c}{Traditional} \\
+\cmidrule(r){2-7} \cmidrule(r){8-13}
+Grade & \multicolumn{1}{c}{Mean \emph{RMSE}} & \multicolumn{1}{c}{(\emph{SD})} & \multicolumn{1}{c}{Mean $R^2$} & \multicolumn{1}{c}{(\emph{SD})} & \multicolumn{1}{c}{Final \emph{RMSE}} & \multicolumn{1}{c}{Final $R^2$} & \multicolumn{1}{c}{Mean \emph{RMSE}} & \multicolumn{1}{c}{(\emph{SD})} & \multicolumn{1}{c}{Mean $R^2$} & \multicolumn{1}{c}{(\emph{SD})} & \multicolumn{1}{c}{Final \emph{RMSE}} & \multicolumn{1}{c}{Final $R^2$}\\
 \midrule
 \endhead
-Distal - CORE &  &  &  &  &  & \\
-\ \ \ Grade 2 & 1.41 & (0.07) & 0.21 & (0.03) & 1.96 & 0.36\\
-\ \ \ Grade 3 & 3.46 & (0.09) & 0.24 & (0.02) & 3.96 & 0.24\\
-\ \ \ Grade 4 & 3.06 & (0.08) & 0.38 & (0.03) & 2.73 & 0.48\\
-Distal - Traditional &  &  &  &  &  & \\
-\ \ \ Grade 2 & 1.42 & (0.07) & 0.23 & (0.03) & 1.90 & 0.34\\
-\ \ \ Grade 3 & 3.66 & (0.10) & 0.17 & (0.02) & 4.22 & 0.13\\
-\ \ \ Grade 4 & 3.34 & (0.11) & 0.31 & (0.03) & 2.84 & 0.44\\
-Proximal - CORE &  &  &  &  &  & \\
-\ \ \ Grade 2 & 1.41 & (0.07) & 0.25 & (0.03) & 1.89 & 0.49\\
-\ \ \ Grade 3 & 3.49 & (0.08) & 0.23 & (0.02) & 4.08 & 0.20\\
-\ \ \ Grade 4 & 3.21 & (0.10) & 0.34 & (0.03) & 2.71 & 0.48\\
-Proximal - Traditional &  &  &  &  &  & \\
-\ \ \ Grade 2 & 1.38 & (0.07) & 0.27 & (0.03) & 1.92 & 0.33\\
-\ \ \ Grade 3 & 3.64 & (0.13) & 0.24 & (0.02) & 4.21 & 0.14\\
-\ \ \ Grade 4 & 3.17 & (0.10) & 0.37 & (0.03) & 2.83 & 0.39\\
+Distal &  &  &  &  &  &  &  &  &  &  &  & \\
+\ \ \ Grade 2 & 1.30 & 0.50 & 0.27 & 0.25 & 2.14 & 0.07 & 1.26 & 0.46 & 0.27 & 0.25 & 2.15 & 0.05\\
+\ \ \ Grade 3 & 3.48 & 0.55 & 0.26 & 0.17 & 3.90 & 0.17 & 3.62 & 0.57 & 0.21 & 0.17 & 4.36 & 0.04\\
+\ \ \ Grade 4 & 2.92 & 0.67 & 0.36 & 0.23 & 3.05 & 0.48 & 3.25 & 0.78 & 0.27 & 0.19 & 3.16 & 0.46\\
+Proximal &  &  &  &  &  &  &  &  &  &  &  & \\
+\ \ \ Grade 2 & 1.27 & 0.52 & 0.32 & 0.27 & 2.07 & 0.17 & 1.27 & 0.53 & 0.32 & 0.28 & 2.10 & 0.12\\
+\ \ \ Grade 3 & 3.43 & 0.53 & 0.28 & 0.16 & 4.21 & 0.08 & 3.65 & 0.93 & 0.24 & 0.15 & 4.12 & 0.08\\
+\ \ \ Grade 4 & 3.08 & 0.65 & 0.31 & 0.20 & 3.10 & 0.46 & 3.03 & 0.59 & 0.32 & 0.19 & 3.25 & 0.41\\
 \bottomrule
 \end{longtable}
 
-\end{ThreePartTable}
+}
+
+\end{lltable}
 \efloatseparator
  
 \begin{ThreePartTable}
@@ -276,29 +224,29 @@ Performance Measure & \multicolumn{1}{c}{CORE} & \multicolumn{1}{c}{Traditional}
 \midrule
 \endhead
 Distal - SBAC Score &  & \\
-\ \ \ Mean \emph{RMSE} (\emph{SE}) & 61.35 (0.74) & 62.73 (0.76)\\
-\ \ \ Mean $R^2$ (\emph{SE}) & 0.40 (0.02) & 0.38 (0.02)\\
-\ \ \ Final \emph{RMSE} & 59.72 & 62.38\\
-\ \ \ Final $R^2$ & 0.43 & 0.38\\
+\ \ \ Mean \emph{RMSE} (\emph{SD}) & 61.62 (5.80) & 63.26 (6.35)\\
+\ \ \ Mean $R^2$ (\emph{SD}) & 0.41 (0.08) & 0.38 (0.08)\\
+\ \ \ Final \emph{RMSE} & 58.53 & 60.03\\
+\ \ \ Final $R^2$ & 0.40 & 0.37\\
 Proximal - SBAC Score &  & \\
-\ \ \ Mean \emph{RMSE} (\emph{SE}) & 61.44 (0.72) & 65.71 (0.84)\\
-\ \ \ Mean $R^2$ (\emph{SE}) & 0.40 (0.02) & 0.33 (0.02)\\
-\ \ \ Final \emph{RMSE} & 60.17 & 62.79\\
-\ \ \ Final $R^2$ & 0.42 & 0.37\\
+\ \ \ Mean \emph{RMSE} (\emph{SD}) & 61.57 (5.94) & 65.63 (7.80)\\
+\ \ \ Mean $R^2$ (\emph{SD}) & 0.41 (0.09) & 0.34 (0.10)\\
+\ \ \ Final \emph{RMSE} & 59.35 & 61.90\\
+\ \ \ Final $R^2$ & 0.39 & 0.33\\
 Distal - SBAC Proficiency &  & \\
-\ \ \ Mean Sensitivity (\emph{SE}) & 0.64 (0.02) & 0.59 (0.02)\\
-\ \ \ Mean Specificity (\emph{SE}) & 0.81 (0.01) & 0.78 (0.01)\\
-\ \ \ Mean AUC (\emph{SE}) & 0.79 (0.01) & 0.78 (0.01)\\
-\ \ \ Final Sensitivity & 0.63 & 0.63\\
-\ \ \ Final Specificity & 0.83 & 0.82\\
-\ \ \ Final AUC & 0.82 & 0.81\\
+\ \ \ Mean Sensitivity (\emph{SD}) & 0.62 (0.10) & 0.59 (0.11)\\
+\ \ \ Mean Specificity (\emph{SD}) & 0.83 (0.07) & 0.80 (0.08)\\
+\ \ \ Mean AUC (\emph{SD}) & 0.81 (0.05) & 0.79 (0.06)\\
+\ \ \ Final Sensitivity & 0.51 & 0.51\\
+\ \ \ Final Specificity & 0.86 & 0.79\\
+\ \ \ Final AUC & 0.79 & 0.76\\
 Proximal - SBAC Proficiency &  & \\
-\ \ \ Mean Sensitivity (\emph{SE}) & 0.60 (0.01) & 0.59 (0.02)\\
-\ \ \ Mean Specificity (\emph{SE}) & 0.80 (0.01) & 0.81 (0.01)\\
-\ \ \ Mean AUC (\emph{SE}) & 0.79 (0.01) & 0.79 (0.01)\\
-\ \ \ Final Sensitivity & 0.65 & 0.64\\
-\ \ \ Final Specificity & 0.83 & 0.82\\
-\ \ \ Final AUC & 0.82 & 0.82\\
+\ \ \ Mean Sensitivity (\emph{SD}) & 0.63 (0.10) & 0.61 (0.11)\\
+\ \ \ Mean Specificity (\emph{SD}) & 0.80 (0.07) & 0.82 (0.07)\\
+\ \ \ Mean AUC (\emph{SD}) & 0.81 (0.05) & 0.81 (0.06)\\
+\ \ \ Final Sensitivity & 0.57 & 0.54\\
+\ \ \ Final Specificity & 0.86 & 0.83\\
+\ \ \ Final AUC & 0.79 & 0.76\\
 \bottomrule
 \end{longtable}
 

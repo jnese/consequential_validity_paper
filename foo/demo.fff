@@ -10,7 +10,7 @@
 
 \centering
 \includegraphics{demo_files/figure-latex/fig-comp-scatter-1.pdf}
-\caption{\label{fig:fig-comp-scatter}Words correct per minute (WCPM) and CBM Comprehension scores by grade and season, distal (fall) and proximal (spring).}
+\caption{\label{fig:fig-comp-scatter}Words correct per minute (WCPM) and comprehension scores by grade and season, distal (fall) and proximal (spring).}
 \end{figure*}
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
