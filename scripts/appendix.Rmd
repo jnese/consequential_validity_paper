@@ -53,6 +53,43 @@ apa_table(
 
 ```
 
+(ref:tbl-asr-ex-cap) Example Passage Scored by the ASR.
+
+```{r tbl-asr-ex, results='asis'}
+tbl_asr_ex <- read_csv(here::here("data", "tbl_asr_ex.csv")) %>% 
+  rowid_to_column("Word")
+
+tbl_asr_ex <- tbl_asr_ex %>% 
+  slice(1:25) %>% 
+  bind_cols(
+    slice(tbl_asr_ex, 26:49) %>% 
+      add_row()
+  ) %>% 
+  as.data.frame(.)
+
+variable_labels(tbl_asr_ex$Word...1) <- "Word"
+variable_labels(tbl_asr_ex$ref...2) <- "Ref"
+variable_labels(tbl_asr_ex$start...3) <- "Start"
+variable_labels(tbl_asr_ex$end...4) <- "End"
+variable_labels(tbl_asr_ex$hyp...5) <- "Hyp"
+variable_labels(tbl_asr_ex$score...6) <- "Score"
+variable_labels(tbl_asr_ex$Word...7) <- "Word"
+variable_labels(tbl_asr_ex$ref...8) <- "Ref"
+variable_labels(tbl_asr_ex$start...9) <- "Start"
+variable_labels(tbl_asr_ex$end...10) <- "End"
+variable_labels(tbl_asr_ex$hyp...11) <- "Hyp"
+variable_labels(tbl_asr_ex$score...12) <- "Score"
+
+apa_table(
+  tbl_asr_ex, 
+  caption = "(ref:tbl-asr-ex-cap)", 
+  align = c(rep("r", 12)),
+  longtable = TRUE,
+  escape = FALSE,
+  note = "Word = word number. Ref = Reference word from the passage. Start = centiseconds from when the passage was displayed on the sreen to when the student started reading the reference word. End = centiseconds from when the passage was displayed on the sreen to when the student ended reading the reference word. Hyp = hypthosized word recorded by the ASR. Score = ASR word score (0 = incorrect, 1 = correct). ** = words omitted as recorded by the ASR."
+  )
+```
+
 
 (ref:tbl-lgms-results-cap) Latent Growth Model Parameter Estimates by Grade.
 
