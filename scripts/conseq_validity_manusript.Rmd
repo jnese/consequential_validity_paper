@@ -5,21 +5,13 @@ shorttitle        : "Comparing CBM-R Growth and Predictive Performance"
 author: 
   - name          : "Joseph F. T. Nese"
     affiliation   : "1"
-    corresponding : yes    # Define only one corresponding author
+    corresponding : yes    
     address       : "275 Education, 5262 University of Oregon, Eugene, OR 97403-5262"
     email         : "jnese@uoregon.edu"
-    # role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
-    #   - Conceptualization
-    #   - Writing - Original Draft Preparation
-    #   - Writing - Review & Editing
-  # - name          : "Ernst-August Doelle"
-  #   affiliation   : "1,2"
 
 affiliation:
   - id            : "1"
     institution   : "University of Oregon"
-  # - id            : "2"
-  #   institution   : "Konstanz Business School"
 
 authornote: |
   The research reported here was supported by the Institute of Education Sciences, U.S. Department of Education, through Grant R305A140203 to the University of Oregon. The opinions expressed are those of the authors and do not represent views of the Institute or the U.S. Department of Education.
@@ -27,34 +19,22 @@ authornote: |
 abstract: |
   Curriculum-based measurement of oral reading fluency (CBM-R) is used as an indicator of reading proficiency, and to measure at risk students' response to reading interventions to help ensure effective instruction. The purpose of this study was to compare model-based WCPM scores (CORE) to Traditional CBM-R WCPM scores to determine which provides more reliable growth estimates and demonstrates better predictive performance of reading comprehension and state reading test scores. Results indicated that in general, CORE had better (a) within-growth properties (smaller *SD*s of slope estimates and higher reliability), and (b) predictive performance (lower *RMSE*, and higher $R^2$, sensitivity, specificity, and AUC values). These results suggest increased measurement precision for the model-based CORE scores compared to Traditional CBM-R, providing preliminary evidence that CORE can be used for consequential assessment.
   
-keywords          : "oral reading fluency, growth, reliability, consequential validity"
-wordcount         : ""
-
 bibliography      : ["r-references.bib"]
 
 floatsintext      : no
 figurelist        : no
 tablelist         : no
 footnotelist      : no
-linenumbers       : yes
+linenumbers       : no
 mask              : no
 draft             : no
 
-appendix: "appendix.Rmd"
 documentclass: "apa6"
 classoption: "man, fleqn, noextraspace"
 header-includes:
   - \raggedbottom
   - \setlength{\parskip}{0pt}
-  - \usepackage{setspace}
-  - \AtBeginEnvironment{tabular}{\singlespacing}
-  - \AtBeginEnvironment{lltable}{\singlespacing}
-  - \AtBeginEnvironment{tablenotes}{\doublespacing}
-  - \captionsetup[table]{font={stretch=1.5}}
-  - \captionsetup[figure]{font={stretch=1.5}}
-output: 
-  papaja::apa6_word:
-    latex_engine: xelatex
+output: papaja::apa6_pdf
 ---
 
 ```{r setup, include = FALSE}
@@ -75,8 +55,6 @@ knitr::opts_chunk$set(echo = FALSE,
                       message = FALSE)
 
 theme_set(theme_apa(box = TRUE))
-
-#RNGkind(sample.kind = "Rounding")
 
 apa_format_fx <- function(x){
   x %>% 
@@ -112,15 +90,11 @@ apa_format_fx <- function(x){
 }
 ```
 
-```{r, include=FALSE}
-options(tinytex.verbose = TRUE)
-```
-
 Oral reading fluency is an essential part of reading proficiency [@readingpanel2000], and curriculum-based measurement of oral reading fluency (CBM-R) is perhaps the most prevalent reading assessment used in classrooms across the country. In traditional CBM-R assessments, students read aloud for 60 s a passage (about 250 words) while an assessor scores each word the student reads incorrectly (producing the wrong word or omitting a word). After 1 min, the assessor marks the last word read and calculates words read correctly per minute (WCPM), by subtracting the number of incorrect words from the total words read. 
 
 CBM-R is considered to be more than just a measure of fluent decoding [@wayman2007] because it functions as a robust indicator of reading proficiency [e.g., @fuchs2001; @schilling2007; @tindal2013], as measured by reading comprehension and year-end state reading tests [e.g., @decker2014; @good2019; @jenkins2003; @nese2011; @roehrig2008; @shin2019; @yeo2010]. As such, research indicates that oral reading fluency should be regularly assessed in the classroom so an instructional response can be made when needed [@jimerson2015; @national1998]. CBM-R is widely used as part of a multi-tiered system of supports (MTSS) model to universally screen for students at risk of poor learning outcomes, to monitor student progress to help guide and inform instructional decision-making [@fuchs2001; @speece2003], and to predict year-end performance on state reading tests [@kilgus2014; @shin2019]. For example, if a student scores below a locally defined cut point (e.g., the 20th percentile norm) on the CBM-R (and meets other locally defined indicators), they are candidates for grouped or intensive reading resources. For those receiving additional reading resources, their progress is monitored with regular CBM-R assessments to evaluate whether the intervention is meeting expectations. If student progress is satisfactory, the intervention may continue (or eventually discontinued); if student progress is below expectations, the intervention may be modified (e.g., increased in intensity).
 
-Despite CBM-R’s prevalent use, practical application, and reported technical adequacy, researchers have suggested that some of the practical and psychometric properties of Traditional CBM-R could be improved. First, the opportunity for error in traditional CBM-R administration is exceedingly high and well-documented [@cummings2014; @munir2012; @reed2013; @reed2014], including forgetting to start the timer, not stopping the student or circling the last word when the timer sounded, counting insertions as errors, miscounting the number of errors, and miscalculating the WCPM [@reed2013]. Second, the opportunity costs of traditional CBM-R administration, including lost instructional time [@hoffman2009] and school/district resources to train and implement a team of assessors can be considerable. Third, traditional CBM-R WCPM scores vary substantially across passages [@francis2008]. And fourth, those scores demonstrate a large standard error of measurement [@christ2007; @poncy2005]. These last two are perhaps the most important, as both call to question the appropriateness of using traditional CBM-R scores as indicators of student risk and as a mechanism to evaluate student growth as they receive targeted instruction [@shapiro2012].
+Despite CBM-R's prevalent use, practical application, and reported technical adequacy, researchers have suggested that some of the practical and psychometric properties of Traditional CBM-R could be improved. First, the opportunity for error in traditional CBM-R administration is exceedingly high and well-documented [@cummings2014; @munir2012; @reed2013; @reed2014], including forgetting to start the timer, not stopping the student or circling the last word when the timer sounded, counting insertions as errors, miscounting the number of errors, and miscalculating the WCPM [@reed2013]. Second, the opportunity costs of traditional CBM-R administration, including lost instructional time [@hoffman2009] and school/district resources to train and implement a team of assessors can be considerable. Third, traditional CBM-R WCPM scores vary substantially across passages [@francis2008]. And fourth, those scores demonstrate a large standard error of measurement [@christ2007; @poncy2005]. These last two are perhaps the most important, as both call to question the appropriateness of using traditional CBM-R scores as indicators of student risk and as a mechanism to evaluate student growth as they receive targeted instruction [@shapiro2012].
 
 Computerized Oral Reading Evaluation (CORE) is a project to develop a computerized CBM-R assessment system that uses an automated scoring algorithm based on automatic speech recognition (ASR) and a latent variable psychometric model to produce model-based CBM-R scores. CORE was developed to improve some of the practical and psychometric properties of Traditional CBM-R. To ameliorate administration errors, CORE applied a computerized procedure, which includes ASR, that can minimize or eliminate the potential for administration errors by standardizing the delivery, setting, and scoring; for example, timing the reading for exactly 60 s, correctly calculating the number of words read correctly, and recording the correct WCPM score in the database. Research provided evidence that ASR could be applied in schools with high accuracy of word scores and improved timings [@nese2020asr]. To address the opportunity costs of Traditional CBM-R, CORE uses a computerized procedure that allows for small groups (or an entire classroom) to be assessed simultaneously in only a few minutes so that a single educator can monitor the integrity of the testing environment for a group of students, potentially reducing the cost of administration by eliminating the need to train staff to administer and score the assessment, the need for an assessor for every student, and the instructional time lost to testing.  
 
@@ -135,8 +109,6 @@ When students are identified as being at risk for poor reading outcomes, CBM-R d
 ## CBM-R Predictive Performance 
 
 Universal CBM-R screenings, grounded in prevention and early-identification, are brief assessments administered to all students (typically in the fall, winter, and spring) to identify students with or at-risk for overall reading difficulties, and students at risk for not meeting grade-level performance standards [@kilgus2014; @wayman2007]. Year-end state readings test scores, often used in accountability systems, serve educators, parents, policy makers, and researchers as an indicator of reading proficiency for both students and schools [@nese2011; @reschly2009; @shin2019; @wayman2007; @yeo2010]. Developing practical measures that are highly predictive of state reading test performance helps stake holders identify at-risk students and engage them in preventive intervention programs. Researchers have explored the adequacy of CBM-R for screening by examining how well it predicts some criterion measure as an indicator of risk for poor reading outcomes, including reading comprehension and year-end state tests [@kilgus2014; @shin2019; @yeo2010], often reporting diagnostic accuracy evidence; for example, how well CBM-R scores differentiate between students who meet year-end state reading standards and those who do not. Diagnostic accuracy evidence supports the use of CBM-R as a screener to provide educators with scores applied educational decisions; that is, for data-based instructional decisions that can provide positive (and limit negative) consequences for students [@kane2013]. 
-
-<!-- In traditional CBM-R administration, students are given one minute to read as many words as possible in a grade-level text while a trained assessor follows along and indicates on a scoring protocol each word the student reads incorrectly [@wayman2007]. If a student pauses for more than three seconds, the assessor prompts the student to continue and marks the word as read incorrectly. Student self-corrections are not marked as errors, but word omissions are. After one minute, the assessor calculates the fluency score as words correct per minute (WCPM) by subtracting the number of incorrectly read words from the total number of words read. -->
 
 ## Research Questions
 
@@ -166,10 +138,6 @@ data_raw <- read_csv(here::here("data", "data_open.csv"))
 # Rules for selecting core wcpm:
 # (1) Must read >= 30 sec across n passages
 
-# filter(wr_easycbmcore >= 10) %>% #6374
-# filter(secs_easycbmcore >= 30) %>% #5417
-
-
 # remove rows with missing data on all 4 waves of easycbm and CORE
 data_start <- data_raw %>% 
   mutate(n_easycbmcore = 4 - (is.na(wcpm_easycbmcore.wave1) + is.na(wcpm_easycbmcore.wave2) +
@@ -178,14 +146,6 @@ data_start <- data_raw %>%
                          is.na(wcpm_core.wave3) + is.na(wcpm_core.wave4))) %>% 
   filter(n_easycbmcore > 0 & n_core > 0)
 
-
-# wr_fx <- function(x, y){
-#   ifelse(x >= 10, y, NA_integer_)
-# }
-# 
-# secs_fx <- function(x, y){
-#   ifelse(x >= 30, y, NA_integer_)
-# }
 
 # RQ1
 data_start_r <- data_start %>% 
@@ -227,41 +187,13 @@ data_sbac <- data_preds %>%
          sbac_score > 0) %>% 
   mutate(sbac_prof = fct_relevel(sbac_prof, "Not Met", "Met"))
 
-# data_start %>% 
-#   filter(is.na(npassages_core.wave1) & is.na(npassages_core.wave2) & is.na(npassages_core.wave3) & is.na(npassages_core.wave4))
-#   select(contains("npassages_core"))
-# 
-# summary(data_start$wcpm_core.wave3)
-# 
-# data_start %>% 
-#    select(contains("npassages_core"), contains("wcpm_core")) %>% 
-#    pivot_longer(
-#      cols = everything(),
-#      names_to = c("type", "wave"),
-#      values_to = "wcpm",
-#      names_sep = "_"
-#    ) %>% 
-#    pivot_wider(
-#      names_from = type,
-#      values_from = wcpm
-#    ) %>%
-#    unnest() %>%
-# #  mutate(wave = parse_number(wave))
-#   ggplot(aes(npassages, wcpm)) +
-#   geom_point() +
-#   facet_wrap(~waveI)
-
 ```
 
 # Method
 
-This study was conducted in the 2017-18 and 2018-19 school years in Oregon and Washington, with institutional IRB approval. The 2017-18 study was replicated in 2018-19 to increase the student sample size, with no differences in the studyâ€™s design. The study consisted of a longitudinal design with four repeated measurement occasions (waves) to address the research questions.
+This study was conducted in the 2017-18 and 2018-19 school years in Oregon and Washington, with institutional IRB approval. The 2017-18 study was replicated in 2018-19 to increase the student sample size, with no differences in the study's design. The study consisted of a longitudinal design with four repeated measurement occasions (waves) to address the research questions.
 
 ## Participants
-
-```{r}
-# Approximately `r inline_text(tble_rq1, variable = gender_state, level = "Female", pattern = "{p}%")` were female; `r inline_text(tble_rq1, variable = ethnicity_state, level = "White", pattern = "{p}%")` were White, `r inline_text(tble_rq1, variable = ethnicity_state, level = "Hispanic", pattern = "{p}%")` were Hispanic... ; 15% received special education services, and 8% received English Learner services
-```
 
 The original sample included `r format(nrow(data_start), big.mark=",")` students from four school districts, seven elementary schools (four schools participated in both years, and three schools only in 2018-19), and 21 classrooms. All students in Grades 2 through 4 at the seven participating schools were invited to participate such that the sample would be representative, to the extent possible, of typically developing students across reading proficiency levels. 
 
@@ -387,7 +319,6 @@ times <- data_r %>%
   mutate(across(starts_with("date.wave"), .fns = list(month = ~month(., label = TRUE))),
          across(c(date.wave1:date.wave4), .fns = list(time = ~time_length(. - date.wave1, unit = "month"))),
          across(c(date.wave1:date.wave4), .fns = list(median = ~paste0(month(., label = TRUE), "-", day(.))))) %>%
-         #across(c(date.wave1:date.wave4), .fns = list(monthday = ~format(., format="%m-%d")))) %>%
   select(1, date.wave1_month:date.wave4_median) %>% 
   pivot_longer(
     cols = -grade_core,
@@ -463,7 +394,6 @@ apa_table(
 ```
 
 (ref:fig-means-cap) Mean words correct per minute (WCPM) score across waves by grade and CBM-R measure.
-
 ```{r fig-means, fig.cap="(ref:fig-means-cap)"}
 
 means %>% 
@@ -478,7 +408,6 @@ means %>%
   ggplot(aes(time, wcpm_mean, color = measure, group = measure)) +
   geom_point(size = 2) +
   geom_line(size = 1) +
-#  geom_errorbar(aes(ymin = wcpm_mean - wcpm_sd, ymax = wcpm_mean + wcpm_sd), alpha = .2) +
   geom_smooth(method = "lm", se = FALSE, size = .5) +
   scale_color_colorblind() +
   facet_wrap(~grade_core) +
@@ -501,7 +430,6 @@ Participating school districts used easyCBM as part of their MTSS academic asses
 The Grade 2 comprehension measure contained 12 multiple-choice items (*M* = `r round(mean(data_comp[data_comp$grade_core == 2, ]$readingcomp_easycbm.spring, na.rm = TRUE), 1)`, *SD* = `r round(sd(data_comp[data_comp$grade_core == 2, ]$readingcomp_easycbm.spring, na.rm = TRUE), 1)`), whereas the Grade 3 (*M* = `r round(mean(data_comp[data_comp$grade_core == 3, ]$readingcomp_easycbm.spring, na.rm = TRUE), 1)`, *SD* = `r round(sd(data_comp[data_comp$grade_core == 3, ]$readingcomp_easycbm.spring, na.rm = TRUE), 1)`) and Grade 4 (*M* = `r round(mean(data_comp[data_comp$grade_core == 4, ]$readingcomp_easycbm.spring, na.rm = TRUE), 1)`, *SD* = `r round(sd(data_comp[data_comp$grade_core == 4, ]$readingcomp_easycbm.spring, na.rm = TRUE), 1)`) measures contained 20 multiple-choice items. Figure\ \@ref(fig:fig-comp-scatter) shows scatter plots of the CBM-R WCPM and comprehension scores by grade and season (distal and proximal).
 
 (ref:fig-comp-scatter-cap) Words correct per minute (WCPM) and comprehension scores by grade and season, distal (fall) and proximal (spring).
-
 ```{r fig-comp-scatter, fig.height=7, fig.width=6.5, fig.cap="(ref:fig-comp-scatter-cap)"}
 
 data_comp %>% 
@@ -536,8 +464,6 @@ data_comp %>%
     y = "Reading Comprehension",
     color = ""
   ) 
-
-ggsave(here::here("scripts", "figs", "fig-comp-scatter.png"), height = 6.5, width = 6.5, units = "in")
 ```
 
 ### SBAC Reading Test
@@ -553,7 +479,6 @@ pass_rate <- data_sbac %>%
 The mean SBAC ELA/L score for Grade 3 was `r as.character(round(mean(data_sbac[data_sbac$grade_core == 3, ]$sbac_score, na.rm = TRUE)))` (*SD* = `r as.character(round(sd(data_sbac[data_sbac$grade_core == 3, ]$sbac_score, na.rm = TRUE), 1))`) with `r pass_rate$pass[[1]]`% meeting proficiency. The mean SBAC ELA/L score for Grade 4 was `r as.character(round(mean(data_sbac[data_sbac$grade_core == 4, ]$sbac_score, na.rm = TRUE)))` (*SD* = `r as.character(round(sd(data_sbac[data_sbac$grade_core == 4, ]$sbac_score, na.rm = TRUE), 1))`) with `r pass_rate$pass[[2]]`% meeting proficiency. Figure\ \@ref(fig:fig-sbac-scatter) shows scatter and density plots of the CBM-R WCPM and SBAC ELA/L score and proficiency, respectively, by grade and season (distal and proximal).
 
 (ref:fig-sbac-scatter-cap) Words correct per minute (WCPM) and SBAC ELA/L Score & Proficiency classification by grade and season, distal (fall) and proximal (spring).
-
 ```{r fig-sbac-scatter, fig.height=9, fig.cap="(ref:fig-sbac-scatter-cap)"}
 
 fig_sbac_score <- data_sbac %>%
@@ -621,9 +546,6 @@ fig_sbac_prof <- data_sbac %>%
   ) 
 
 fig_sbac_score / fig_sbac_prof
-
-ggsave(here::here("scripts", "figs", "fig-sbac-scatter.png"), height = 6.5, width = 6.5, units = "in")
-
 ```
 
 ## Procedure
@@ -672,7 +594,7 @@ To get a measure of variance for the performance measures, 10-fold cross-validat
 
 Research has shown that 10 folds is a sensible value for *k*-fold cross-validation, and repeating *k*-fold cross-validation can improve the performance of the estimates while maintaining small bias, particularly for smaller sample sizes [@molinaro2005; @kim2009]. Thus, 10-fold cross-validation repeated five times was applied for each RQ training set so that 50 models were fit and 50 values of each performance measure were recorded (10 folds $\times$ 5 repeats = 50 models).
 
-Finally, the predictive models were fit to the entire training set, and then the resulting model parameters were used to predict the test set. The test set here can be can be conceptualized as "new" (or unseen) data, as it has not been used in the model parameter estimation. The resulting final performance measures serve as estimates of how the two comparison CBM-R measures might generalize in their predictive performance. The predictive modeling process was conducted using the tidymodels package [@R-tidymodels]. 
+Finally, the predictive models were fit to the entire training set, and then the resulting model parameters were used to predict the test set. The test set here can be conceptualized as "new" (or unseen) data, as it has not been used in the model parameter estimation. The resulting final performance measures serve as estimates of how the two comparison CBM-R measures might generalize in their predictive performance. The predictive modeling process was conducted using the tidymodels package [@R-tidymodels]. 
 
 # Results
 
@@ -747,106 +669,6 @@ lgms <- data_r %>%
                                est = filter(.y, str_detect(param_names, "residual")) %>% pull(est),
                                rel = (obs - est)/obs))
   )
-
-```
-
-```{r gr4-traditional, eval=FALSE}
-
-mod_toeplitz <- '
-  i =~ 1*wcpm_easycbmcore.wave1_r + 1*wcpm_easycbmcore.wave2_r + 1*wcpm_easycbmcore.wave3_r + 1*wcpm_easycbmcore.wave4_r
-  s =~ 0*wcpm_easycbmcore.wave1_r + 1.35*wcpm_easycbmcore.wave2_r + 3.65*wcpm_easycbmcore.wave3_r + 6.67*wcpm_easycbmcore.wave4_r
-#Intercepts
-  i ~ 1
-  s ~ 1 
-  wcpm_easycbmcore.wave1_r ~ 0
-  wcpm_easycbmcore.wave2_r ~ 0
-  wcpm_easycbmcore.wave3_r ~ 0
-  wcpm_easycbmcore.wave4_r ~ 0 
-  
-#Variances
-i ~~ i
-s ~~ s
-wcpm_easycbmcore.wave1_r ~~ var1*wcpm_easycbmcore.wave1_r
-wcpm_easycbmcore.wave2_r ~~ var2*wcpm_easycbmcore.wave2_r
-wcpm_easycbmcore.wave3_r ~~ var3*wcpm_easycbmcore.wave3_r
-wcpm_easycbmcore.wave4_r ~~ var4*wcpm_easycbmcore.wave4_r
-
-#Covariances  
-i ~~ s 
-
-wcpm_easycbmcore.wave1_r ~~ cov12*wcpm_easycbmcore.wave2_r
-wcpm_easycbmcore.wave2_r ~~ cov23*wcpm_easycbmcore.wave3_r
-wcpm_easycbmcore.wave3_r ~~ cov34*wcpm_easycbmcore.wave4_r
-wcpm_easycbmcore.wave1_r ~~ cov13*wcpm_easycbmcore.wave3_r 
-wcpm_easycbmcore.wave1_r ~~ cov14*wcpm_easycbmcore.wave4_r 
-wcpm_easycbmcore.wave2_r ~~ cov24*wcpm_easycbmcore.wave4_r 
-
-cor1 := cov12/(sqrt(var1)*sqrt(var2))
-cor1 := cov23/(sqrt(var2)*sqrt(var3))
-cor1 := cov34/(sqrt(var3)*sqrt(var4))
-
-cor2 := cov13/(sqrt(var1)*sqrt(var3))
-cor2 := cov24/(sqrt(var2)*sqrt(var4))
-
-cor3 := cov14/(sqrt(var1)*sqrt(var4))'
-
-fit_toeplitz <- lavaan(mod_toeplitz,
-                       data = filter(data_r, grade_core == 4),
-                       estimator = "MLR",
-                       missing = "ML")
-
-summary(fit_toeplitz, standardized = TRUE)
-
-----
-  
-  mod_ac <- '
-  i =~ 1*wcpm_easycbmcore.wave1_r + 1*wcpm_easycbmcore.wave2_r + 1*wcpm_easycbmcore.wave3_r + 1*wcpm_easycbmcore.wave4_r
-  s =~ 0*wcpm_easycbmcore.wave1_r + 1.35*wcpm_easycbmcore.wave2_r + 3.65*wcpm_easycbmcore.wave3_r + 6.67*wcpm_easycbmcore.wave4_r
-#Intercepts
-  i ~ 1
-  s ~ 1 
-  wcpm_easycbmcore.wave1_r ~ 0
-  wcpm_easycbmcore.wave2_r ~ 0
-  wcpm_easycbmcore.wave3_r ~ 0
-  wcpm_easycbmcore.wave4_r ~ 0 
-  
-#Variances
-i ~~ i
-s ~~ s
-wcpm_easycbmcore.wave1_r ~~ var1*wcpm_easycbmcore.wave1_r
-wcpm_easycbmcore.wave2_r ~~ var2*wcpm_easycbmcore.wave2_r
-wcpm_easycbmcore.wave3_r ~~ var3*wcpm_easycbmcore.wave3_r
-wcpm_easycbmcore.wave4_r ~~ var4*wcpm_easycbmcore.wave4_r
-
-#Covariances  
-i ~~ s 
-
-wcpm_easycbmcore.wave1_r ~~ cov12*wcpm_easycbmcore.wave2_r
-wcpm_easycbmcore.wave2_r ~~ cov23*wcpm_easycbmcore.wave3_r
-wcpm_easycbmcore.wave3_r ~~ cov34*wcpm_easycbmcore.wave4_r
-wcpm_easycbmcore.wave1_r ~~ cov13*wcpm_easycbmcore.wave3_r 
-wcpm_easycbmcore.wave1_r ~~ cov14*wcpm_easycbmcore.wave4_r 
-wcpm_easycbmcore.wave2_r ~~ cov24*wcpm_easycbmcore.wave4_r 
-
-corr := cov12/(sqrt(var1)*sqrt(var2))
-corr := cov23/(sqrt(var2)*sqrt(var3))
-corr := cov34/(sqrt(var3)*sqrt(var4))
-
-#cov13/(sqrt(var1)*sqrt(var3)) == corr^2
-#cov24/(sqrt(var2)*sqrt(var4)) == corr^2
-
-#cov14/(sqrt(var1)*sqrt(var4))  == corr^3
-'
-
-fit_ac <- lavaan(mod_ac,
-                 data = filter(data_r, grade_core == 4),
-                 estimator = "MLR",
-                 missing = "ML")
-
-summary(fit_ac, standardized = TRUE)
-
-lavInspect(fit_ac, "cov.lv")
-
 
 ```
 
@@ -1039,7 +861,7 @@ Table\ \@ref(tab:tbl-lgms-reliab) shows the observed variances of the CBM-R meas
 
 (ref:tbl-seb-results-cap) Mean (SD) of the Standard Error of the Slope (SEb) Estimate by Measure and Grade.
 
-```{r tbl-seb-results, results="asis"}
+```{r tbl-seb-results, fig.pos='H'}
 seb_tbl <- seb_tbl %>% 
   as.data.frame(.)
 
@@ -1053,10 +875,10 @@ variable_labels(seb_tbl$d) <- "\\emph{d}"
 apa_table(
   seb_tbl, 
   col_spanners = list(`CORE` = c(2, 3), `Traditional` = c(4, 5)),
-  note = "d = Cohen's d (1988). CI = 95% confidence interval.",
   caption = "(ref:tbl-seb-results-cap)", 
   align = c("l", rep("r", 6)),
-  escape = TRUE
+  escape = FALSE,
+  note = "\\emph{d} = Cohen's \\emph{d} (1988). CI = 95\\% confidence interval.",
 )
 ```
 
@@ -1276,10 +1098,10 @@ For RQ 2 we compared the predictive performance of CORE and Traditional CBM-R fo
 
 For the cross-validation, the distal (fall) and proximal (spring) CBM-R predictor results generally favored CORE which had better (lower) mean *RMSE* values compared to Traditional CBM-R, and better (higher) mean $R^2$ values, except Grade 2 and Grade 4 proximal. The standardized mean differences in *RMSE* for distal results across grades were $d$ = `r sprintf("%.2f", pred_cv_stats$cohen_d[1])`, `r pred_cv_stats$cohen_d[2]`, and `r pred_cv_stats$cohen_d[3]`, and for proximal were `r sprintf("%.2f", pred_cv_stats$cohen_d[4])`, `r pred_cv_stats$cohen_d[5]`, and `r pred_cv_stats$cohen_d[6]`. The standardized mean differences in $R^2$ for distal were $h$ = `r sprintf("%.2f", pred_cv_stats$h[1])`, `r pred_cv_stats$h[2]`, and `r pred_cv_stats$h[3]`, and for proximal were `r sprintf("%.2f", pred_cv_stats$h[4])`, `r pred_cv_stats$h[5]`, and `r pred_cv_stats$h[6]` [@cohen1988]. In addition, the *SD*s of the *RMSE* estimates favored CORE by `r sort(pred_cv_stats$sd_diff_rmse)[3]`% to `r max(pred_cv_stats$sd_diff_rmse)`%, except Grade 2 distal (`r pred_cv_stats$sd_diff_rmse[1]`%) and Grade 4 proximal (`r pred_cv_stats$sd_diff_rmse[6]`%), and the *SD*s of the $R^2$ estimates favored CORE by `r sort(pred_cv_stats$sd_diff_rsq)[4]`% to `r max(pred_cv_stats$sd_diff_rsq)`%, except Grade 2 proximal (`r sort(pred_cv_stats$sd_diff_rsq)[1]`%) and Grades 2 and 3 distal which were the same across measures. These results suggest somewhat less spread in the performance measure estimates for CORE compared to Traditional CBM-R. 
 
-The final *RMSE* and $R^2$ values in Table\ \@ref(tab:tbl-pred-comp) represent the parameters of the predictive models fit to the training set (75% of sample) and then used to predict the testing set (25% of sample). The results generally favored CORE, which had lower *RMSE* and higher $R^2$ values except Grade 3 proximal *RMSE*. The *RMSE* values represent differences of `r sort(pct_diff$pctrmse)[2]`% to `r max(pct_diff$pctrmse)`% of a *SD* favoring CORE, and `r sort(pct_diff$pctrmse)[1]`% of a *SD* favoring Traditional CBM-R for the Grade 3 proximal model. The $R^2$ values represent increases in explained variance for CORE above Traditional CBM-R of `r sort(pct_diff$pctr2)[2]`% to `r max(pct_diff$pctr2)`%. The standardized mean differences in $R^2$ all favored CORE, with $h$ = `r pct_diff$h[1]` , `r pct_diff$h[3]`, and `r pct_diff$h[5]` across grades for the distal models, and `r sprintf("%.2f", pct_diff$h[2])`, `r pct_diff$h[4]`, and `r pct_diff$h[6]` for the proximal models [@cohen1988].  
+The final *RMSE* and $R^2$ values in Table\ \@ref(tab:tbl-pred-comp) represent the parameters of the predictive models fit to the training set (75% of sample) and then used to predict the testing set (25% of sample). The results generally favored CORE, which had lower *RMSE* and higher $R^2$ values except Grade 3 proximal *RMSE*. The *RMSE* values represent differences of `r sort(pct_diff$pctrmse)[2]`% to `r max(pct_diff$pctrmse)`% of a *SD* favoring CORE, and `r sort(pct_diff$pctrmse)[1]`% of a *SD* favoring Traditional CBM-R for the Grade 3 proximal model. The $R^2$ values represent increases in explained variance for CORE above Traditional CBM-R of `r sort(pct_diff$pctr2)[2]`% to `r max(pct_diff$pctr2)`%. The standardized mean differences in $R^2$ all favored CORE, with $h$ = `r pct_diff$h[1]`, `r pct_diff$h[3]`, and `r pct_diff$h[5]` across grades for the distal models, and `r sprintf("%.2f", pct_diff$h[2])`, `r pct_diff$h[4]`, and `r pct_diff$h[6]` for the proximal models [@cohen1988].  
 
 (ref:tbl-pred-comp-cap) Spring Comprehension Predictive Measures (RMSE and R<sup>2</sup>) For Distal and Proximal CBM-R Predictors by Grade.
-```{r tbl-pred-comp}
+```{r tbl-pred-comp, results='asis'}
 
 
 pred_comp_info <- pred_cv_res %>% 
@@ -1287,21 +1109,21 @@ pred_comp_info <- pred_cv_res %>%
   mutate(across(c(mean_rmse:final_rsq1), ~sprintf("%.2f", round(., 2))),
          across(starts_with("std"), ~paste0("(", .x, ")")),
          Grade = paste("Grade", Grade)) %>% 
-  select(type, `Season & Grade` = Grade, mean_rmse, sd_rmse, mean_rsq, sd_rsq, final_rmse, final_rsq,
+  select(type, Grade, mean_rmse, sd_rmse, mean_rsq, sd_rsq, final_rmse, final_rsq,
          mean_rmse1, sd_rmse1, mean_rsq1, sd_rsq1, final_rmse1, final_rsq1) %>% 
-  # pivot_longer(
-  #   cols = -c(type, Grade),
-  #   names_to = "stat",
-  #   values_to = "value"
-  # ) %>% 
-  # mutate(measure = ifelse(str_detect(stat, "1"), "Traditional", "CORE"),
-  #        stat = str_remove_all(stat, "1"),
-  #        type = paste0(type, " - ", measure)) %>% 
-  # select(-measure) %>% 
-  # pivot_wider(
-  #   names_from = stat,
-#   values_from = value
-# ) %>% 
+pivot_longer(
+  cols = -c(type, Grade),
+  names_to = "stat",
+  values_to = "value"
+) %>%
+mutate(measure = ifelse(str_detect(stat, "1"), "Traditional", "CORE"),
+       stat = str_remove_all(stat, "1"),
+       type = paste0(type, " - ", measure)) %>%
+select(-measure) %>%
+pivot_wider(
+  names_from = stat,
+  values_from = value
+) %>%
 as.data.frame(.)
 
 variable_labels(pred_comp_info$mean_rmse) <- "Mean \\emph{RMSE}"
@@ -1310,12 +1132,6 @@ variable_labels(pred_comp_info$mean_rsq) <- "Mean $R^2$"
 variable_labels(pred_comp_info$sd_rsq) <- "(\\emph{SD})"
 variable_labels(pred_comp_info$final_rmse) <- "Final \\emph{RMSE}"
 variable_labels(pred_comp_info$final_rsq) <- "Final $R^2$"
-variable_labels(pred_comp_info$mean_rmse1) <- "Mean \\emph{RMSE}"
-variable_labels(pred_comp_info$sd_rmse1) <- "(\\emph{SD})"
-variable_labels(pred_comp_info$mean_rsq1) <- "Mean $R^2$"
-variable_labels(pred_comp_info$sd_rsq1) <- "(\\emph{SD})"
-variable_labels(pred_comp_info$final_rmse1) <- "Final \\emph{RMSE}"
-variable_labels(pred_comp_info$final_rsq1) <- "Final $R^2$"
 
 pred_comp_info <- pred_comp_info %>% 
   group_by(type) %>% 
@@ -1323,19 +1139,15 @@ pred_comp_info <- pred_comp_info %>%
 
 apa_table(
   list(
-    `Distal` = pred_comp_info$data[[1]],
-    `Proximal` = pred_comp_info$data[[2]]#,
-    # `Proximal - CORE` = pred_comp_info$data[[3]],
-    # `Proximal - Traditional` = pred_comp_info$data[[4]]
+    `Distal - CORE` = pred_comp_info$data[[1]],
+    `Proximal - Traditional` = pred_comp_info$data[[2]],
+    `Proximal - CORE` = pred_comp_info$data[[3]],
+    `Proximal - Traditional` = pred_comp_info$data[[4]]
   ), 
-  col_spanners = list(`CORE` = c(2, 7), `Traditional` = c(8, 13)),
   caption = "(ref:tbl-pred-comp-cap)", 
-  align = c("l", rep("r", 12)),
-  font_size = "small",
-  landscape = TRUE,
-  # longtable = TRUE,
+  align = c("l", rep("r", 6)),
   escape = FALSE,
-  note = "Estimates from linear models, regressing spring comprehension on the distal or proximal CORE or Traditional CBM-R predictor for each grade; $$"
+  note = "Estimates from linear models, regressing spring comprehension on the distal or proximal CORE or Traditional CBM-R predictor for each grade; $Comprehension_i = \\beta_0 + \\beta_1CBM\\mbox{-}R_{season} + \\epsilon_i$"
 ) 
 ```
 
@@ -1498,8 +1310,6 @@ pred_sbac <- data_sbac %>%
     )
   )
 parallel::stopCluster(cl)
-
-
 ```
 
 ```{r}
@@ -1588,8 +1398,6 @@ For the SBAC ELA/L score (continuous) outcome, both the distal and proximal resu
 
 The results of SBAC ELA/L proficiency (classification) outcome also favored CORE. For the cross-validation, the distal predictors, CORE had lower mean sensitivity ($d$ = `r sbac_cv_stats$es[1]`), mean specificity ($d$ = `r sbac_cv_stats$es[3]`), and mean AUC ($d$ = `r sbac_cv_stats$es[5]`), and for the proximal predictors, CORE had lower mean sensitivity ($d$ = `r sbac_cv_stats$es[2]`), higher mean specificity ($d$ = `r sbac_cv_stats$es[4]`), and mean AUC (`r sbac_cv_stats$mean_CORE[6]`) was the same across measures. In addition, the *SD*s of the performance measures estimates favored CORE by `r sort(sbac_cv_stats$sd_diff)[3]`% to `r max(pred_cv_stats$sd_diff_rmse)`%, indicating less spread in the performance measure estimates for CORE compared to Traditional CBM-R (the *SD* of specificity for the proximal models were the same across measures). The final results of the training/testing sets favored CORE for both distal and proximal models, with final distal sensitivity the same across measures (`r round(pct_diff_sbac$mean_CORE[5], 2)`), but lower final proximal sensitivity by `r round(pct_diff_sbac$pct[8], 2)`%, lower final specificity (`r pct_diff_sbac$pct[6]`% distal, `r pct_diff_sbac$pct[9]`% proximal), and lower final AUC (`r pct_diff_sbac$pct[7]`% distal, `r pct_diff_sbac$pct[10]`% proximal). 
 
-<!-- For the proximal predictors, CORE had a slightly higher mean sensitivity (`r sprintf("%.2f", round(filter(sbac_cv_res, str_detect(outcome, "Prof"), type == "Proximal", str_detect(.metric, "sens"))$mean_CORE, 2))` vs. `r sprintf("%.2f", round(filter(sbac_cv_res, str_detect(outcome, "Prof"), type == "Proximal", str_detect(.metric, "sens"))$mean_Traditional, 2))`), Traditional CBM-R had a slightly higher mean specificity (`r round(filter(sbac_cv_res, str_detect(outcome, "Prof"), type == "Proximal", str_detect(.metric, "spec"))$mean_Traditional, 2)` vs. `r sprintf("%.2f", round(filter(sbac_cv_res, str_detect(outcome, "Prof"), type == "Proximal", str_detect(.metric, "spec"))$mean_CORE, 2))`), and the mean AUC was equal for both measures (`r sprintf("%.2f", round(filter(sbac_cv_res, str_detect(outcome, "Prof"), type == "Proximal", str_detect(.metric, "auc"))$mean_Traditional, 2))`). CORE had slightly higher final sensitivity (`r sprintf("%.2f", round(filter(sbac_final_res, str_detect(outcome, "Prof"), type == "Proximal", str_detect(.metric, "sens"))$mean_CORE, 2))` vs. `r sprintf("%.2f", round(filter(sbac_final_res, str_detect(outcome, "Prof"), type == "Proximal", str_detect(.metric, "sens"))$mean_Traditional, 2))`) and final specificity (`r sprintf("%.2f", round(filter(sbac_final_res, str_detect(outcome, "Prof"), type == "Proximal", str_detect(.metric, "spec"))$mean_CORE, 2))` vs. `r sprintf("%.2f", round(filter(sbac_final_res, str_detect(outcome, "Prof"), type == "Proximal", str_detect(.metric, "spec"))$mean_Traditional, 2))`), and the final AUC was equal for both measures (`r sprintf("%.2f", round(filter(sbac_final_res, str_detect(outcome, "Prof"), type == "Proximal", str_detect(.metric, "auc"))$mean_Traditional, 2))`). -->
-
 (ref:tbl-pred-sbac-cap) Predictive Performance Measures by Distal and Proximal CBM-R Predictors and Outcome (SBAC ELA/L Score and Proficiency).
 
 ```{r tbl-pred-sbac}
@@ -1633,7 +1441,7 @@ apa_table(
   align = c("l", rep("l", 2)),
   longtable = TRUE,
   escape = FALSE,
-  note = "Estimates from linear models, regressing spring SBAC ELA/L score (multiple regression) or proficiency (logistic regression) on grade level (Grade 3 or 4) and state (OR or WA); $$"
+  note = "Estimates from linear models, regressing spring SBAC ELA/L score (multiple regression) or proficiency (logistic regression) on grade level (Grade 3 or 4) and state (OR or WA); $SBAC_i = \\beta_0 + \\beta_1CBM\\mbox{-}R_{season} + Grade + State + \\epsilon_i$"
 ) 
 ```
 
@@ -1678,68 +1486,21 @@ Similarly for the SBAC ELA/L proficiency (classification) outcome, the results f
 
 It is desirable to have a test that has high sensitivity and specificity, but the two are generally inversely related such that as one increases, the other decreases. Both the CORE and Traditional CBM-R measures adequately predicted students that met year-end grade-level achievement standards (specificity), with low rates of false positives (i.e., incorrectly predicting students would not meet proficiency standards). This helps prevent over-identifying students at risk of poor reading outcomes, which helps school better allocate limited resources for reading intervention. But neither the CORE or the Traditional CBM-R measure adequately predicted students that did not meet year-end grade-level achievement standards (sensitivity), with higher than desirable rates of false negatives (i.e., correctly predicting students would not meet proficiency standards). The implications of lower sensitivity is that some students at risk of not meeting year-end proficiency standards are not identified, meaning that if the CBM-R measure was the only indicator of risk, these students would not receive the reading supports they need.
 
-<!-- Model-based CORE scores showed better performance in predicting SBAC ELA/L scores than Traditional CBM-R, but did not show convincing improved predictions for SBAC ELA/L proficiency (a dichotomization of the continuous SBAC ELA/L scores), providing evidence that both measures can adequately predict performance year-end state reading tests.  -->
-
-<!-- The SBAC ELA/L proficiency outcome may have more utility for some stakeholders (e.g., educators, policy-makers, parents), as it is easier to interpret than a scale score on an arbitrary metric. That is, it is easier to understand that a student met year-end proficiency standard than it is to make meaning of a score of 2432 on the SBAC. But the outcome is only as useful as the validity or the "truth" of the classification, and dichotomizing a continuous scale always comes with a loss of information. For example, there is no difference in proficiency classification between a Grade 3 student who scores at the *proficiency* cut score of 2432 and a student who scores 2652, 220 points above the cut score. But there is all the difference in proficiency classification between the student who scores at the *proficiency* cut score of 2432 and a student who scores just one point below the cut score at 2431. It is possible that with this loss of information comes some loss in predictive performance, particularly for students that did not meet year-end grade-level achievement standards. -->
-<!-- or here, blurred potential differences in performance between CORE and Traditional CBM-R.  -->
-
-<!-- For the SBAC ELA/L proficiency (classification) outcome, the results were similar across the two CBM-R measures. For the distal predictors, CORE had a slightly higher final specificity (`r round(filter(sbac_final_res, str_detect(outcome, "Prof"), type == "Distal", str_detect(.metric, "spec"))$mean_CORE, 2)` vs. `r round(filter(sbac_final_res, str_detect(outcome, "Prof"), type == "Distal", str_detect(.metric, "spec"))$mean_Traditional, 2)`) and final AUC values (`r round(filter(sbac_final_res, str_detect(outcome, "Prof"), type == "Distal", str_detect(.metric, "auc"))$mean_CORE, 2)` vs. `r round(filter(sbac_final_res, str_detect(outcome, "Prof"), type == "Distal", str_detect(.metric, "auc"))$mean_Traditional, 2)`), and final sensitivity values were equal (`r round(filter(sbac_final_res, str_detect(outcome, "Prof"), type == "Distal", str_detect(.metric, "sens"))$mean_CORE, 2)`). For the proximal predictors, CORE had a slightly higher final sensitivity (`r sprintf("%.2f", round(filter(sbac_final_res, str_detect(outcome, "Prof"), type == "Proximal", str_detect(.metric, "sens"))$mean_CORE, 2))` vs. `r sprintf("%.2f", round(filter(sbac_final_res, str_detect(outcome, "Prof"), type == "Proximal", str_detect(.metric, "sens"))$mean_Traditional, 2))`) and final specificity (`r sprintf("%.2f", round(filter(sbac_final_res, str_detect(outcome, "Prof"), type == "Proximal", str_detect(.metric, "spec"))$mean_CORE, 2))` vs. `r sprintf("%.2f", round(filter(sbac_final_res, str_detect(outcome, "Prof"), type == "Proximal", str_detect(.metric, "spec"))$mean_Traditional, 2))`), and final AUC values were equal (`r sprintf("%.2f", round(filter(sbac_final_res, str_detect(outcome, "Prof"), type == "Proximal", str_detect(.metric, "auc"))$mean_Traditional, 2))`).  -->
-
 ## Limitations
 
 There are several limitations in the present study that should be noted and considered when interpreting results. The consequential validity properties reported in response to the research questions generally reflect aspects of the samples and models applied, which may have implications for the interpretation and inferences of the results and the use of the CBM-R measures in specific contexts [@messick1995]. 
 
 For the samples used here, the small sample sizes affect parameter estimation and potentially limit generalizations of the reported results. For example, the sample size used to answer RQ2 was small for each grade, but particularly for Grade 2 (Table\ \@ref(tab:tbl-demos)). Also, although the cross-validation models were repeated five times to to help improve performance for the smaller sample sizes [@molinaro2005; @kim2009], their results are likely to be susceptible to data-dependent variance. For the predictive models applied, the linear models are associated with high statistical bias (the difference between model predictions and the true values) and low variance (variability of a model prediction for a data point given new data); that is, linear regression is less prone to overfitting to the data, which may perhaps offer some protection against the small sample sizes. But future research needs to replicate this study with new data to explore reproducibility. Also, the reliability estimates of RQ1 are dependent on the specification of the LGM, and misspecification can affect estimates of parameters, but this would likely result in an underestimation of reliability and likely not affect the relative gains of CORE compared to the Traditional CBM-R measure [@yeoetal2012]. Other modeling choices may also have affected the results, including: not accounting for clustered data (although a ruboust estimator was used); not modeling individually-varying measurement occasions (although this would affect both outcome measures similarly as students took both assessments on the same day); 
 
-
 The LGMs were fit to four waves of data that were intended to represent entire classrooms, making the measure more similar to (triannual) screening assessments, and less similar to progress monitoring data. Future research should extend this study and include a planned study with students receiving additional reading supports and their corresponding CBM-R progress monitoring data to examine the growth and reliability properties of model-based CORE scores. Also, because some schools participated across both years of the study, some students were likely to have been re-sampled in a subsequent grade which may have increased the homogeneity in the results. 
 
-In addition, the CBM-R measures correlations with the continuous outcomes (Table\ \@ref(tab:tbl-cor)) were generally lower than reported average empirical correlations of CBM-R and reading comprehension on state achievement tests ($r$ = .63; [@shin2019]). As such, the analyses conducted in this study should be replicated with different samples, different traditional CBM-R measures, and different reading outcomes to explore the generalizability of results. Also, since the number of CORE passages (10-12) was selected somewhat arbitrarily, future research should endeavor to find the minimum number of CORE passages students could read to still demonstrate the improved psychometric properties (e.g., reduced standard error of measurement, reliability, and predictive validity). Finally, the logistic regression classification threshold (.50) could be potentially be optimized to increase the accuracy of state-test proficiency predictions. While this may improve prediction performance, it would both CBM-R measures equally, and thus would not affect the results of the comparison between measures.
+In addition, the CBM-R measures correlations with the continuous outcomes (Table\ \@ref(tab:tbl-cor)) were generally lower than reported average empirical correlations of CBM-R and reading comprehension on state achievement tests ($r$ = .63; [@shin2019]). As such, the analyses conducted in this study should be replicated with different samples, different traditional CBM-R measures, and different reading outcomes to explore the generalizability of results. Also, since the number of CORE passages (10-12) was selected somewhat arbitrarily, future research should endeavor to find the minimum number of CORE passages students could read to still demonstrate the improved psychometric properties (e.g., reduced standard error of measurement, reliability, and predictive validity). Finally, the logistic regression classification threshold (.50) could potentially be optimized to increase the accuracy of state-test proficiency predictions. While this may improve prediction performance, it would both CBM-R measures equally, and thus would not affect the results of the comparison between measures.
 
 ## Conclusion
 
 A simple interpretation of the results presented here is that the model-based CORE scores had a stronger relation with year-end reading comprehension and SBAC ELA/L scores, which has implications for educators using oral reading fluency measures for educational decisions. Good reading fluency has a theoretical and empirical relation with good reading comprehension, the latter of which is the ultimate goal of reading instruction. Descriptive analysis showed that the model-based CORE scores had higher correlations with both continuous outcomes across grades, except Grade 4, proximal (equal correlation) and Grade 2, distal (Table\ \@ref(tab:tbl-cor)). The model-based CORE scores, with a stronger relation with reading comprehension, can potentially better help with early identification of students at risk of poor reading outcomes and potentially better help monitor the reading fluency progress of those at-risk students because the scores provide a better estimate of students' current and prospective reading proficiency. 
 
 This study is an important part of a larger effort to improve traditional CBM-R assessment and the systems used by educators to make data-based decisions. CORE reshapes oral reading fluency and traditional CBM-R assessment by allowing group administration, more than one minute of reading, multiple passages, machine scoring, and WCPM scale scores. The benefits include reduced human administration cost and errors [@nese2020asr], and reduced standard error of measurement [@nese2020sem]. The results of this study suggest increased measurement precision for the model-based CORE scores compared to traditional CBM-R, providing preliminary evidence that CORE can be used for consequential assessment. This is important for practitioners, as these measures are used to screen for students at risk of poor reading outcomes, and to monitor the progress of those students receiving reading intervention. CORE could provide more accurate data to predict which students may not meet state reading standards so that intervention could be delivered, and more precise data to evaluate the effectiveness of intervention and base educational decisions, such as determining whether the intervention is effective or needs to be modified to better meet the student's needs.  
-
-```{r, eval=FALSE}
-
-
-set.seed(2013)
-data_r %>% 
-  select(id_core, grade_core, wcpm_easycbmcore.wave1_r:wcpm_easycbmcore.wave4_r,
-         wcpm_core.wave1_r:wcpm_core.wave4_r) %>% 
-  mutate(n_easycbmcore = 4 - (is.na(wcpm_easycbmcore.wave1_r) + is.na(wcpm_easycbmcore.wave2_r) +
-                                is.na(wcpm_easycbmcore.wave3_r) + is.na(wcpm_easycbmcore.wave4_r)),
-         n_core = 4 - (is.na(wcpm_core.wave1_r) + is.na(wcpm_core.wave2_r) + 
-                         is.na(wcpm_core.wave3_r) + is.na(wcpm_core.wave4_r))) %>% 
-  filter(n_easycbmcore == 4 & n_core == 4) %>% 
-  mutate(pct20 = case_when(
-         grade_core == 2 & wcpm_easycbmcore.wave1_r <= 32 ~ "atrisk",
-         grade_core == 3 & wcpm_easycbmcore.wave1_r <= 58 ~ "atrisk",
-         grade_core == 4 & wcpm_easycbmcore.wave1_r <= 85 ~ "atrisk",
-         TRUE ~ "not_atrisk")
-  ) %>% 
-  filter(pct20 == "atrisk") %>% 
-  group_by(grade_core) %>% 
-  sample_n(2) %>% 
-  pivot_longer(
-    cols = -c(id_core, grade_core, n_easycbmcore, n_core, pct20),
-    names_to = c("measure", "wave"),
-    names_sep = "\\.",
-    names_prefix = "wcpm_",
-    values_to = "wcpm"
-  ) %>% 
-  mutate(wave = parse_number(wave)) %>% 
-  ggplot(aes(wave, wcpm, color = measure)) +
-  geom_point() +
-  geom_line() +
-  facet_wrap(~id_core)
-
-#grade2 20th = 29 25th=32
-#grade2 20th = 51 25th=58
-#grade2 20th = 80 25th=85
-```
 
 \newpage
 
@@ -1752,4 +1513,125 @@ data_r %>%
 <div id="refs" custom-style="Bibliography"></div>
 \endgroup
 
+\appendix
+
+# 
+
+(ref:tbl-cor-cap) Correlations between CBM-R Predictors (CORE and Traditional) and Continuous Outcomes (Spring CBM Comprehension and SBAC ELA/L) by Grade.
+
+```{r tbl-cor, results="asis"}
+
+cor_comp <- data_comp %>% 
+  select(grade_core, wcpm_core.wave1_r, wcpm_easycbmcore.wave1_r, wcpm_core.wave4_r, wcpm_easycbmcore.wave4_r, readingcomp_easycbm.spring) %>% 
+  group_by(grade_core) %>% 
+  summarize(core_fall = cor(wcpm_core.wave1_r, readingcomp_easycbm.spring, use = "pairwise.complete.obs"),
+            trad_fall = cor(wcpm_easycbmcore.wave1_r, readingcomp_easycbm.spring, use = "pairwise.complete.obs"),
+            core_spring = cor(wcpm_core.wave4_r, readingcomp_easycbm.spring, use = "pairwise.complete.obs"),
+            trad_spring = cor(wcpm_easycbmcore.wave4_r, readingcomp_easycbm.spring, use = "pairwise.complete.obs")
+  ) %>% 
+  mutate(measure = "CBM Comprehension")
+            
+cor_sbac <- data_sbac %>% 
+  select(grade_core, wcpm_core.wave1_r, wcpm_easycbmcore.wave1_r, wcpm_core.wave4_r, wcpm_easycbmcore.wave4_r, sbac_score) %>% 
+  group_by(grade_core) %>%  
+  summarize(
+    core_fall = cor(wcpm_core.wave1_r, sbac_score, use = "pairwise.complete.obs"),
+    trad_fall = cor(wcpm_easycbmcore.wave1_r, sbac_score, use = "pairwise.complete.obs"),
+    core_spring = cor(wcpm_core.wave4_r, sbac_score, use = "pairwise.complete.obs"),
+    trad_spring = cor(wcpm_easycbmcore.wave4_r, sbac_score, use = "pairwise.complete.obs")
+    ) %>% 
+  mutate(measure = "SBAC ELA/L Score")
+
+cor_info <- cor_comp %>% 
+  bind_rows(cor_sbac) %>% 
+  mutate(across(c(core_fall:trad_spring), ~str_sub(sprintf("%.2f", round(., 2)), 2)))
+
+variable_labels(cor_info$core_fall) <- "CORE"
+variable_labels(cor_info$trad_fall) <- "Traditional"
+variable_labels(cor_info$core_spring) <- "CORE"
+variable_labels(cor_info$trad_spring) <- "Traditional"
+
+cor_info <- cor_info %>%
+  rename(Grade = grade_core) %>% 
+  mutate(Grade = paste0("Grade ", Grade)) %>% 
+  group_by(measure) %>% 
+  nest()
+
+apa_table(
+  list(
+    `CBM Comprehension` = cor_info$data[[1]],
+    `SBAC ELA/L Score` = cor_info$data[[2]]
+    ), 
+  caption = "(ref:tbl-cor-cap)", 
+  col_spanners = list(`Distal (Fall)` = c(2, 3), `Proximal (Spring)` = c(4, 5)),
+  align = c("l", rep("r", 4)),
+  escape = FALSE
+  ) 
+
+```
+
+(ref:tbl-asr-ex-cap) Example Passage Scored by the ASR.
+
+```{r tbl-asr-ex, results='asis'}
+tbl_asr_ex <- read_csv(here::here("data", "tbl_asr_ex.csv")) %>% 
+  rowid_to_column("Word") %>% 
+  rename_with(~str_to_title(.), everything()) %>% 
+  as.data.frame(.)
+
+apa_table(
+  tbl_asr_ex, 
+  caption = "(ref:tbl-asr-ex-cap)", 
+  align = c(rep("r", 6)),
+  font_size = "scriptsize",
+  longtable = TRUE,
+  escape = FALSE,
+  note = "Word = word number. Ref = Reference word from the passage. Start = centiseconds from when the passage was displayed on the sreen to when the student started reading the reference word. End = centiseconds from when the passage was displayed on the sreen to when the student ended reading the reference word. Hyp = hypthosized word recorded by the ASR. Score = ASR word score (0 = incorrect, 1 = correct). \\** = words omitted as recorded by the ASR."
+  )
+```
+
+
+(ref:tbl-lgms-results-cap) Latent Growth Model Parameter Estimates by Grade.
+
+```{r tbl-lgms-results, results='asis'}
+
+lgms_info <- lgms %>% 
+  mutate(paramtable = map(params, paramtable_fx)) %>% 
+  select(Grade = grade_core, measure, paramtable) %>% 
+  arrange(Grade, measure) %>% 
+  pivot_wider(
+    names_from = measure,
+    values_from = paramtable
+  ) %>% 
+  unnest() %>% 
+  select(-param_names1) %>% 
+  mutate(across(c(parameter1:z1), ~ifelse(Grade == 4, "", .)),
+         across(c(parameter:z1), ~ifelse(. == "", "--", .)),
+         Grade = paste0("Grade ", Grade)) %>% 
+  rename(`Parameter Names` = param_names,
+         Parameter = parameter) %>% 
+  as.data.frame(.)
+
+variable_labels(lgms_info$se) <- "\\emph{SE}"
+variable_labels(lgms_info$z) <- "\\emph{z}-value"
+variable_labels(lgms_info$parameter1) <- "Parameter"
+variable_labels(lgms_info$se1) <- "\\emph{SE}"
+variable_labels(lgms_info$z1) <- "\\emph{z}-value"
+
+lgms_info <- lgms_info %>% 
+  group_by(Grade) %>% 
+  nest()
+
+apa_table(
+  list(
+    `Grade 2` = lgms_info$data[[1]],
+    `Grade 3` = lgms_info$data[[2]],
+    `Grade 4` = lgms_info$data[[3]]
+    ), 
+  col_spanners = list(`CORE` = c(2, 4), `Traditional` = c(5, 7)),
+  caption = "(ref:tbl-lgms-results-cap)", 
+  align = c("l", rep("r", 6)),
+  longtable = TRUE,
+  escape = FALSE
+  )
+```
 

@@ -1,1 +1,8 @@
-consequential_validity_paper
+This repository documents the data files and analysis files used to generate "Comparing the Growth and Predictive Performance of a Traditional Oral Reading Fluency Measure to an Experimental Novel Measure" in AERAOpen, 2021.
+
+The data were collected by the research team as part of a larger research project and are publicly available. Study procedures can be found [here](https://jnese.github.io/core-blog/posts/2019-04-12-consequential-validity-study-procedures/), information about the larger research project can be found [here](https://jnese.github.io/core-blog/), and the GitHub repo can be found [here](https://github.com/jnese/consequential_validity_paper). The student data contain reading assessment information, and student demographic characteristics. The school data contain school demographic characteristics. All data needed for replication can be found in "data_open.csv" (student), "school1819.csv" (school), and "tbl_asr_ex.csv" (appendix table).  
+
+The "conseq_validity_manusript.Rmd", "appendix.Rmd", and "r-references.bib" files can be used to generate the manuscript in its entirety, however the formatting of the rendered document will differ from the published manuscript in various ways in order to comply with publishing requirements. 
+
+The research reported here was supported by the Institute of Education Sciences, U.S. Department of Education, through Grant [R305A140203](https://ies.ed.gov/funding/grantsearch/details.asp?ID=1492) to the University of Oregon. The opinions expressed are those of the author and do not represent views of the Institute or the U.S. Department of Education.
+

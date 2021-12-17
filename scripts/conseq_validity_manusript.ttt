@@ -1,0 +1,131 @@
+\efloatseparator
+ 
+\begin{ThreePartTable}
+
+\begin{TableNotes}[para]
+\normalsize{\textit{Note.} Word = word number. Ref = Reference word from the passage. Start = centiseconds from when the passage was displayed on the sreen to when the student started reading the reference word. End = centiseconds from when the passage was displayed on the sreen to when the student ended reading the reference word. Hyp = hypthosized word recorded by the ASR. Score = ASR word score (0 = incorrect, 1 = correct). \** = words omitted as recorded by the ASR.}
+\end{TableNotes}
+
+\scriptsize{
+
+\begin{longtable}{rrrrrr}\noalign{\getlongtablewidth\global\LTcapwidth=\longtablewidth}
+\caption{\label{tab:tbl-asr-ex}Example Passage Scored by the ASR.}\\
+\toprule
+Word & \multicolumn{1}{c}{Ref} & \multicolumn{1}{c}{Start} & \multicolumn{1}{c}{End} & \multicolumn{1}{c}{Hyp} & \multicolumn{1}{c}{Score}\\
+\midrule
+\endfirsthead
+\caption*{\normalfont{Table \ref{tab:tbl-asr-ex} continued}}\\
+\toprule
+Word & \multicolumn{1}{c}{Ref} & \multicolumn{1}{c}{Start} & \multicolumn{1}{c}{End} & \multicolumn{1}{c}{Hyp} & \multicolumn{1}{c}{Score}\\
+\midrule
+\endhead
+1 & MARCY & 114.00 & 187.00 & MARCY & 1.00\\
+2 & REALLY & 229.00 & 288.00 & REALLY & 1.00\\
+3 & LIKED & 321.00 & 390.00 & LIKED & 1.00\\
+4 & RAINY & 391.00 & 440.00 & RAINY & 1.00\\
+5 & DAYS & 441.00 & 499.00 & DAY & 0.00\\
+6 & SHE & 526.00 & 547.00 & SHE & 1.00\\
+7 & SAT & 548.00 & 587.00 & SAT & 1.00\\
+8 & IN & 588.00 & 602.00 & IN & 1.00\\
+9 & THE & 603.00 & 620.00 & THE & 1.00\\
+10 & WINDOW & 621.00 & 680.00 & WINDOW & 1.00\\
+11 & SEAT & 1,325.00 & 1,372.00 & SEAT & 1.00\\
+12 & AND & 1,379.00 & 1,454.00 & AND & 1.00\\
+13 & READ & 1,455.00 & 1,488.00 & READ & 1.00\\
+14 & HER & 1,489.00 & 1,516.00 & HER & 1.00\\
+15 & BOOKS & 1,517.00 & 1,571.00 & BOOKS & 1.00\\
+16 & EACH & 1,683.00 & 1,720.00 & EACH & 1.00\\
+17 & RAINY & 1,721.00 & 1,759.00 & RAINY & 1.00\\
+18 & DAY & 1,760.00 & 1,783.00 & DAY & 1.00\\
+19 & SOMETIMES & 1,784.00 & 1,838.00 & SOMETIMES & 1.00\\
+20 & THE & 1,839.00 & 1,847.00 & THE & 1.00\\
+21 & BRANCHES & 1,848.00 & 1,909.00 & BRANCHES & 1.00\\
+22 & OF & 1,913.00 & 1,970.00 & OF & 1.00\\
+23 & THE & 1,975.00 & 1,984.00 & THE & 1.00\\
+24 & TREE & 1,985.00 & 2,024.00 & TREE & 1.00\\
+25 & OUTSIDE & 2,031.00 & 2,098.00 & OUTSIDE & 1.00\\
+26 & BRUSHED & 2,099.00 & 2,193.00 & BRUSHED & 1.00\\
+27 & UP & 2,236.00 & 2,264.00 & UP & 1.00\\
+28 & AGAINST & 2,268.00 & 2,326.00 & AGAINST & 1.00\\
+29 & THE & 2,327.00 & 2,346.00 & THE & 1.00\\
+30 & WINDOWS & 2,347.00 & 2,413.00 & WINDOWS & 1.00\\
+31 & AND & 2,440.00 & 2,487.00 & AND & 1.00\\
+32 & IT & NA & NA & ** & 0.00\\
+33 & SEEMED & NA & NA & ****** & 0.00\\
+34 & LIKE & NA & NA & **** & 0.00\\
+35 & THE & 2,488.00 & 2,497.00 & THE & 1.00\\
+36 & TREE & NA & NA & **** & 0.00\\
+37 & WAS & NA & NA & *** & 0.00\\
+38 & TALKING & NA & NA & ******* & 0.00\\
+39 & TO & NA & NA & ** & 0.00\\
+40 & HER & NA & NA & *** & 0.00\\
+41 & THAT & 2,498.00 & 3,668.00 & THAT & 1.00\\
+42 & MADE & 3,669.00 & 3,695.00 & MADE & 1.00\\
+43 & HER & 3,696.00 & 3,711.00 & HER & 1.00\\
+44 & SMILE & 3,712.00 & 3,769.00 & SMILE & 1.00\\
+45 & AND & 3,770.00 & 3,801.00 & AND & 1.00\\
+46 & SHE & 3,802.00 & 3,825.00 & SHE & 1.00\\
+47 & LAUGHED & 3,826.00 & 3,873.00 & LAUGHED & 1.00\\
+48 & OUT & 3,874.00 & 3,892.00 & OUT & 1.00\\
+49 & LOUD & 3,893.00 & 3,947.00 & LOUD & 1.00\\
+\bottomrule
+\addlinespace
+\insertTableNotes
+\end{longtable}
+
+}
+
+\end{ThreePartTable}
+\efloatseparator
+ 
+\begin{ThreePartTable}
+
+\begin{longtable}{lrrrrrr}\noalign{\getlongtablewidth\global\LTcapwidth=\longtablewidth}
+\caption{\label{tab:tbl-lgms-results}Latent Growth Model Parameter Estimates by Grade.}\\
+\toprule
+ & \multicolumn{3}{c}{CORE} & \multicolumn{3}{c}{Traditional} \\
+\cmidrule(r){2-4} \cmidrule(r){5-7}
+Parameter Names & \multicolumn{1}{c}{Parameter} & \multicolumn{1}{c}{\emph{SE}} & \multicolumn{1}{c}{\emph{z}-value} & \multicolumn{1}{c}{Parameter} & \multicolumn{1}{c}{\emph{SE}} & \multicolumn{1}{c}{\emph{z}-value}\\
+\midrule
+\endfirsthead
+\caption*{\normalfont{Table \ref{tab:tbl-lgms-results} continued}}\\
+\toprule
+ & \multicolumn{3}{c}{CORE} & \multicolumn{3}{c}{Traditional} \\
+\cmidrule(r){2-4} \cmidrule(r){5-7}
+Parameter Names & \multicolumn{1}{c}{Parameter} & \multicolumn{1}{c}{\emph{SE}} & \multicolumn{1}{c}{\emph{z}-value} & \multicolumn{1}{c}{Parameter} & \multicolumn{1}{c}{\emph{SE}} & \multicolumn{1}{c}{\emph{z}-value}\\
+\midrule
+\endhead
+Grade 2 &  &  &  &  &  & \\
+\ \ \ Mean Intercept & 63.75 & 1.39 & 45.86 & 74.79 & 1.31 & 56.89\\
+\ \ \ Mean Slope & 3.59 & 0.13 & 27.40 & 4.30 & 0.21 & 20.55\\
+\ \ \ Variance Intercept & 1070.46 & 56.82 & 18.84 & 694.73 & 54.94 & 12.65\\
+\ \ \ Variance Slope & 3.04 & 1.03 & 2.95 & 5.25 & 2.06 & 2.55\\
+\ \ \ Correlation Intercept-Slope & -0.35 & -- & -- & 0.05 & -- & --\\
+\ \ \ Residual Variance Wave 1 & 108.15 & 21.60 & 5.01 & 174.89 & 39.26 & 4.46\\
+\ \ \ Residual Variance Wave 2 & 123.28 & 30.80 & 4.00 & 170.13 & 21.54 & 7.90\\
+\ \ \ Residual Variance Wave 3 & 188.05 & 33.71 & 5.58 & 383.15 & 108.25 & 3.54\\
+\ \ \ Residual Variance Wave 4 & 166.29 & 43.15 & 3.85 & 164.71 & 56.55 & 2.91\\
+Grade 3 &  &  &  &  &  & \\
+\ \ \ Mean Intercept & 86.86 & 1.27 & 68.56 & 98.34 & 1.25 & 78.41\\
+\ \ \ Mean Slope & 2.00 & 0.11 & 17.69 & 2.33 & 0.15 & 15.06\\
+\ \ \ Variance Intercept & 1154.59 & 61.11 & 18.89 & 861.74 & 72.83 & 11.83\\
+\ \ \ Variance Slope & 2.96 & 1.20 & 2.46 & 0.87 & 2.57 & 0.34\\
+\ \ \ Correlation Intercept-Slope & -0.51 & -- & -- & 0.25 & -- & --\\
+\ \ \ Residual Variance Wave 1 & 86.29 & 17.68 & 4.88 & 211.07 & 57.28 & 3.68\\
+\ \ \ Residual Variance Wave 2 & 170.98 & 22.35 & 7.65 & 345.25 & 88.15 & 3.92\\
+\ \ \ Residual Variance Wave 3 & 175.85 & 25.57 & 6.88 & 325.07 & 42.81 & 7.59\\
+\ \ \ Residual Variance Wave 4 & 173.13 & 35.41 & 4.89 & 245.04 & 75.52 & 3.24\\
+Grade 4 &  &  &  &  &  & \\
+\ \ \ Mean Intercept & 109.71 & 1.30 & 84.62 & -- & -- & --\\
+\ \ \ Mean Slope & 1.67 & 0.11 & 15.06 & -- & -- & --\\
+\ \ \ Variance Intercept & 1125.18 & 63.04 & 17.85 & -- & -- & --\\
+\ \ \ Variance Slope & 0.74 & 1.15 & 0.64 & -- & -- & --\\
+\ \ \ Correlation Intercept-Slope & -0.44 & -- & -- & -- & -- & --\\
+\ \ \ Residual Variance Wave 1 & 103.88 & 20.96 & 4.96 & -- & -- & --\\
+\ \ \ Residual Variance Wave 2 & 167.61 & 33.84 & 4.95 & -- & -- & --\\
+\ \ \ Residual Variance Wave 3 & 149.52 & 21.61 & 6.92 & -- & -- & --\\
+\ \ \ Residual Variance Wave 4 & 207.36 & 46.01 & 4.51 & -- & -- & --\\
+\bottomrule
+\end{longtable}
+
+\end{ThreePartTable}
