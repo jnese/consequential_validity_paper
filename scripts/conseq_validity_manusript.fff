@@ -3,19 +3,19 @@
 
 \centering
 \includegraphics{conseq_validity_manusript_files/figure-latex/fig-means-1.pdf}
-\caption{\label{fig:fig-means}Mean words correct per minute (WCPM) score across waves by grade and CBM-R measure.}
+\caption{\label{fig:fig-means}Mean words correct per minute (WCPM) score across waves by grade and CBM-R measure}
 \end{figure*}
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
 \centering
 \includegraphics{conseq_validity_manusript_files/figure-latex/fig-comp-scatter-1.pdf}
-\caption{\label{fig:fig-comp-scatter}Words correct per minute (WCPM) and comprehension scores by grade and season, distal (fall) and proximal (spring).}
+\caption{\label{fig:fig-comp-scatter}Words correct per minute (WCPM) and comprehension scores by grade and season, distal (fall) and proximal (spring)}
 \end{figure*}
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
 \centering
 \includegraphics{conseq_validity_manusript_files/figure-latex/fig-sbac-scatter-1.pdf}
-\caption{\label{fig:fig-sbac-scatter}Words correct per minute (WCPM) and SBAC ELA/L Score \& Proficiency classification by grade and season, distal (fall) and proximal (spring).}
+\caption{\label{fig:fig-sbac-scatter}Words correct per minute (WCPM) and SBAC ELA/L Score \& Proficiency classification by grade and season, distal (fall) and proximal (spring)}
 \end{figure*}

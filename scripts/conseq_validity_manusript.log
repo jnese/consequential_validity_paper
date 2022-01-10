@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.15)  17 DEC 2021 12:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.1.10)  10 JAN 2022 13:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -467,8 +467,10 @@ Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
 Package csquotes Info: ... configuration file loaded successfully.
 (c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/csquotes/csquotes.cfg
 File: csquotes.cfg 
-)) (c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2021/11/29 3.67 The Babel package
+)) (c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+) (c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2021/12/30 3.69 The Babel package
 \babel@savecnt=\count308
 \U@D=\dimen191
 \l@unhyphenated=\language3
@@ -487,8 +489,6 @@ Package babel Info: Hyphen rules for 'australian' set to \l@english
 (babel)             (\language0). Reported on input line 105.
 Package babel Info: Hyphen rules for 'newzealand' set to \l@english
 (babel)             (\language0). Reported on input line 108.
-) (c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/babel-english/english.ldf
-Language: english 2017/06/06 v3.3r English support from the babel system
 ))
 \cslhangindent=\skip86
 \csllabelwidth=\skip87
@@ -516,24 +516,24 @@ File: l3backend-pdftex.def 2021-12-14 L3 backend support: PDF output (pdfTeX)
 ) (./conseq_validity_manusript.aux)
 \openout1 = `conseq_validity_manusript.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 178.
-LaTeX Font Info:    ... okay on input line 178.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 178.
-LaTeX Font Info:    ... okay on input line 178.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 178.
-LaTeX Font Info:    ... okay on input line 178.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 178.
-LaTeX Font Info:    ... okay on input line 178.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 178.
-LaTeX Font Info:    ... okay on input line 178.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 178.
-LaTeX Font Info:    ... okay on input line 178.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 178.
-LaTeX Font Info:    ... okay on input line 178.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 178.
-LaTeX Font Info:    ... okay on input line 178.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 178.
-LaTeX Font Info:    ... okay on input line 178.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 180.
+LaTeX Font Info:    ... okay on input line 180.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 180.
+LaTeX Font Info:    ... okay on input line 180.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 180.
+LaTeX Font Info:    ... okay on input line 180.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 180.
+LaTeX Font Info:    ... okay on input line 180.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 180.
+LaTeX Font Info:    ... okay on input line 180.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 180.
+LaTeX Font Info:    ... okay on input line 180.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 180.
+LaTeX Font Info:    ... okay on input line 180.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 180.
+LaTeX Font Info:    ... okay on input line 180.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 180.
+LaTeX Font Info:    ... okay on input line 180.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -583,7 +583,7 @@ Package caption Info: longtable package is loaded.
 Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 178.
+Package hyperref Info: Link coloring OFF on input line 180.
 (c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 (c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
@@ -593,41 +593,41 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count314
 )
-LaTeX Info: Redefining \ref on input line 178.
-LaTeX Info: Redefining \pageref on input line 178.
-LaTeX Info: Redefining \nameref on input line 178.
+LaTeX Info: Redefining \ref on input line 180.
+LaTeX Info: Redefining \pageref on input line 180.
+LaTeX Info: Redefining \nameref on input line 180.
 (./conseq_validity_manusript.out) (./conseq_validity_manusript.out)
 \@outlinefile=\write5
 \openout5 = `conseq_validity_manusript.out'.
 
-Class apa6 Info: Keywords not defined on input line 180.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 180.
+Class apa6 Info: Keywords not defined on input line 182.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 182.
 (c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 180.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 182.
 (c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 180.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 182.
 (c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 180.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 182.
 (c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 180.
+(Font)              <12> on input line 182.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 180.
+(Font)              <8> on input line 182.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 180.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 180.
+(Font)              <6> on input line 182.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 182.
 (c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 180.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 182.
 (c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1{c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
@@ -635,36 +635,15 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ] [2] [3] [4] [5] [6] [7] [8]
 \openout3 = `conseq_validity_manusript.ttt'.
 
-(conseq_validity_manusript.ttt)
+(conseq_validity_manusript.ttt) [9] [10]
+\openout4 = `conseq_validity_manusript.fff'.
 
-LaTeX Warning: Reference `fig:fig-means' on page 9 undefined on input line 307.
-
-[9] [10] [11]
-
-LaTeX Warning: Reference `fig:fig-comp-scatter' on page 12 undefined on input line 382.
-
-[12]
-
-LaTeX Warning: Reference `fig:fig-sbac-scatter' on page 13 undefined on input line 392.
-
-[13] [14] [15] [16]
-
-LaTeX Warning: Reference `fig:fig-means' on page 17 undefined on input line 450.
-
-[17] [18] [19] [20]
-
-LaTeX Warning: Reference `fig:fig-means' on page 21 undefined on input line 652.
-
-[21] [22]
-
-LaTeX Warning: Reference `fig:fig-means' on page 23 undefined on input line 665.
-
-[23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] (./conseq_validity_manusript.ttt [37
+(conseq_validity_manusript.fff) [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] (./conseq_validity_manusript.ttt [37
 
 ] [38] [39
 
 ] [40]
-Overfull \hbox (2.80338pt too wide) in paragraph at lines 182--214
+Overfull \hbox (2.80338pt too wide) in paragraph at lines 188--220
  [] 
  []
 
@@ -672,10 +651,31 @@ Overfull \hbox (2.80338pt too wide) in paragraph at lines 182--214
 
 ] [42] [43
 
-]) [44]
+]) [44] (./conseq_validity_manusript.fff
+<conseq_validity_manusript_files/figure-latex/fig-means-1.pdf, id=445, 469.755pt x 325.215pt>
+File: conseq_validity_manusript_files/figure-latex/fig-means-1.pdf Graphic file (type pdf)
+<use conseq_validity_manusript_files/figure-latex/fig-means-1.pdf>
+Package pdftex.def Info: conseq_validity_manusript_files/figure-latex/fig-means-1.pdf  used on input line 5.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+<conseq_validity_manusript_files/figure-latex/fig-comp-scatter-1.pdf, id=446, 469.755pt x 505.89pt>
+File: conseq_validity_manusript_files/figure-latex/fig-comp-scatter-1.pdf Graphic file (type pdf)
+<use conseq_validity_manusript_files/figure-latex/fig-comp-scatter-1.pdf>
+Package pdftex.def Info: conseq_validity_manusript_files/figure-latex/fig-comp-scatter-1.pdf  used on input line 12.
+(pdftex.def)             Requested size: 469.75386pt x 505.88875pt.
+<conseq_validity_manusript_files/figure-latex/fig-sbac-scatter-1.pdf, id=447, 469.755pt x 650.43pt>
+File: conseq_validity_manusript_files/figure-latex/fig-sbac-scatter-1.pdf Graphic file (type pdf)
+<use conseq_validity_manusript_files/figure-latex/fig-sbac-scatter-1.pdf>
+Package pdftex.def Info: conseq_validity_manusript_files/figure-latex/fig-sbac-scatter-1.pdf  used on input line 19.
+(pdftex.def)             Requested size: 469.75386pt x 650.4284pt.
+
+LaTeX Warning: Float too large for page by 28.99838pt on input line 21.
+
+) [45
+
+ <./conseq_validity_manusript_files/figure-latex/fig-means-1.pdf>] [46 <./conseq_validity_manusript_files/figure-latex/fig-comp-scatter-1.pdf>] [47 <./conseq_validity_manusript_files/figure-latex/fig-sbac-scatter-1.pdf>]
 \openout3 = `conseq_validity_manusript.ttt'.
 
-(conseq_validity_manusript.ttt) AED endfloat: Processing end Figures and Tables [45
+(conseq_validity_manusript.ttt) AED endfloat: Processing end Figures and Tables [48
 
 ] (./conseq_validity_manusript.tttpdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
 <to be read again> 
@@ -684,11 +684,11 @@ l.11 \begin{longtable}{rrrrrr}
                               \noalign{\getlongtablewidth\global\LTcapwidth=...
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 73.
-[46
+[49
 
 
 
-] [47]
+] [50]
 Overfull \hbox (2.2286pt too wide) in paragraph at lines 84--84
 [] [] 
  []
@@ -713,28 +713,25 @@ Overfull \hbox (4.4572pt too wide) in alignment at lines 97--129
  [] [] [] [] [] [] [] 
  []
 
-[48
+[51
 
-]) [49] (./conseq_validity_manusript.aux)
-
-LaTeX Warning: There were undefined references.
-
+]) [52] (./conseq_validity_manusript.aux)
 Package rerunfilecheck Info: File `conseq_validity_manusript.out' has not changed.
 (rerunfilecheck)             Checksum: 759010176A6C78BD30540E6CDA655235;2559.
  ) 
 Here is how much of TeX's memory you used:
- 15457 strings out of 480313
- 251098 string characters out of 5895779
- 578869 words of memory out of 5000000
- 32867 multiletter control sequences out of 15000+600000
- 456017 words of font info for 71 fonts, out of 8000000 for 9000
+ 15525 strings out of 480313
+ 253509 string characters out of 5895780
+ 579589 words of memory out of 5000000
+ 32922 multiletter control sequences out of 15000+600000
+ 460281 words of font info for 72 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 70i,12n,77p,2264b,614s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}<c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
-Output written on conseq_validity_manusript.pdf (49 pages, 278322 bytes).
+ 70i,12n,77p,2264b,628s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/jnese/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
+Output written on conseq_validity_manusript.pdf (52 pages, 617413 bytes).
 PDF statistics:
- 563 PDF objects out of 1000 (max. 8388607)
- 479 compressed objects within 5 object streams
- 179 named destinations out of 1000 (max. 500000)
- 177 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 613 PDF objects out of 1000 (max. 8388607)
+ 517 compressed objects within 6 object streams
+ 185 named destinations out of 1000 (max. 500000)
+ 192 words of extra memory for PDF output out of 10000 (max. 10000000)
 
